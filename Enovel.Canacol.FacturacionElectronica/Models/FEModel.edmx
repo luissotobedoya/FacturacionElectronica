@@ -1,0 +1,1063 @@
+﻿<?xml version="1.0" encoding="utf-8"?>
+<edmx:Edmx Version="3.0" xmlns:edmx="http://schemas.microsoft.com/ado/2009/11/edmx">
+  <!-- EF Runtime content -->
+  <edmx:Runtime>
+    <!-- SSDL content -->
+    <edmx:StorageModels>
+      <Schema Namespace="bdFacturacionElectronicaModel.Store" Provider="System.Data.SqlClient" ProviderManifestToken="2012" Alias="Self" xmlns:store="http://schemas.microsoft.com/ado/2007/12/edm/EntityStoreSchemaGenerator" xmlns:customannotation="http://schemas.microsoft.com/ado/2013/11/edm/customannotation" xmlns="http://schemas.microsoft.com/ado/2009/11/edm/ssdl">
+        <EntityType Name="tblCalidadTributaria">
+          <Key>
+            <PropertyRef Name="ID" />
+          </Key>
+          <Property Name="ID" Type="int" StoreGeneratedPattern="Identity" Nullable="false" />
+          <Property Name="Nombre" Type="varchar" MaxLength="50" Nullable="false" />
+        </EntityType>
+        <EntityType Name="tblEmpresa">
+          <Key>
+            <PropertyRef Name="ID" />
+          </Key>
+          <Property Name="ID" Type="int" StoreGeneratedPattern="Identity" Nullable="false" />
+          <Property Name="Nombre" Type="varchar" MaxLength="50" />
+        </EntityType>
+        <EntityType Name="tblEmpresaPorProveedor">
+          <Key>
+            <PropertyRef Name="ID" />
+          </Key>
+          <Property Name="ID" Type="int" StoreGeneratedPattern="Identity" Nullable="false" />
+          <Property Name="UsuarioNit" Type="varchar" MaxLength="20" Nullable="false" />
+          <Property Name="IDEmpresa" Type="int" Nullable="false" />
+        </EntityType>
+        <EntityType Name="tblFechasFacturacion">
+          <Key>
+            <PropertyRef Name="ID" />
+          </Key>
+          <Property Name="ID" Type="int" StoreGeneratedPattern="Identity" Nullable="false" />
+          <Property Name="Periodo" Type="int" Nullable="false" />
+          <Property Name="Enero" Type="datetime" Nullable="false" />
+          <Property Name="Febrero" Type="datetime" Nullable="false" />
+          <Property Name="Marzo" Type="datetime" Nullable="false" />
+          <Property Name="Abril" Type="datetime" Nullable="false" />
+          <Property Name="Mayo" Type="datetime" Nullable="false" />
+          <Property Name="Junio" Type="datetime" Nullable="false" />
+          <Property Name="Julio" Type="datetime" Nullable="false" />
+          <Property Name="Agosto" Type="datetime" Nullable="false" />
+          <Property Name="Septiembre" Type="datetime" Nullable="false" />
+          <Property Name="Octubre" Type="datetime" Nullable="false" />
+          <Property Name="Noviembre" Type="datetime" Nullable="false" />
+          <Property Name="Diciembre" Type="datetime" Nullable="false" />
+        </EntityType>
+        <EntityType Name="tblGoodReceiptProveedor">
+          <Key>
+            <PropertyRef Name="ID" />
+          </Key>
+          <Property Name="ID" Type="int" Nullable="false" />
+          <Property Name="IDNumeroOrdenProveedor" Type="int" Nullable="false" />
+          <Property Name="NumeroGoodReceipt" Type="varchar" MaxLength="20" />
+          <Property Name="TipoMoneda" Type="varchar" MaxLength="5" />
+          <Property Name="ValorGR" Type="real" />
+        </EntityType>
+        <EntityType Name="tblGoodReceiptRadicado">
+          <Key>
+            <PropertyRef Name="ID" />
+          </Key>
+          <Property Name="ID" Type="int" StoreGeneratedPattern="Identity" Nullable="false" />
+          <Property Name="IDRadicado" Type="int" Nullable="false" />
+          <Property Name="IDGoodReceipt" Type="int" Nullable="false" />
+        </EntityType>
+        <EntityType Name="tblLogsFuncionario">
+          <Key>
+            <PropertyRef Name="ID" />
+          </Key>
+          <Property Name="ID" Type="int" Nullable="false" />
+          <Property Name="Fecha" Type="datetime" />
+          <Property Name="Usuario" Type="varchar" MaxLength="50" />
+          <Property Name="Mensaje" Type="varchar(max)" />
+        </EntityType>
+        <EntityType Name="tblLogsProveedor">
+          <Key>
+            <PropertyRef Name="ID" />
+          </Key>
+          <Property Name="ID" Type="int" StoreGeneratedPattern="Identity" Nullable="false" />
+          <Property Name="Fecha" Type="datetime" />
+          <Property Name="Usuario" Type="varchar" MaxLength="50" />
+          <Property Name="Mensaje" Type="varchar(max)" />
+        </EntityType>
+        <EntityType Name="tblNumeroOrdenProveedor">
+          <Key>
+            <PropertyRef Name="ID" />
+          </Key>
+          <Property Name="ID" Type="int" StoreGeneratedPattern="Identity" Nullable="false" />
+          <Property Name="IDTipoOrden" Type="int" Nullable="false" />
+          <Property Name="IDEmpresaPorProveedor" Type="int" Nullable="false" />
+          <Property Name="NumeroOrden" Type="varchar" MaxLength="50" Nullable="false" />
+        </EntityType>
+        <EntityType Name="tblProceso">
+          <Key>
+            <PropertyRef Name="ID" />
+          </Key>
+          <Property Name="ID" Type="int" StoreGeneratedPattern="Identity" Nullable="false" />
+          <Property Name="Proceso" Type="varchar(max)" />
+        </EntityType>
+        <EntityType Name="tblProveedor">
+          <Key>
+            <PropertyRef Name="ID" />
+          </Key>
+          <Property Name="ID" Type="int" Nullable="false" />
+          <Property Name="Nit" Type="varchar" MaxLength="20" Nullable="false" />
+          <Property Name="Nombre" Type="varchar" MaxLength="50" Nullable="false" />
+          <Property Name="Email" Type="varchar" MaxLength="50" Nullable="false" />
+          <Property Name="Estado" Type="bit" Nullable="false" />
+        </EntityType>
+        <EntityType Name="tblRadicado">
+          <Key>
+            <PropertyRef Name="ID" />
+          </Key>
+          <Property Name="ID" Type="int" Nullable="false" />
+          <Property Name="NumeroRadicado" Type="varchar" MaxLength="20" />
+          <Property Name="IDProveedor" Type="int" />
+          <Property Name="RutaArchivoOrden" Type="varchar(max)" />
+          <Property Name="RutaArchivoGoodReceipt" Type="varchar(max)" />
+          <Property Name="Soporte1" Type="varchar(max)" />
+          <Property Name="Soporte2" Type="varchar(max)" />
+          <Property Name="Soporte3" Type="varchar(max)" />
+          <Property Name="Soporte4" Type="varchar(max)" />
+          <Property Name="Soporte5" Type="varchar(max)" />
+          <Property Name="NumeroFactura" Type="varchar" MaxLength="20" />
+          <Property Name="ValorFactura" Type="decimal" Precision="18" Scale="0" />
+          <Property Name="FechaFactura" Type="datetime" />
+          <Property Name="ValorAntesIVA" Type="decimal" Precision="18" Scale="0" />
+          <Property Name="ValorDespuesIVA" Type="decimal" Precision="18" Scale="0" />
+          <Property Name="RutaFactura" Type="varchar(max)" />
+          <Property Name="RutaXMLFactura" Type="varchar(max)" />
+          <Property Name="Observaciones" Type="varchar(max)" />
+          <Property Name="NumeroCausacion" Type="varchar" MaxLength="20" />
+          <Property Name="RutaArchivoCausacion" Type="varchar(max)" />
+          <Property Name="Estado" Type="varchar" MaxLength="20" />
+        </EntityType>
+        <EntityType Name="tblRoles">
+          <Key>
+            <PropertyRef Name="ID" />
+          </Key>
+          <Property Name="ID" Type="int" StoreGeneratedPattern="Identity" Nullable="false" />
+          <Property Name="NombreRol" Type="varchar" MaxLength="20" />
+        </EntityType>
+        <EntityType Name="tblRolesPorProceso">
+          <Key>
+            <PropertyRef Name="ID" />
+          </Key>
+          <Property Name="ID" Type="int" Nullable="false" />
+          <Property Name="IDRol" Type="int" />
+          <Property Name="IDProceso" Type="int" />
+        </EntityType>
+        <EntityType Name="tblRolesPorUsuario">
+          <Key>
+            <PropertyRef Name="ID" />
+          </Key>
+          <Property Name="ID" Type="int" StoreGeneratedPattern="Identity" Nullable="false" />
+          <Property Name="IDRol" Type="int" />
+          <Property Name="Usuario" Type="varchar" MaxLength="20" />
+        </EntityType>
+        <EntityType Name="tblSoporte">
+          <Key>
+            <PropertyRef Name="ID" />
+          </Key>
+          <Property Name="ID" Type="int" StoreGeneratedPattern="Identity" Nullable="false" />
+          <Property Name="Nombre" Type="varchar" MaxLength="50" Nullable="false" />
+        </EntityType>
+        <EntityType Name="tblTipoOrden">
+          <Key>
+            <PropertyRef Name="ID" />
+          </Key>
+          <Property Name="ID" Type="int" StoreGeneratedPattern="Identity" Nullable="false" />
+          <Property Name="Nombre" Type="varchar" MaxLength="50" Nullable="false" />
+        </EntityType>
+        <EntityType Name="tblUsuariosProveedor">
+          <Key>
+            <PropertyRef Name="ID" />
+          </Key>
+          <Property Name="ID" Type="int" StoreGeneratedPattern="Identity" Nullable="false" />
+          <Property Name="UsuarioNit" Type="varchar" MaxLength="20" Nullable="false" />
+          <Property Name="Password" Type="varchar" MaxLength="520" Nullable="false" />
+          <Property Name="RazonSocial" Type="varchar" MaxLength="50" Nullable="false" />
+          <Property Name="IDCalidadTributaria" Type="int" Nullable="false" />
+          <Property Name="IDEmpresa" Type="int" Nullable="false" />
+          <Property Name="Email" Type="varchar" MaxLength="50" Nullable="false" />
+          <Property Name="Telefono" Type="varchar" MaxLength="20" Nullable="false" />
+          <Property Name="Direccion" Type="varchar" MaxLength="100" Nullable="false" />
+          <Property Name="RepresentanteLegal" Type="varchar" MaxLength="50" Nullable="false" />
+          <Property Name="RutaRut" Type="varchar(max)" Nullable="false" />
+          <Property Name="RutaCamaraComercio" Type="varchar(max)" Nullable="false" />
+          <Property Name="Estado" Type="varchar" MaxLength="20" Nullable="false" />
+        </EntityType>
+        <Association Name="FK_ID_tblCalidadTributaria">
+          <End Role="tblCalidadTributaria" Type="Self.tblCalidadTributaria" Multiplicity="1" />
+          <End Role="tblUsuariosProveedor" Type="Self.tblUsuariosProveedor" Multiplicity="*" />
+          <ReferentialConstraint>
+            <Principal Role="tblCalidadTributaria">
+              <PropertyRef Name="ID" />
+            </Principal>
+            <Dependent Role="tblUsuariosProveedor">
+              <PropertyRef Name="IDCalidadTributaria" />
+            </Dependent>
+          </ReferentialConstraint>
+        </Association>
+        <Association Name="FK_ID_tblEmpresa">
+          <End Role="tblEmpresa" Type="Self.tblEmpresa" Multiplicity="1" />
+          <End Role="tblEmpresaPorProveedor" Type="Self.tblEmpresaPorProveedor" Multiplicity="*" />
+          <ReferentialConstraint>
+            <Principal Role="tblEmpresa">
+              <PropertyRef Name="ID" />
+            </Principal>
+            <Dependent Role="tblEmpresaPorProveedor">
+              <PropertyRef Name="IDEmpresa" />
+            </Dependent>
+          </ReferentialConstraint>
+        </Association>
+        <Association Name="FK_ID_tblGoodReceiptProveedor">
+          <End Role="tblGoodReceiptProveedor" Type="Self.tblGoodReceiptProveedor" Multiplicity="1" />
+          <End Role="tblGoodReceiptRadicado" Type="Self.tblGoodReceiptRadicado" Multiplicity="0..1" />
+          <ReferentialConstraint>
+            <Principal Role="tblGoodReceiptProveedor">
+              <PropertyRef Name="ID" />
+            </Principal>
+            <Dependent Role="tblGoodReceiptRadicado">
+              <PropertyRef Name="ID" />
+            </Dependent>
+          </ReferentialConstraint>
+        </Association>
+        <Association Name="FK_ID_tblNumeroOrdenProveedor">
+          <End Role="tblNumeroOrdenProveedor" Type="Self.tblNumeroOrdenProveedor" Multiplicity="1" />
+          <End Role="tblGoodReceiptProveedor" Type="Self.tblGoodReceiptProveedor" Multiplicity="*" />
+          <ReferentialConstraint>
+            <Principal Role="tblNumeroOrdenProveedor">
+              <PropertyRef Name="ID" />
+            </Principal>
+            <Dependent Role="tblGoodReceiptProveedor">
+              <PropertyRef Name="IDNumeroOrdenProveedor" />
+            </Dependent>
+          </ReferentialConstraint>
+        </Association>
+        <Association Name="FK_ID_tblProceso">
+          <End Role="tblProceso" Type="Self.tblProceso" Multiplicity="0..1" />
+          <End Role="tblRolesPorProceso" Type="Self.tblRolesPorProceso" Multiplicity="*" />
+          <ReferentialConstraint>
+            <Principal Role="tblProceso">
+              <PropertyRef Name="ID" />
+            </Principal>
+            <Dependent Role="tblRolesPorProceso">
+              <PropertyRef Name="IDProceso" />
+            </Dependent>
+          </ReferentialConstraint>
+        </Association>
+        <Association Name="FK_ID_tblRadicado">
+          <End Role="tblRadicado" Type="Self.tblRadicado" Multiplicity="1" />
+          <End Role="tblGoodReceiptRadicado" Type="Self.tblGoodReceiptRadicado" Multiplicity="*" />
+          <ReferentialConstraint>
+            <Principal Role="tblRadicado">
+              <PropertyRef Name="ID" />
+            </Principal>
+            <Dependent Role="tblGoodReceiptRadicado">
+              <PropertyRef Name="IDRadicado" />
+            </Dependent>
+          </ReferentialConstraint>
+        </Association>
+        <Association Name="FK_ID_tblRoles">
+          <End Role="tblRoles" Type="Self.tblRoles" Multiplicity="0..1" />
+          <End Role="tblRolesPorUsuario" Type="Self.tblRolesPorUsuario" Multiplicity="*" />
+          <ReferentialConstraint>
+            <Principal Role="tblRoles">
+              <PropertyRef Name="ID" />
+            </Principal>
+            <Dependent Role="tblRolesPorUsuario">
+              <PropertyRef Name="IDRol" />
+            </Dependent>
+          </ReferentialConstraint>
+        </Association>
+        <Association Name="FK_ID_tblTipoOrden">
+          <End Role="tblTipoOrden" Type="Self.tblTipoOrden" Multiplicity="1" />
+          <End Role="tblNumeroOrdenProveedor" Type="Self.tblNumeroOrdenProveedor" Multiplicity="*" />
+          <ReferentialConstraint>
+            <Principal Role="tblTipoOrden">
+              <PropertyRef Name="ID" />
+            </Principal>
+            <Dependent Role="tblNumeroOrdenProveedor">
+              <PropertyRef Name="IDTipoOrden" />
+            </Dependent>
+          </ReferentialConstraint>
+        </Association>
+        <Association Name="FK_ID_tblUsuariosProveedor">
+          <End Role="tblUsuariosProveedor" Type="Self.tblUsuariosProveedor" Multiplicity="0..1" />
+          <End Role="tblRadicado" Type="Self.tblRadicado" Multiplicity="*" />
+          <ReferentialConstraint>
+            <Principal Role="tblUsuariosProveedor">
+              <PropertyRef Name="ID" />
+            </Principal>
+            <Dependent Role="tblRadicado">
+              <PropertyRef Name="IDProveedor" />
+            </Dependent>
+          </ReferentialConstraint>
+        </Association>
+        <Association Name="FK_IDEmpresa_tblEmpresa">
+          <End Role="tblEmpresa" Type="Self.tblEmpresa" Multiplicity="1" />
+          <End Role="tblUsuariosProveedor" Type="Self.tblUsuariosProveedor" Multiplicity="*" />
+          <ReferentialConstraint>
+            <Principal Role="tblEmpresa">
+              <PropertyRef Name="ID" />
+            </Principal>
+            <Dependent Role="tblUsuariosProveedor">
+              <PropertyRef Name="IDEmpresa" />
+            </Dependent>
+          </ReferentialConstraint>
+        </Association>
+        <Association Name="FK_IDEmpresa_tblEmpresaPorProveedor">
+          <End Role="tblEmpresaPorProveedor" Type="Self.tblEmpresaPorProveedor" Multiplicity="1" />
+          <End Role="tblNumeroOrdenProveedor" Type="Self.tblNumeroOrdenProveedor" Multiplicity="*" />
+          <ReferentialConstraint>
+            <Principal Role="tblEmpresaPorProveedor">
+              <PropertyRef Name="ID" />
+            </Principal>
+            <Dependent Role="tblNumeroOrdenProveedor">
+              <PropertyRef Name="IDEmpresaPorProveedor" />
+            </Dependent>
+          </ReferentialConstraint>
+        </Association>
+        <Association Name="FK_IDRol_tblRoles">
+          <End Role="tblRoles" Type="Self.tblRoles" Multiplicity="0..1" />
+          <End Role="tblRolesPorProceso" Type="Self.tblRolesPorProceso" Multiplicity="*" />
+          <ReferentialConstraint>
+            <Principal Role="tblRoles">
+              <PropertyRef Name="ID" />
+            </Principal>
+            <Dependent Role="tblRolesPorProceso">
+              <PropertyRef Name="IDRol" />
+            </Dependent>
+          </ReferentialConstraint>
+        </Association>
+        <!--Errores durante la generación:
+advertencia 6035: La relación 'FK_NIT_tblProveedor' tiene columnas que no forman parte de la clave de la tabla en el lado principal de la relación. Se excluyó la relación.
+        <Association Name="FK_NIT_tblProveedor" />-->
+        <EntityContainer Name="bdFacturacionElectronicaModelStoreContainer">
+          <EntitySet Name="tblCalidadTributaria" EntityType="Self.tblCalidadTributaria" Schema="dbo" store:Type="Tables" />
+          <EntitySet Name="tblEmpresa" EntityType="Self.tblEmpresa" Schema="dbo" store:Type="Tables" />
+          <EntitySet Name="tblEmpresaPorProveedor" EntityType="Self.tblEmpresaPorProveedor" Schema="dbo" store:Type="Tables" />
+          <EntitySet Name="tblFechasFacturacion" EntityType="Self.tblFechasFacturacion" Schema="dbo" store:Type="Tables" />
+          <EntitySet Name="tblGoodReceiptProveedor" EntityType="Self.tblGoodReceiptProveedor" Schema="dbo" store:Type="Tables" />
+          <EntitySet Name="tblGoodReceiptRadicado" EntityType="Self.tblGoodReceiptRadicado" Schema="dbo" store:Type="Tables" />
+          <EntitySet Name="tblLogsFuncionario" EntityType="Self.tblLogsFuncionario" Schema="dbo" store:Type="Tables" />
+          <EntitySet Name="tblLogsProveedor" EntityType="Self.tblLogsProveedor" Schema="dbo" store:Type="Tables" />
+          <EntitySet Name="tblNumeroOrdenProveedor" EntityType="Self.tblNumeroOrdenProveedor" Schema="dbo" store:Type="Tables" />
+          <EntitySet Name="tblProceso" EntityType="Self.tblProceso" Schema="dbo" store:Type="Tables" />
+          <EntitySet Name="tblProveedor" EntityType="Self.tblProveedor" Schema="dbo" store:Type="Tables" />
+          <EntitySet Name="tblRadicado" EntityType="Self.tblRadicado" Schema="dbo" store:Type="Tables" />
+          <EntitySet Name="tblRoles" EntityType="Self.tblRoles" Schema="dbo" store:Type="Tables" />
+          <EntitySet Name="tblRolesPorProceso" EntityType="Self.tblRolesPorProceso" Schema="dbo" store:Type="Tables" />
+          <EntitySet Name="tblRolesPorUsuario" EntityType="Self.tblRolesPorUsuario" Schema="dbo" store:Type="Tables" />
+          <EntitySet Name="tblSoporte" EntityType="Self.tblSoporte" Schema="dbo" store:Type="Tables" />
+          <EntitySet Name="tblTipoOrden" EntityType="Self.tblTipoOrden" Schema="dbo" store:Type="Tables" />
+          <EntitySet Name="tblUsuariosProveedor" EntityType="Self.tblUsuariosProveedor" Schema="dbo" store:Type="Tables" />
+          <AssociationSet Name="FK_ID_tblCalidadTributaria" Association="Self.FK_ID_tblCalidadTributaria">
+            <End Role="tblCalidadTributaria" EntitySet="tblCalidadTributaria" />
+            <End Role="tblUsuariosProveedor" EntitySet="tblUsuariosProveedor" />
+          </AssociationSet>
+          <AssociationSet Name="FK_ID_tblEmpresa" Association="Self.FK_ID_tblEmpresa">
+            <End Role="tblEmpresa" EntitySet="tblEmpresa" />
+            <End Role="tblEmpresaPorProveedor" EntitySet="tblEmpresaPorProveedor" />
+          </AssociationSet>
+          <AssociationSet Name="FK_ID_tblGoodReceiptProveedor" Association="Self.FK_ID_tblGoodReceiptProveedor">
+            <End Role="tblGoodReceiptProveedor" EntitySet="tblGoodReceiptProveedor" />
+            <End Role="tblGoodReceiptRadicado" EntitySet="tblGoodReceiptRadicado" />
+          </AssociationSet>
+          <AssociationSet Name="FK_ID_tblNumeroOrdenProveedor" Association="Self.FK_ID_tblNumeroOrdenProveedor">
+            <End Role="tblNumeroOrdenProveedor" EntitySet="tblNumeroOrdenProveedor" />
+            <End Role="tblGoodReceiptProveedor" EntitySet="tblGoodReceiptProveedor" />
+          </AssociationSet>
+          <AssociationSet Name="FK_ID_tblProceso" Association="Self.FK_ID_tblProceso">
+            <End Role="tblProceso" EntitySet="tblProceso" />
+            <End Role="tblRolesPorProceso" EntitySet="tblRolesPorProceso" />
+          </AssociationSet>
+          <AssociationSet Name="FK_ID_tblRadicado" Association="Self.FK_ID_tblRadicado">
+            <End Role="tblRadicado" EntitySet="tblRadicado" />
+            <End Role="tblGoodReceiptRadicado" EntitySet="tblGoodReceiptRadicado" />
+          </AssociationSet>
+          <AssociationSet Name="FK_ID_tblRoles" Association="Self.FK_ID_tblRoles">
+            <End Role="tblRoles" EntitySet="tblRoles" />
+            <End Role="tblRolesPorUsuario" EntitySet="tblRolesPorUsuario" />
+          </AssociationSet>
+          <AssociationSet Name="FK_ID_tblTipoOrden" Association="Self.FK_ID_tblTipoOrden">
+            <End Role="tblTipoOrden" EntitySet="tblTipoOrden" />
+            <End Role="tblNumeroOrdenProveedor" EntitySet="tblNumeroOrdenProveedor" />
+          </AssociationSet>
+          <AssociationSet Name="FK_ID_tblUsuariosProveedor" Association="Self.FK_ID_tblUsuariosProveedor">
+            <End Role="tblUsuariosProveedor" EntitySet="tblUsuariosProveedor" />
+            <End Role="tblRadicado" EntitySet="tblRadicado" />
+          </AssociationSet>
+          <AssociationSet Name="FK_IDEmpresa_tblEmpresa" Association="Self.FK_IDEmpresa_tblEmpresa">
+            <End Role="tblEmpresa" EntitySet="tblEmpresa" />
+            <End Role="tblUsuariosProveedor" EntitySet="tblUsuariosProveedor" />
+          </AssociationSet>
+          <AssociationSet Name="FK_IDEmpresa_tblEmpresaPorProveedor" Association="Self.FK_IDEmpresa_tblEmpresaPorProveedor">
+            <End Role="tblEmpresaPorProveedor" EntitySet="tblEmpresaPorProveedor" />
+            <End Role="tblNumeroOrdenProveedor" EntitySet="tblNumeroOrdenProveedor" />
+          </AssociationSet>
+          <AssociationSet Name="FK_IDRol_tblRoles" Association="Self.FK_IDRol_tblRoles">
+            <End Role="tblRoles" EntitySet="tblRoles" />
+            <End Role="tblRolesPorProceso" EntitySet="tblRolesPorProceso" />
+          </AssociationSet>
+        </EntityContainer>
+      </Schema>
+    </edmx:StorageModels>
+    <!-- CSDL content -->
+    <edmx:ConceptualModels>
+      <Schema Namespace="bdFacturacionElectronicaModel" Alias="Self" annotation:UseStrongSpatialTypes="false" xmlns:annotation="http://schemas.microsoft.com/ado/2009/02/edm/annotation" xmlns:customannotation="http://schemas.microsoft.com/ado/2013/11/edm/customannotation" xmlns="http://schemas.microsoft.com/ado/2009/11/edm">
+        <EntityType Name="tblCalidadTributaria">
+          <Key>
+            <PropertyRef Name="ID" />
+          </Key>
+          <Property Name="ID" Type="Int32" Nullable="false" annotation:StoreGeneratedPattern="Identity" />
+          <Property Name="Nombre" Type="String" MaxLength="50" FixedLength="false" Unicode="false" Nullable="false" />
+          <NavigationProperty Name="tblUsuariosProveedor" Relationship="Self.FK_ID_tblCalidadTributaria" FromRole="tblCalidadTributaria" ToRole="tblUsuariosProveedor" />
+        </EntityType>
+        <EntityType Name="tblEmpresa">
+          <Key>
+            <PropertyRef Name="ID" />
+          </Key>
+          <Property Name="ID" Type="Int32" Nullable="false" annotation:StoreGeneratedPattern="Identity" />
+          <Property Name="Nombre" Type="String" MaxLength="50" FixedLength="false" Unicode="false" />
+          <NavigationProperty Name="tblEmpresaPorProveedor" Relationship="Self.FK_ID_tblEmpresa" FromRole="tblEmpresa" ToRole="tblEmpresaPorProveedor" />
+          <NavigationProperty Name="tblUsuariosProveedor" Relationship="Self.FK_IDEmpresa_tblEmpresa" FromRole="tblEmpresa" ToRole="tblUsuariosProveedor" />
+        </EntityType>
+        <EntityType Name="tblEmpresaPorProveedor">
+          <Key>
+            <PropertyRef Name="ID" />
+          </Key>
+          <Property Name="ID" Type="Int32" Nullable="false" annotation:StoreGeneratedPattern="Identity" />
+          <Property Name="UsuarioNit" Type="String" MaxLength="20" FixedLength="false" Unicode="false" Nullable="false" />
+          <Property Name="IDEmpresa" Type="Int32" Nullable="false" />
+          <NavigationProperty Name="tblEmpresa" Relationship="Self.FK_ID_tblEmpresa" FromRole="tblEmpresaPorProveedor" ToRole="tblEmpresa" />
+          <NavigationProperty Name="tblNumeroOrdenProveedor" Relationship="Self.FK_IDEmpresa_tblEmpresaPorProveedor" FromRole="tblEmpresaPorProveedor" ToRole="tblNumeroOrdenProveedor" />
+        </EntityType>
+        <EntityType Name="tblFechasFacturacion">
+          <Key>
+            <PropertyRef Name="ID" />
+          </Key>
+          <Property Name="ID" Type="Int32" Nullable="false" annotation:StoreGeneratedPattern="Identity" />
+          <Property Name="Periodo" Type="Int32" Nullable="false" />
+          <Property Name="Enero" Type="DateTime" Nullable="false" Precision="3" />
+          <Property Name="Febrero" Type="DateTime" Nullable="false" Precision="3" />
+          <Property Name="Marzo" Type="DateTime" Nullable="false" Precision="3" />
+          <Property Name="Abril" Type="DateTime" Nullable="false" Precision="3" />
+          <Property Name="Mayo" Type="DateTime" Nullable="false" Precision="3" />
+          <Property Name="Junio" Type="DateTime" Nullable="false" Precision="3" />
+          <Property Name="Julio" Type="DateTime" Nullable="false" Precision="3" />
+          <Property Name="Agosto" Type="DateTime" Nullable="false" Precision="3" />
+          <Property Name="Septiembre" Type="DateTime" Nullable="false" Precision="3" />
+          <Property Name="Octubre" Type="DateTime" Nullable="false" Precision="3" />
+          <Property Name="Noviembre" Type="DateTime" Nullable="false" Precision="3" />
+          <Property Name="Diciembre" Type="DateTime" Nullable="false" Precision="3" />
+        </EntityType>
+        <EntityType Name="tblGoodReceiptProveedor">
+          <Key>
+            <PropertyRef Name="ID" />
+          </Key>
+          <Property Name="ID" Type="Int32" Nullable="false" />
+          <Property Name="IDNumeroOrdenProveedor" Type="Int32" Nullable="false" />
+          <Property Name="NumeroGoodReceipt" Type="String" MaxLength="20" FixedLength="false" Unicode="false" />
+          <Property Name="TipoMoneda" Type="String" MaxLength="5" FixedLength="false" Unicode="false" />
+          <Property Name="ValorGR" Type="Single" />
+          <NavigationProperty Name="tblGoodReceiptRadicado" Relationship="Self.FK_ID_tblGoodReceiptProveedor" FromRole="tblGoodReceiptProveedor" ToRole="tblGoodReceiptRadicado" />
+          <NavigationProperty Name="tblNumeroOrdenProveedor" Relationship="Self.FK_ID_tblNumeroOrdenProveedor" FromRole="tblGoodReceiptProveedor" ToRole="tblNumeroOrdenProveedor" />
+        </EntityType>
+        <EntityType Name="tblGoodReceiptRadicado">
+          <Key>
+            <PropertyRef Name="ID" />
+          </Key>
+          <Property Name="ID" Type="Int32" Nullable="false" annotation:StoreGeneratedPattern="Identity" />
+          <Property Name="IDRadicado" Type="Int32" Nullable="false" />
+          <Property Name="IDGoodReceipt" Type="Int32" Nullable="false" />
+          <NavigationProperty Name="tblGoodReceiptProveedor" Relationship="Self.FK_ID_tblGoodReceiptProveedor" FromRole="tblGoodReceiptRadicado" ToRole="tblGoodReceiptProveedor" />
+          <NavigationProperty Name="tblRadicado" Relationship="Self.FK_ID_tblRadicado" FromRole="tblGoodReceiptRadicado" ToRole="tblRadicado" />
+        </EntityType>
+        <EntityType Name="tblLogsFuncionario">
+          <Key>
+            <PropertyRef Name="ID" />
+          </Key>
+          <Property Name="ID" Type="Int32" Nullable="false" />
+          <Property Name="Fecha" Type="DateTime" Precision="3" />
+          <Property Name="Usuario" Type="String" MaxLength="50" FixedLength="false" Unicode="false" />
+          <Property Name="Mensaje" Type="String" MaxLength="Max" FixedLength="false" Unicode="false" />
+        </EntityType>
+        <EntityType Name="tblLogsProveedor">
+          <Key>
+            <PropertyRef Name="ID" />
+          </Key>
+          <Property Name="ID" Type="Int32" Nullable="false" annotation:StoreGeneratedPattern="Identity" />
+          <Property Name="Fecha" Type="DateTime" Precision="3" />
+          <Property Name="Usuario" Type="String" MaxLength="50" FixedLength="false" Unicode="false" />
+          <Property Name="Mensaje" Type="String" MaxLength="Max" FixedLength="false" Unicode="false" />
+        </EntityType>
+        <EntityType Name="tblNumeroOrdenProveedor">
+          <Key>
+            <PropertyRef Name="ID" />
+          </Key>
+          <Property Name="ID" Type="Int32" Nullable="false" annotation:StoreGeneratedPattern="Identity" />
+          <Property Name="IDTipoOrden" Type="Int32" Nullable="false" />
+          <Property Name="IDEmpresaPorProveedor" Type="Int32" Nullable="false" />
+          <Property Name="NumeroOrden" Type="String" MaxLength="50" FixedLength="false" Unicode="false" Nullable="false" />
+          <NavigationProperty Name="tblEmpresaPorProveedor" Relationship="Self.FK_IDEmpresa_tblEmpresaPorProveedor" FromRole="tblNumeroOrdenProveedor" ToRole="tblEmpresaPorProveedor" />
+          <NavigationProperty Name="tblGoodReceiptProveedor" Relationship="Self.FK_ID_tblNumeroOrdenProveedor" FromRole="tblNumeroOrdenProveedor" ToRole="tblGoodReceiptProveedor" />
+          <NavigationProperty Name="tblTipoOrden" Relationship="Self.FK_ID_tblTipoOrden" FromRole="tblNumeroOrdenProveedor" ToRole="tblTipoOrden" />
+        </EntityType>
+        <EntityType Name="tblProceso">
+          <Key>
+            <PropertyRef Name="ID" />
+          </Key>
+          <Property Name="ID" Type="Int32" Nullable="false" annotation:StoreGeneratedPattern="Identity" />
+          <Property Name="Proceso" Type="String" MaxLength="Max" FixedLength="false" Unicode="false" />
+          <NavigationProperty Name="tblRolesPorProceso" Relationship="Self.FK_ID_tblProceso" FromRole="tblProceso" ToRole="tblRolesPorProceso" />
+        </EntityType>
+        <EntityType Name="tblProveedor">
+          <Key>
+            <PropertyRef Name="ID" />
+          </Key>
+          <Property Name="ID" Type="Int32" Nullable="false" />
+          <Property Name="Nit" Type="String" MaxLength="20" FixedLength="false" Unicode="false" Nullable="false" />
+          <Property Name="Nombre" Type="String" MaxLength="50" FixedLength="false" Unicode="false" Nullable="false" />
+          <Property Name="Email" Type="String" MaxLength="50" FixedLength="false" Unicode="false" Nullable="false" />
+          <Property Name="Estado" Type="Boolean" Nullable="false" />
+        </EntityType>
+        <EntityType Name="tblRadicado">
+          <Key>
+            <PropertyRef Name="ID" />
+          </Key>
+          <Property Name="ID" Type="Int32" Nullable="false" />
+          <Property Name="NumeroRadicado" Type="String" MaxLength="20" FixedLength="false" Unicode="false" />
+          <Property Name="IDProveedor" Type="Int32" />
+          <Property Name="RutaArchivoOrden" Type="String" MaxLength="Max" FixedLength="false" Unicode="false" />
+          <Property Name="RutaArchivoGoodReceipt" Type="String" MaxLength="Max" FixedLength="false" Unicode="false" />
+          <Property Name="Soporte1" Type="String" MaxLength="Max" FixedLength="false" Unicode="false" />
+          <Property Name="Soporte2" Type="String" MaxLength="Max" FixedLength="false" Unicode="false" />
+          <Property Name="Soporte3" Type="String" MaxLength="Max" FixedLength="false" Unicode="false" />
+          <Property Name="Soporte4" Type="String" MaxLength="Max" FixedLength="false" Unicode="false" />
+          <Property Name="Soporte5" Type="String" MaxLength="Max" FixedLength="false" Unicode="false" />
+          <Property Name="NumeroFactura" Type="String" MaxLength="20" FixedLength="false" Unicode="false" />
+          <Property Name="ValorFactura" Type="Decimal" Precision="18" Scale="0" />
+          <Property Name="FechaFactura" Type="DateTime" Precision="3" />
+          <Property Name="ValorAntesIVA" Type="Decimal" Precision="18" Scale="0" />
+          <Property Name="ValorDespuesIVA" Type="Decimal" Precision="18" Scale="0" />
+          <Property Name="RutaFactura" Type="String" MaxLength="Max" FixedLength="false" Unicode="false" />
+          <Property Name="RutaXMLFactura" Type="String" MaxLength="Max" FixedLength="false" Unicode="false" />
+          <Property Name="Observaciones" Type="String" MaxLength="Max" FixedLength="false" Unicode="false" />
+          <Property Name="NumeroCausacion" Type="String" MaxLength="20" FixedLength="false" Unicode="false" />
+          <Property Name="RutaArchivoCausacion" Type="String" MaxLength="Max" FixedLength="false" Unicode="false" />
+          <Property Name="Estado" Type="String" MaxLength="20" FixedLength="false" Unicode="false" />
+          <NavigationProperty Name="tblGoodReceiptRadicado" Relationship="Self.FK_ID_tblRadicado" FromRole="tblRadicado" ToRole="tblGoodReceiptRadicado" />
+          <NavigationProperty Name="tblUsuariosProveedor" Relationship="Self.FK_ID_tblUsuariosProveedor" FromRole="tblRadicado" ToRole="tblUsuariosProveedor" />
+        </EntityType>
+        <EntityType Name="tblRoles">
+          <Key>
+            <PropertyRef Name="ID" />
+          </Key>
+          <Property Name="ID" Type="Int32" Nullable="false" annotation:StoreGeneratedPattern="Identity" />
+          <Property Name="NombreRol" Type="String" MaxLength="20" FixedLength="false" Unicode="false" />
+          <NavigationProperty Name="tblRolesPorUsuario" Relationship="Self.FK_ID_tblRoles" FromRole="tblRoles" ToRole="tblRolesPorUsuario" />
+          <NavigationProperty Name="tblRolesPorProceso" Relationship="Self.FK_IDRol_tblRoles" FromRole="tblRoles" ToRole="tblRolesPorProceso" />
+        </EntityType>
+        <EntityType Name="tblRolesPorProceso">
+          <Key>
+            <PropertyRef Name="ID" />
+          </Key>
+          <Property Name="ID" Type="Int32" Nullable="false" />
+          <Property Name="IDRol" Type="Int32" />
+          <Property Name="IDProceso" Type="Int32" />
+          <NavigationProperty Name="tblProceso" Relationship="Self.FK_ID_tblProceso" FromRole="tblRolesPorProceso" ToRole="tblProceso" />
+          <NavigationProperty Name="tblRoles" Relationship="Self.FK_IDRol_tblRoles" FromRole="tblRolesPorProceso" ToRole="tblRoles" />
+        </EntityType>
+        <EntityType Name="tblRolesPorUsuario">
+          <Key>
+            <PropertyRef Name="ID" />
+          </Key>
+          <Property Name="ID" Type="Int32" Nullable="false" annotation:StoreGeneratedPattern="Identity" />
+          <Property Name="IDRol" Type="Int32" />
+          <Property Name="Usuario" Type="String" MaxLength="20" FixedLength="false" Unicode="false" />
+          <NavigationProperty Name="tblRoles" Relationship="Self.FK_ID_tblRoles" FromRole="tblRolesPorUsuario" ToRole="tblRoles" />
+        </EntityType>
+        <EntityType Name="tblSoporte">
+          <Key>
+            <PropertyRef Name="ID" />
+          </Key>
+          <Property Name="ID" Type="Int32" Nullable="false" annotation:StoreGeneratedPattern="Identity" />
+          <Property Name="Nombre" Type="String" MaxLength="50" FixedLength="false" Unicode="false" Nullable="false" />
+        </EntityType>
+        <EntityType Name="tblTipoOrden">
+          <Key>
+            <PropertyRef Name="ID" />
+          </Key>
+          <Property Name="ID" Type="Int32" Nullable="false" annotation:StoreGeneratedPattern="Identity" />
+          <Property Name="Nombre" Type="String" MaxLength="50" FixedLength="false" Unicode="false" Nullable="false" />
+          <NavigationProperty Name="tblNumeroOrdenProveedor" Relationship="Self.FK_ID_tblTipoOrden" FromRole="tblTipoOrden" ToRole="tblNumeroOrdenProveedor" />
+        </EntityType>
+        <EntityType Name="tblUsuariosProveedor">
+          <Key>
+            <PropertyRef Name="ID" />
+          </Key>
+          <Property Name="ID" Type="Int32" Nullable="false" annotation:StoreGeneratedPattern="Identity" />
+          <Property Name="UsuarioNit" Type="String" MaxLength="20" FixedLength="false" Unicode="false" Nullable="false" />
+          <Property Name="Password" Type="String" MaxLength="520" FixedLength="false" Unicode="false" Nullable="false" />
+          <Property Name="RazonSocial" Type="String" MaxLength="50" FixedLength="false" Unicode="false" Nullable="false" />
+          <Property Name="IDCalidadTributaria" Type="Int32" Nullable="false" />
+          <Property Name="IDEmpresa" Type="Int32" Nullable="false" />
+          <Property Name="Email" Type="String" MaxLength="50" FixedLength="false" Unicode="false" Nullable="false" />
+          <Property Name="Telefono" Type="String" MaxLength="20" FixedLength="false" Unicode="false" Nullable="false" />
+          <Property Name="Direccion" Type="String" MaxLength="100" FixedLength="false" Unicode="false" Nullable="false" />
+          <Property Name="RepresentanteLegal" Type="String" MaxLength="50" FixedLength="false" Unicode="false" Nullable="false" />
+          <Property Name="RutaRut" Type="String" MaxLength="Max" FixedLength="false" Unicode="false" Nullable="false" />
+          <Property Name="RutaCamaraComercio" Type="String" MaxLength="Max" FixedLength="false" Unicode="false" Nullable="false" />
+          <Property Name="Estado" Type="String" MaxLength="20" FixedLength="false" Unicode="false" Nullable="false" />
+          <NavigationProperty Name="tblCalidadTributaria" Relationship="Self.FK_ID_tblCalidadTributaria" FromRole="tblUsuariosProveedor" ToRole="tblCalidadTributaria" />
+          <NavigationProperty Name="tblEmpresa" Relationship="Self.FK_IDEmpresa_tblEmpresa" FromRole="tblUsuariosProveedor" ToRole="tblEmpresa" />
+          <NavigationProperty Name="tblRadicado" Relationship="Self.FK_ID_tblUsuariosProveedor" FromRole="tblUsuariosProveedor" ToRole="tblRadicado" />
+        </EntityType>
+        <Association Name="FK_ID_tblCalidadTributaria">
+          <End Role="tblCalidadTributaria" Type="Self.tblCalidadTributaria" Multiplicity="1" />
+          <End Role="tblUsuariosProveedor" Type="Self.tblUsuariosProveedor" Multiplicity="*" />
+          <ReferentialConstraint>
+            <Principal Role="tblCalidadTributaria">
+              <PropertyRef Name="ID" />
+            </Principal>
+            <Dependent Role="tblUsuariosProveedor">
+              <PropertyRef Name="IDCalidadTributaria" />
+            </Dependent>
+          </ReferentialConstraint>
+        </Association>
+        <Association Name="FK_ID_tblEmpresa">
+          <End Role="tblEmpresa" Type="Self.tblEmpresa" Multiplicity="1" />
+          <End Role="tblEmpresaPorProveedor" Type="Self.tblEmpresaPorProveedor" Multiplicity="*" />
+          <ReferentialConstraint>
+            <Principal Role="tblEmpresa">
+              <PropertyRef Name="ID" />
+            </Principal>
+            <Dependent Role="tblEmpresaPorProveedor">
+              <PropertyRef Name="IDEmpresa" />
+            </Dependent>
+          </ReferentialConstraint>
+        </Association>
+        <Association Name="FK_IDEmpresa_tblEmpresa">
+          <End Role="tblEmpresa" Type="Self.tblEmpresa" Multiplicity="1" />
+          <End Role="tblUsuariosProveedor" Type="Self.tblUsuariosProveedor" Multiplicity="*" />
+          <ReferentialConstraint>
+            <Principal Role="tblEmpresa">
+              <PropertyRef Name="ID" />
+            </Principal>
+            <Dependent Role="tblUsuariosProveedor">
+              <PropertyRef Name="IDEmpresa" />
+            </Dependent>
+          </ReferentialConstraint>
+        </Association>
+        <Association Name="FK_IDEmpresa_tblEmpresaPorProveedor">
+          <End Role="tblEmpresaPorProveedor" Type="Self.tblEmpresaPorProveedor" Multiplicity="1" />
+          <End Role="tblNumeroOrdenProveedor" Type="Self.tblNumeroOrdenProveedor" Multiplicity="*" />
+          <ReferentialConstraint>
+            <Principal Role="tblEmpresaPorProveedor">
+              <PropertyRef Name="ID" />
+            </Principal>
+            <Dependent Role="tblNumeroOrdenProveedor">
+              <PropertyRef Name="IDEmpresaPorProveedor" />
+            </Dependent>
+          </ReferentialConstraint>
+        </Association>
+        <Association Name="FK_ID_tblGoodReceiptProveedor">
+          <End Role="tblGoodReceiptProveedor" Type="Self.tblGoodReceiptProveedor" Multiplicity="1" />
+          <End Role="tblGoodReceiptRadicado" Type="Self.tblGoodReceiptRadicado" Multiplicity="0..1" />
+          <ReferentialConstraint>
+            <Principal Role="tblGoodReceiptProveedor">
+              <PropertyRef Name="ID" />
+            </Principal>
+            <Dependent Role="tblGoodReceiptRadicado">
+              <PropertyRef Name="ID" />
+            </Dependent>
+          </ReferentialConstraint>
+        </Association>
+        <Association Name="FK_ID_tblNumeroOrdenProveedor">
+          <End Role="tblNumeroOrdenProveedor" Type="Self.tblNumeroOrdenProveedor" Multiplicity="1" />
+          <End Role="tblGoodReceiptProveedor" Type="Self.tblGoodReceiptProveedor" Multiplicity="*" />
+          <ReferentialConstraint>
+            <Principal Role="tblNumeroOrdenProveedor">
+              <PropertyRef Name="ID" />
+            </Principal>
+            <Dependent Role="tblGoodReceiptProveedor">
+              <PropertyRef Name="IDNumeroOrdenProveedor" />
+            </Dependent>
+          </ReferentialConstraint>
+        </Association>
+        <Association Name="FK_ID_tblRadicado">
+          <End Role="tblRadicado" Type="Self.tblRadicado" Multiplicity="1" />
+          <End Role="tblGoodReceiptRadicado" Type="Self.tblGoodReceiptRadicado" Multiplicity="*" />
+          <ReferentialConstraint>
+            <Principal Role="tblRadicado">
+              <PropertyRef Name="ID" />
+            </Principal>
+            <Dependent Role="tblGoodReceiptRadicado">
+              <PropertyRef Name="IDRadicado" />
+            </Dependent>
+          </ReferentialConstraint>
+        </Association>
+        <Association Name="FK_ID_tblTipoOrden">
+          <End Role="tblTipoOrden" Type="Self.tblTipoOrden" Multiplicity="1" />
+          <End Role="tblNumeroOrdenProveedor" Type="Self.tblNumeroOrdenProveedor" Multiplicity="*" />
+          <ReferentialConstraint>
+            <Principal Role="tblTipoOrden">
+              <PropertyRef Name="ID" />
+            </Principal>
+            <Dependent Role="tblNumeroOrdenProveedor">
+              <PropertyRef Name="IDTipoOrden" />
+            </Dependent>
+          </ReferentialConstraint>
+        </Association>
+        <Association Name="FK_ID_tblProceso">
+          <End Role="tblProceso" Type="Self.tblProceso" Multiplicity="0..1" />
+          <End Role="tblRolesPorProceso" Type="Self.tblRolesPorProceso" Multiplicity="*" />
+          <ReferentialConstraint>
+            <Principal Role="tblProceso">
+              <PropertyRef Name="ID" />
+            </Principal>
+            <Dependent Role="tblRolesPorProceso">
+              <PropertyRef Name="IDProceso" />
+            </Dependent>
+          </ReferentialConstraint>
+        </Association>
+        <Association Name="FK_ID_tblUsuariosProveedor">
+          <End Role="tblUsuariosProveedor" Type="Self.tblUsuariosProveedor" Multiplicity="0..1" />
+          <End Role="tblRadicado" Type="Self.tblRadicado" Multiplicity="*" />
+          <ReferentialConstraint>
+            <Principal Role="tblUsuariosProveedor">
+              <PropertyRef Name="ID" />
+            </Principal>
+            <Dependent Role="tblRadicado">
+              <PropertyRef Name="IDProveedor" />
+            </Dependent>
+          </ReferentialConstraint>
+        </Association>
+        <Association Name="FK_ID_tblRoles">
+          <End Role="tblRoles" Type="Self.tblRoles" Multiplicity="0..1" />
+          <End Role="tblRolesPorUsuario" Type="Self.tblRolesPorUsuario" Multiplicity="*" />
+          <ReferentialConstraint>
+            <Principal Role="tblRoles">
+              <PropertyRef Name="ID" />
+            </Principal>
+            <Dependent Role="tblRolesPorUsuario">
+              <PropertyRef Name="IDRol" />
+            </Dependent>
+          </ReferentialConstraint>
+        </Association>
+        <Association Name="FK_IDRol_tblRoles">
+          <End Role="tblRoles" Type="Self.tblRoles" Multiplicity="0..1" />
+          <End Role="tblRolesPorProceso" Type="Self.tblRolesPorProceso" Multiplicity="*" />
+          <ReferentialConstraint>
+            <Principal Role="tblRoles">
+              <PropertyRef Name="ID" />
+            </Principal>
+            <Dependent Role="tblRolesPorProceso">
+              <PropertyRef Name="IDRol" />
+            </Dependent>
+          </ReferentialConstraint>
+        </Association>
+        <EntityContainer Name="bdFacturacionElectronicaEntities" annotation:LazyLoadingEnabled="true">
+          <EntitySet Name="tblCalidadTributaria" EntityType="Self.tblCalidadTributaria" />
+          <EntitySet Name="tblEmpresa" EntityType="Self.tblEmpresa" />
+          <EntitySet Name="tblEmpresaPorProveedor" EntityType="Self.tblEmpresaPorProveedor" />
+          <EntitySet Name="tblFechasFacturacion" EntityType="Self.tblFechasFacturacion" />
+          <EntitySet Name="tblGoodReceiptProveedor" EntityType="Self.tblGoodReceiptProveedor" />
+          <EntitySet Name="tblGoodReceiptRadicado" EntityType="Self.tblGoodReceiptRadicado" />
+          <EntitySet Name="tblLogsFuncionario" EntityType="Self.tblLogsFuncionario" />
+          <EntitySet Name="tblLogsProveedor" EntityType="Self.tblLogsProveedor" />
+          <EntitySet Name="tblNumeroOrdenProveedor" EntityType="Self.tblNumeroOrdenProveedor" />
+          <EntitySet Name="tblProceso" EntityType="Self.tblProceso" />
+          <EntitySet Name="tblProveedor" EntityType="Self.tblProveedor" />
+          <EntitySet Name="tblRadicado" EntityType="Self.tblRadicado" />
+          <EntitySet Name="tblRoles" EntityType="Self.tblRoles" />
+          <EntitySet Name="tblRolesPorProceso" EntityType="Self.tblRolesPorProceso" />
+          <EntitySet Name="tblRolesPorUsuario" EntityType="Self.tblRolesPorUsuario" />
+          <EntitySet Name="tblSoporte" EntityType="Self.tblSoporte" />
+          <EntitySet Name="tblTipoOrden" EntityType="Self.tblTipoOrden" />
+          <EntitySet Name="tblUsuariosProveedor" EntityType="Self.tblUsuariosProveedor" />
+          <AssociationSet Name="FK_ID_tblCalidadTributaria" Association="Self.FK_ID_tblCalidadTributaria">
+            <End Role="tblCalidadTributaria" EntitySet="tblCalidadTributaria" />
+            <End Role="tblUsuariosProveedor" EntitySet="tblUsuariosProveedor" />
+          </AssociationSet>
+          <AssociationSet Name="FK_ID_tblEmpresa" Association="Self.FK_ID_tblEmpresa">
+            <End Role="tblEmpresa" EntitySet="tblEmpresa" />
+            <End Role="tblEmpresaPorProveedor" EntitySet="tblEmpresaPorProveedor" />
+          </AssociationSet>
+          <AssociationSet Name="FK_IDEmpresa_tblEmpresa" Association="Self.FK_IDEmpresa_tblEmpresa">
+            <End Role="tblEmpresa" EntitySet="tblEmpresa" />
+            <End Role="tblUsuariosProveedor" EntitySet="tblUsuariosProveedor" />
+          </AssociationSet>
+          <AssociationSet Name="FK_IDEmpresa_tblEmpresaPorProveedor" Association="Self.FK_IDEmpresa_tblEmpresaPorProveedor">
+            <End Role="tblEmpresaPorProveedor" EntitySet="tblEmpresaPorProveedor" />
+            <End Role="tblNumeroOrdenProveedor" EntitySet="tblNumeroOrdenProveedor" />
+          </AssociationSet>
+          <AssociationSet Name="FK_ID_tblGoodReceiptProveedor" Association="Self.FK_ID_tblGoodReceiptProveedor">
+            <End Role="tblGoodReceiptProveedor" EntitySet="tblGoodReceiptProveedor" />
+            <End Role="tblGoodReceiptRadicado" EntitySet="tblGoodReceiptRadicado" />
+          </AssociationSet>
+          <AssociationSet Name="FK_ID_tblNumeroOrdenProveedor" Association="Self.FK_ID_tblNumeroOrdenProveedor">
+            <End Role="tblNumeroOrdenProveedor" EntitySet="tblNumeroOrdenProveedor" />
+            <End Role="tblGoodReceiptProveedor" EntitySet="tblGoodReceiptProveedor" />
+          </AssociationSet>
+          <AssociationSet Name="FK_ID_tblRadicado" Association="Self.FK_ID_tblRadicado">
+            <End Role="tblRadicado" EntitySet="tblRadicado" />
+            <End Role="tblGoodReceiptRadicado" EntitySet="tblGoodReceiptRadicado" />
+          </AssociationSet>
+          <AssociationSet Name="FK_ID_tblTipoOrden" Association="Self.FK_ID_tblTipoOrden">
+            <End Role="tblTipoOrden" EntitySet="tblTipoOrden" />
+            <End Role="tblNumeroOrdenProveedor" EntitySet="tblNumeroOrdenProveedor" />
+          </AssociationSet>
+          <AssociationSet Name="FK_ID_tblProceso" Association="Self.FK_ID_tblProceso">
+            <End Role="tblProceso" EntitySet="tblProceso" />
+            <End Role="tblRolesPorProceso" EntitySet="tblRolesPorProceso" />
+          </AssociationSet>
+          <AssociationSet Name="FK_ID_tblUsuariosProveedor" Association="Self.FK_ID_tblUsuariosProveedor">
+            <End Role="tblUsuariosProveedor" EntitySet="tblUsuariosProveedor" />
+            <End Role="tblRadicado" EntitySet="tblRadicado" />
+          </AssociationSet>
+          <AssociationSet Name="FK_ID_tblRoles" Association="Self.FK_ID_tblRoles">
+            <End Role="tblRoles" EntitySet="tblRoles" />
+            <End Role="tblRolesPorUsuario" EntitySet="tblRolesPorUsuario" />
+          </AssociationSet>
+          <AssociationSet Name="FK_IDRol_tblRoles" Association="Self.FK_IDRol_tblRoles">
+            <End Role="tblRoles" EntitySet="tblRoles" />
+            <End Role="tblRolesPorProceso" EntitySet="tblRolesPorProceso" />
+          </AssociationSet>
+        </EntityContainer>
+      </Schema>
+    </edmx:ConceptualModels>
+    <!-- C-S mapping content -->
+    <edmx:Mappings>
+      <Mapping Space="C-S" xmlns="http://schemas.microsoft.com/ado/2009/11/mapping/cs">
+        <EntityContainerMapping StorageEntityContainer="bdFacturacionElectronicaModelStoreContainer" CdmEntityContainer="bdFacturacionElectronicaEntities">
+          <EntitySetMapping Name="tblCalidadTributaria">
+            <EntityTypeMapping TypeName="bdFacturacionElectronicaModel.tblCalidadTributaria">
+              <MappingFragment StoreEntitySet="tblCalidadTributaria">
+                <ScalarProperty Name="ID" ColumnName="ID" />
+                <ScalarProperty Name="Nombre" ColumnName="Nombre" />
+              </MappingFragment>
+            </EntityTypeMapping>
+          </EntitySetMapping>
+          <EntitySetMapping Name="tblEmpresa">
+            <EntityTypeMapping TypeName="bdFacturacionElectronicaModel.tblEmpresa">
+              <MappingFragment StoreEntitySet="tblEmpresa">
+                <ScalarProperty Name="ID" ColumnName="ID" />
+                <ScalarProperty Name="Nombre" ColumnName="Nombre" />
+              </MappingFragment>
+            </EntityTypeMapping>
+          </EntitySetMapping>
+          <EntitySetMapping Name="tblEmpresaPorProveedor">
+            <EntityTypeMapping TypeName="bdFacturacionElectronicaModel.tblEmpresaPorProveedor">
+              <MappingFragment StoreEntitySet="tblEmpresaPorProveedor">
+                <ScalarProperty Name="ID" ColumnName="ID" />
+                <ScalarProperty Name="UsuarioNit" ColumnName="UsuarioNit" />
+                <ScalarProperty Name="IDEmpresa" ColumnName="IDEmpresa" />
+              </MappingFragment>
+            </EntityTypeMapping>
+          </EntitySetMapping>
+          <EntitySetMapping Name="tblFechasFacturacion">
+            <EntityTypeMapping TypeName="bdFacturacionElectronicaModel.tblFechasFacturacion">
+              <MappingFragment StoreEntitySet="tblFechasFacturacion">
+                <ScalarProperty Name="ID" ColumnName="ID" />
+                <ScalarProperty Name="Periodo" ColumnName="Periodo" />
+                <ScalarProperty Name="Enero" ColumnName="Enero" />
+                <ScalarProperty Name="Febrero" ColumnName="Febrero" />
+                <ScalarProperty Name="Marzo" ColumnName="Marzo" />
+                <ScalarProperty Name="Abril" ColumnName="Abril" />
+                <ScalarProperty Name="Mayo" ColumnName="Mayo" />
+                <ScalarProperty Name="Junio" ColumnName="Junio" />
+                <ScalarProperty Name="Julio" ColumnName="Julio" />
+                <ScalarProperty Name="Agosto" ColumnName="Agosto" />
+                <ScalarProperty Name="Septiembre" ColumnName="Septiembre" />
+                <ScalarProperty Name="Octubre" ColumnName="Octubre" />
+                <ScalarProperty Name="Noviembre" ColumnName="Noviembre" />
+                <ScalarProperty Name="Diciembre" ColumnName="Diciembre" />
+              </MappingFragment>
+            </EntityTypeMapping>
+          </EntitySetMapping>
+          <EntitySetMapping Name="tblGoodReceiptProveedor">
+            <EntityTypeMapping TypeName="bdFacturacionElectronicaModel.tblGoodReceiptProveedor">
+              <MappingFragment StoreEntitySet="tblGoodReceiptProveedor">
+                <ScalarProperty Name="ID" ColumnName="ID" />
+                <ScalarProperty Name="IDNumeroOrdenProveedor" ColumnName="IDNumeroOrdenProveedor" />
+                <ScalarProperty Name="NumeroGoodReceipt" ColumnName="NumeroGoodReceipt" />
+                <ScalarProperty Name="TipoMoneda" ColumnName="TipoMoneda" />
+                <ScalarProperty Name="ValorGR" ColumnName="ValorGR" />
+              </MappingFragment>
+            </EntityTypeMapping>
+          </EntitySetMapping>
+          <EntitySetMapping Name="tblGoodReceiptRadicado">
+            <EntityTypeMapping TypeName="bdFacturacionElectronicaModel.tblGoodReceiptRadicado">
+              <MappingFragment StoreEntitySet="tblGoodReceiptRadicado">
+                <ScalarProperty Name="ID" ColumnName="ID" />
+                <ScalarProperty Name="IDRadicado" ColumnName="IDRadicado" />
+                <ScalarProperty Name="IDGoodReceipt" ColumnName="IDGoodReceipt" />
+              </MappingFragment>
+            </EntityTypeMapping>
+          </EntitySetMapping>
+          <EntitySetMapping Name="tblLogsFuncionario">
+            <EntityTypeMapping TypeName="bdFacturacionElectronicaModel.tblLogsFuncionario">
+              <MappingFragment StoreEntitySet="tblLogsFuncionario">
+                <ScalarProperty Name="ID" ColumnName="ID" />
+                <ScalarProperty Name="Fecha" ColumnName="Fecha" />
+                <ScalarProperty Name="Usuario" ColumnName="Usuario" />
+                <ScalarProperty Name="Mensaje" ColumnName="Mensaje" />
+              </MappingFragment>
+            </EntityTypeMapping>
+          </EntitySetMapping>
+          <EntitySetMapping Name="tblLogsProveedor">
+            <EntityTypeMapping TypeName="bdFacturacionElectronicaModel.tblLogsProveedor">
+              <MappingFragment StoreEntitySet="tblLogsProveedor">
+                <ScalarProperty Name="ID" ColumnName="ID" />
+                <ScalarProperty Name="Fecha" ColumnName="Fecha" />
+                <ScalarProperty Name="Usuario" ColumnName="Usuario" />
+                <ScalarProperty Name="Mensaje" ColumnName="Mensaje" />
+              </MappingFragment>
+            </EntityTypeMapping>
+          </EntitySetMapping>
+          <EntitySetMapping Name="tblNumeroOrdenProveedor">
+            <EntityTypeMapping TypeName="bdFacturacionElectronicaModel.tblNumeroOrdenProveedor">
+              <MappingFragment StoreEntitySet="tblNumeroOrdenProveedor">
+                <ScalarProperty Name="ID" ColumnName="ID" />
+                <ScalarProperty Name="IDTipoOrden" ColumnName="IDTipoOrden" />
+                <ScalarProperty Name="IDEmpresaPorProveedor" ColumnName="IDEmpresaPorProveedor" />
+                <ScalarProperty Name="NumeroOrden" ColumnName="NumeroOrden" />
+              </MappingFragment>
+            </EntityTypeMapping>
+          </EntitySetMapping>
+          <EntitySetMapping Name="tblProceso">
+            <EntityTypeMapping TypeName="bdFacturacionElectronicaModel.tblProceso">
+              <MappingFragment StoreEntitySet="tblProceso">
+                <ScalarProperty Name="ID" ColumnName="ID" />
+                <ScalarProperty Name="Proceso" ColumnName="Proceso" />
+              </MappingFragment>
+            </EntityTypeMapping>
+          </EntitySetMapping>
+          <EntitySetMapping Name="tblProveedor">
+            <EntityTypeMapping TypeName="bdFacturacionElectronicaModel.tblProveedor">
+              <MappingFragment StoreEntitySet="tblProveedor">
+                <ScalarProperty Name="ID" ColumnName="ID" />
+                <ScalarProperty Name="Nit" ColumnName="Nit" />
+                <ScalarProperty Name="Nombre" ColumnName="Nombre" />
+                <ScalarProperty Name="Email" ColumnName="Email" />
+                <ScalarProperty Name="Estado" ColumnName="Estado" />
+              </MappingFragment>
+            </EntityTypeMapping>
+          </EntitySetMapping>
+          <EntitySetMapping Name="tblRadicado">
+            <EntityTypeMapping TypeName="bdFacturacionElectronicaModel.tblRadicado">
+              <MappingFragment StoreEntitySet="tblRadicado">
+                <ScalarProperty Name="ID" ColumnName="ID" />
+                <ScalarProperty Name="NumeroRadicado" ColumnName="NumeroRadicado" />
+                <ScalarProperty Name="IDProveedor" ColumnName="IDProveedor" />
+                <ScalarProperty Name="RutaArchivoOrden" ColumnName="RutaArchivoOrden" />
+                <ScalarProperty Name="RutaArchivoGoodReceipt" ColumnName="RutaArchivoGoodReceipt" />
+                <ScalarProperty Name="Soporte1" ColumnName="Soporte1" />
+                <ScalarProperty Name="Soporte2" ColumnName="Soporte2" />
+                <ScalarProperty Name="Soporte3" ColumnName="Soporte3" />
+                <ScalarProperty Name="Soporte4" ColumnName="Soporte4" />
+                <ScalarProperty Name="Soporte5" ColumnName="Soporte5" />
+                <ScalarProperty Name="NumeroFactura" ColumnName="NumeroFactura" />
+                <ScalarProperty Name="ValorFactura" ColumnName="ValorFactura" />
+                <ScalarProperty Name="FechaFactura" ColumnName="FechaFactura" />
+                <ScalarProperty Name="ValorAntesIVA" ColumnName="ValorAntesIVA" />
+                <ScalarProperty Name="ValorDespuesIVA" ColumnName="ValorDespuesIVA" />
+                <ScalarProperty Name="RutaFactura" ColumnName="RutaFactura" />
+                <ScalarProperty Name="RutaXMLFactura" ColumnName="RutaXMLFactura" />
+                <ScalarProperty Name="Observaciones" ColumnName="Observaciones" />
+                <ScalarProperty Name="NumeroCausacion" ColumnName="NumeroCausacion" />
+                <ScalarProperty Name="RutaArchivoCausacion" ColumnName="RutaArchivoCausacion" />
+                <ScalarProperty Name="Estado" ColumnName="Estado" />
+              </MappingFragment>
+            </EntityTypeMapping>
+          </EntitySetMapping>
+          <EntitySetMapping Name="tblRoles">
+            <EntityTypeMapping TypeName="bdFacturacionElectronicaModel.tblRoles">
+              <MappingFragment StoreEntitySet="tblRoles">
+                <ScalarProperty Name="ID" ColumnName="ID" />
+                <ScalarProperty Name="NombreRol" ColumnName="NombreRol" />
+              </MappingFragment>
+            </EntityTypeMapping>
+          </EntitySetMapping>
+          <EntitySetMapping Name="tblRolesPorProceso">
+            <EntityTypeMapping TypeName="bdFacturacionElectronicaModel.tblRolesPorProceso">
+              <MappingFragment StoreEntitySet="tblRolesPorProceso">
+                <ScalarProperty Name="ID" ColumnName="ID" />
+                <ScalarProperty Name="IDRol" ColumnName="IDRol" />
+                <ScalarProperty Name="IDProceso" ColumnName="IDProceso" />
+              </MappingFragment>
+            </EntityTypeMapping>
+          </EntitySetMapping>
+          <EntitySetMapping Name="tblRolesPorUsuario">
+            <EntityTypeMapping TypeName="bdFacturacionElectronicaModel.tblRolesPorUsuario">
+              <MappingFragment StoreEntitySet="tblRolesPorUsuario">
+                <ScalarProperty Name="ID" ColumnName="ID" />
+                <ScalarProperty Name="IDRol" ColumnName="IDRol" />
+                <ScalarProperty Name="Usuario" ColumnName="Usuario" />
+              </MappingFragment>
+            </EntityTypeMapping>
+          </EntitySetMapping>
+          <EntitySetMapping Name="tblSoporte">
+            <EntityTypeMapping TypeName="bdFacturacionElectronicaModel.tblSoporte">
+              <MappingFragment StoreEntitySet="tblSoporte">
+                <ScalarProperty Name="ID" ColumnName="ID" />
+                <ScalarProperty Name="Nombre" ColumnName="Nombre" />
+              </MappingFragment>
+            </EntityTypeMapping>
+          </EntitySetMapping>
+          <EntitySetMapping Name="tblTipoOrden">
+            <EntityTypeMapping TypeName="bdFacturacionElectronicaModel.tblTipoOrden">
+              <MappingFragment StoreEntitySet="tblTipoOrden">
+                <ScalarProperty Name="ID" ColumnName="ID" />
+                <ScalarProperty Name="Nombre" ColumnName="Nombre" />
+              </MappingFragment>
+            </EntityTypeMapping>
+          </EntitySetMapping>
+          <EntitySetMapping Name="tblUsuariosProveedor">
+            <EntityTypeMapping TypeName="bdFacturacionElectronicaModel.tblUsuariosProveedor">
+              <MappingFragment StoreEntitySet="tblUsuariosProveedor">
+                <ScalarProperty Name="ID" ColumnName="ID" />
+                <ScalarProperty Name="UsuarioNit" ColumnName="UsuarioNit" />
+                <ScalarProperty Name="Password" ColumnName="Password" />
+                <ScalarProperty Name="RazonSocial" ColumnName="RazonSocial" />
+                <ScalarProperty Name="IDCalidadTributaria" ColumnName="IDCalidadTributaria" />
+                <ScalarProperty Name="IDEmpresa" ColumnName="IDEmpresa" />
+                <ScalarProperty Name="Email" ColumnName="Email" />
+                <ScalarProperty Name="Telefono" ColumnName="Telefono" />
+                <ScalarProperty Name="Direccion" ColumnName="Direccion" />
+                <ScalarProperty Name="RepresentanteLegal" ColumnName="RepresentanteLegal" />
+                <ScalarProperty Name="RutaRut" ColumnName="RutaRut" />
+                <ScalarProperty Name="RutaCamaraComercio" ColumnName="RutaCamaraComercio" />
+                <ScalarProperty Name="Estado" ColumnName="Estado" />
+              </MappingFragment>
+            </EntityTypeMapping>
+          </EntitySetMapping>
+        </EntityContainerMapping>
+      </Mapping>
+    </edmx:Mappings>
+  </edmx:Runtime>
+  <!-- EF Designer content (DO NOT EDIT MANUALLY BELOW HERE) -->
+  <Designer xmlns="http://schemas.microsoft.com/ado/2009/11/edmx">
+    <Connection>
+      <DesignerInfoPropertySet>
+        <DesignerProperty Name="MetadataArtifactProcessing" Value="EmbedInOutputAssembly" />
+      </DesignerInfoPropertySet>
+    </Connection>
+    <Options>
+      <DesignerInfoPropertySet>
+        <DesignerProperty Name="ValidateOnBuild" Value="true" />
+        <DesignerProperty Name="EnablePluralization" Value="false" />
+        <DesignerProperty Name="IncludeForeignKeysInModel" Value="true" />
+        <DesignerProperty Name="UseLegacyProvider" Value="false" />
+        <DesignerProperty Name="CodeGenerationStrategy" Value="Ninguno" />
+      </DesignerInfoPropertySet>
+    </Options>
+    <!-- Diagram content (shape and connector positions) -->
+    <Diagrams></Diagrams>
+  </Designer>
+</edmx:Edmx>

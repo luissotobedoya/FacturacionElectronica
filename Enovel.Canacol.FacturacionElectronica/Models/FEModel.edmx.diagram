@@ -1,0 +1,41 @@
+<?xml version="1.0" encoding="utf-8"?>
+<edmx:Edmx Version="3.0" xmlns:edmx="http://schemas.microsoft.com/ado/2009/11/edmx">
+ <!-- EF Designer content (DO NOT EDIT MANUALLY BELOW HERE) -->
+  <edmx:Designer xmlns="http://schemas.microsoft.com/ado/2009/11/edmx">
+    <!-- Diagram content (shape and connector positions) -->
+    <edmx:Diagrams>
+      <Diagram DiagramId="0802ccb1fb48409fbf137f6bb9989d31" Name="Diagram1">
+        <EntityTypeShape EntityType="bdFacturacionElectronicaModel.tblCalidadTributaria" Width="1.5" PointX="0.75" PointY="3.125" IsExpanded="true" />
+        <EntityTypeShape EntityType="bdFacturacionElectronicaModel.tblEmpresa" Width="1.5" PointX="0.75" PointY="5.875" IsExpanded="true" />
+        <EntityTypeShape EntityType="bdFacturacionElectronicaModel.tblEmpresaPorProveedor" Width="1.5" PointX="3" PointY="5.75" IsExpanded="true" />
+        <EntityTypeShape EntityType="bdFacturacionElectronicaModel.tblFechasFacturacion" Width="1.5" PointX="0.75" PointY="12" IsExpanded="true" />
+        <EntityTypeShape EntityType="bdFacturacionElectronicaModel.tblGoodReceiptProveedor" Width="1.5" PointX="7.5" PointY="5.625" IsExpanded="true" />
+        <EntityTypeShape EntityType="bdFacturacionElectronicaModel.tblGoodReceiptRadicado" Width="1.5" PointX="9.75" PointY="9" IsExpanded="true" />
+        <EntityTypeShape EntityType="bdFacturacionElectronicaModel.tblLogsFuncionario" Width="1.5" PointX="5.75" PointY="2" IsExpanded="true" />
+        <EntityTypeShape EntityType="bdFacturacionElectronicaModel.tblLogsProveedor" Width="1.5" PointX="7.75" PointY="12" IsExpanded="true" />
+        <EntityTypeShape EntityType="bdFacturacionElectronicaModel.tblNumeroOrdenProveedor" Width="1.5" PointX="5.25" PointY="5.625" IsExpanded="true" />
+        <EntityTypeShape EntityType="bdFacturacionElectronicaModel.tblProceso" Width="1.5" PointX="9.75" PointY="0.75" IsExpanded="true" />
+        <EntityTypeShape EntityType="bdFacturacionElectronicaModel.tblProveedor" Width="1.5" PointX="9.75" PointY="12" IsExpanded="true" />
+        <EntityTypeShape EntityType="bdFacturacionElectronicaModel.tblRadicado" Width="1.5" PointX="5.25" PointY="9" IsExpanded="true" />
+        <EntityTypeShape EntityType="bdFacturacionElectronicaModel.tblRoles" Width="1.5" PointX="9.75" PointY="3.625" IsExpanded="true" />
+        <EntityTypeShape EntityType="bdFacturacionElectronicaModel.tblRolesPorProceso" Width="1.5" PointX="12" PointY="3.625" IsExpanded="true" />
+        <EntityTypeShape EntityType="bdFacturacionElectronicaModel.tblRolesPorUsuario" Width="1.5" PointX="12" PointY="6.375" IsExpanded="true" />
+        <EntityTypeShape EntityType="bdFacturacionElectronicaModel.tblSoporte" Width="1.5" PointX="11.75" PointY="9" IsExpanded="true" />
+        <EntityTypeShape EntityType="bdFacturacionElectronicaModel.tblTipoOrden" Width="1.5" PointX="3" PointY="9" IsExpanded="true" />
+        <EntityTypeShape EntityType="bdFacturacionElectronicaModel.tblUsuariosProveedor" Width="1.5" PointX="3" PointY="0.75" IsExpanded="true" />
+        <AssociationConnector Association="bdFacturacionElectronicaModel.FK_ID_tblCalidadTributaria" ManuallyRouted="false" />
+        <AssociationConnector Association="bdFacturacionElectronicaModel.FK_ID_tblEmpresa" ManuallyRouted="false" />
+        <AssociationConnector Association="bdFacturacionElectronicaModel.FK_IDEmpresa_tblEmpresa" ManuallyRouted="false" />
+        <AssociationConnector Association="bdFacturacionElectronicaModel.FK_IDEmpresa_tblEmpresaPorProveedor" ManuallyRouted="false" />
+        <AssociationConnector Association="bdFacturacionElectronicaModel.FK_ID_tblGoodReceiptProveedor" ManuallyRouted="false" />
+        <AssociationConnector Association="bdFacturacionElectronicaModel.FK_ID_tblNumeroOrdenProveedor" ManuallyRouted="false" />
+        <AssociationConnector Association="bdFacturacionElectronicaModel.FK_ID_tblRadicado" ManuallyRouted="false" />
+        <AssociationConnector Association="bdFacturacionElectronicaModel.FK_ID_tblTipoOrden" ManuallyRouted="false" />
+        <AssociationConnector Association="bdFacturacionElectronicaModel.FK_ID_tblProceso" ManuallyRouted="false" />
+        <AssociationConnector Association="bdFacturacionElectronicaModel.FK_ID_tblUsuariosProveedor" ManuallyRouted="false" />
+        <AssociationConnector Association="bdFacturacionElectronicaModel.FK_ID_tblRoles" ManuallyRouted="false" />
+        <AssociationConnector Association="bdFacturacionElectronicaModel.FK_IDRol_tblRoles" ManuallyRouted="false" />
+      </Diagram>
+    </edmx:Diagrams>
+  </edmx:Designer>
+</edmx:Edmx>

@@ -1,0 +1,13 @@
+﻿
+@{
+    ViewBag.Title = "MenuProveedor";
+    if(Session["UserID"] == null)
+    {
+        Response.Redirect("~/Login/Index");
+    }
+}
+
+<h2>MenuProveedor</h2>
+
+<a href="@Url.Action("LogOut", "Login")">Salir</a>
+

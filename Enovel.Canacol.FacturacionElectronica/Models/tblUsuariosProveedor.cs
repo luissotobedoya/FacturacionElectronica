@@ -31,6 +31,8 @@ namespace Enovel.Canacol.FacturacionElectronica.Models
         [Required(ErrorMessage = "La clave es requerida")]
         public string Password { get; set; }
 
+        public string TipoUsuario { get; set; }
+
         [DisplayName("Confirmar clave")]
         [DataType(DataType.Password)]
         [Required(ErrorMessage = "La clave es requerida")]

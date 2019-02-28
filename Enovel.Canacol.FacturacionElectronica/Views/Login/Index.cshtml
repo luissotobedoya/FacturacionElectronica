@@ -1,66 +1,14 @@
-﻿@model  Enovel.Canacol.FacturacionElectronica.Models.tblUsuariosProveedor
+﻿@using Enovel.Canacol.FacturacionElectronica.Models.LoginModel
+
+@model LoginModelView
 @{
-    ViewBag.Title = "Facturación Electrónica";
-    @Scripts.Render("~/bundles/jquery")
-    @Scripts.Render("~/bundles/bootstrap")
+    Layout = null;
+    ViewBag.Title = "Index";
+    @Styles.Render("~/Content/estilosGenerales.css");
 }
 
-<div class="sidenav">
-    <div class="login-main-text">
-        <h2>Facturación electrónica<br> Ingreso al sistema</h2>
-        <p></p>
-    </div>
-</div>
-<div class="main">
-    <div class="col-md-6 col-sm-12">
-        <div class="login-form">
-            @using (Html.BeginForm("Authorize", "Login", FormMethod.Post))
-            {
-                <div class="form-group">
-                    <label>Tipo de usuario</label>
-                    <div class="user-type">
-                        <label>
-                            @Html.RadioButton("TipoUsuario", "Proveedor", true)
-                            Proveedor
-                        </label>
-                        <div>
-                            <label>
-                                @Html.RadioButton("TipoUsuario", "Funcionario", false)
-                                Funcionario
-                            </label>
-                        </div>
-                    </div>
-                </div>
-                <div class="form-group">
-                    @Html.LabelFor(model => model.UsuarioNit)
-                    @Html.EditorFor(model => model.UsuarioNit, new { htmlAttributes = new { @type = "text", @class = "form-control", @placeholder = "Ingrese su usuario" } })
-                    @Html.ValidationMessageFor(model => model.UsuarioNit, "", new { @class = "text-danger" })
-                </div>
-                <div class="form-group">
-                    @Html.LabelFor(model => model.Password)
-                    @Html.EditorFor(model => model.Password, new { htmlAttributes = new { @type = "password", @class = "form-control", @placeholder = "Ingrese su password" } })
-                    @Html.ValidationMessageFor(model => model.Password, "", new { @class = "text-danger" })
-                </div>
-                <div class="form-group">
-                    <input type="button" id="btnInscribirse" name="btnInscribirse" class="btn btn-secondary" value="inscribirse" onclick="location.href='@Url.Action("Inscripcion", "Inscripcion")'" />
-                    <input id="btnLogin" name="btnLogin" type="submit" class="btn btn-black" value="Ingresar">
-                </div>
+<h2>Fusionando vistas parciales</h2>
 
-                <div class="error-login">
-                    <label class="text-danger">@Html.DisplayFor(model => model.LoginErrorMessage)</label>
-                </div>
-            }
-        </div>
-    </div>
-</div>
+@{Html.RenderPartial("InicioProveedor", Model); }
+@{Html.RenderPartial("InicioFuncionario", Model);}
 
-<script type="text/javascript">
-    $("input[name='TipoUsuario']").on("change", function () {
-        if ($(this).val() == "Proveedor") {
-            $("#btnInscribirse").show();
-        }
-        if ($(this).val() == "Funcionario") {
-            $("#btnInscribirse").hide();
-        }
-    });
-</script>

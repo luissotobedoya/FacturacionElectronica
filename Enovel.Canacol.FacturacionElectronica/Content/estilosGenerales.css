@@ -29,10 +29,6 @@
     .login-form {
         margin-top: 10%;
     }
-
-    .register-form {
-        margin-top: 10%;
-    }
 }
 
 @media screen and (min-width: 768px) {
@@ -47,16 +43,7 @@
         top: 0;
         left: 0;
     }
-
-    .login-form {
-        margin-top: 80%;
-    }
-
-    .register-form {
-        margin-top: 20%;
-    }
 }
-
 
 .login-main-text {
     margin-top: 20%;
@@ -70,5 +57,9 @@
 
 .btn-black {
     background-color: #000 !important;
-    color: #fff;
+    color: #fff !important;
+}
+
+.login-form{
+    margin-top:60px;
 }

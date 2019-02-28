@@ -4,11 +4,69 @@
 @{
     Layout = null;
     ViewBag.Title = "Index";
+    @Styles.Render("~/Content/bootstrap.min.css");
     @Styles.Render("~/Content/estilosGenerales.css");
 }
 
-<h2>Fusionando vistas parciales</h2>
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <meta http-equiv="X-UA-Compatible" content="ie=edge">
+    <title>Facturación Electronica</title>
+    <script src="~/Scripts/jquery-3.3.1.min.js"></script>
+</head>
 
-@{Html.RenderPartial("InicioProveedor", Model); }
-@{Html.RenderPartial("InicioFuncionario", Model);}
+<body>
+    <div class="sidenav">
+        <div class="login-main-text">
+            <h2>Facturación electrónica<br> Ingreso al sistema</h2>
+            <p></p>
+        </div>
+    </div>
+    <div class="main">
+        <div class="col-md-6 col-sm-12">
+            <div class="login-form">
+                <div class="form-group">
+                    <label>Tipo de usuario</label>
+                    <div class="user-type">
+                        <label>
+                            @Html.RadioButton("TipoUsuario", "Proveedor", true)
+                            Proveedor
+                        </label>
+                        <div>
+                            <label>
+                                @Html.RadioButton("TipoUsuario", "Funcionario", true)
+                                Funcionario
+                            </label>
+                        </div>
+                    </div>
+                </div>
+                <div class="login-type">
+                    <div class="provider">
+                        @{Html.RenderPartial("InicioProveedor", Model); }
+                    </div>
+                    <div class="functionary">
+                        @{Html.RenderPartial("InicioFuncionario", Model);}
+                    </div>
+                </div>
+            </div>
+        </div>
+    </div>
+
+    <script type="text/javascript">
+        $("input[name='TipoUsuario']").on("change", function () {
+            if ($(this).val() == "Proveedor") {
+                $("#btnInscribirse").show();
+            }
+            if ($(this).val() == "Funcionario") {
+                $("#btnInscribirse").hide();
+            }
+        });
+    </script>
+</body>
+
+
+</html>
 

@@ -3,7 +3,7 @@
 @model LoginModelView
 @{
     Layout = null;
-    ViewBag.Title = "Index";
+    ViewBag.Title = "Login";
     @Styles.Render("~/Content/bootstrap.min.css");
     @Styles.Render("~/Content/estilosGenerales.css");
 }
@@ -37,33 +37,49 @@
                         </label>
                         <div>
                             <label>
-                                @Html.RadioButton("TipoUsuario", "Funcionario", true)
+                                @Html.RadioButton("TipoUsuario", "Funcionario", false)
                                 Funcionario
                             </label>
                         </div>
                     </div>
                 </div>
                 <div class="login-type">
-                    <div class="provider">
+                    <div class="provider" id="providerLogin">
                         @{Html.RenderPartial("InicioProveedor", Model); }
                     </div>
-                    <div class="functionary">
+                    <div class="functionary" id="functionaryLogin">
                         @{Html.RenderPartial("InicioFuncionario", Model);}
                     </div>
-                </div>
+                </div>                
             </div>
         </div>
     </div>
+    <input type="hidden" name="ReturnUrl" value="@Request.QueryString["ReturnUrl"]" />
 
     <script type="text/javascript">
+
+        $(document).ready(function () {
+            mostrarLoginProveedor();
+        });
+
         $("input[name='TipoUsuario']").on("change", function () {
-            if ($(this).val() == "Proveedor") {
-                $("#btnInscribirse").show();
+            if ($(this).val().toLowerCase() == "proveedor") {
+                mostrarLoginProveedor();
             }
-            if ($(this).val() == "Funcionario") {
-                $("#btnInscribirse").hide();
+            if ($(this).val().toLowerCase() == "funcionario") {
+                mostrarLoginFuncionario();
             }
         });
+
+        function mostrarLoginProveedor() {
+            $("#providerLogin").show();
+            $("#functionaryLogin").hide();
+        }
+
+        function mostrarLoginFuncionario() {
+            $("#providerLogin").hide();
+            $("#functionaryLogin").show();
+        }
     </script>
 </body>
 

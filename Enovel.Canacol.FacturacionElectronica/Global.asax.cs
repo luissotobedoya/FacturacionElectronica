@@ -31,6 +31,9 @@ namespace Enovel.Canacol.FacturacionElectronica
             {
                 switch (httpException.GetHttpCode())
                 {
+                    case 401:
+                        data.Values.Add("action", "http401");
+                        break;
                     case 404:
                         data.Values.Add("action", "http404");
                         break;

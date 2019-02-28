@@ -17,16 +17,16 @@ namespace Enovel.Canacol.FacturacionElectronica.Models
         [System.Diagnostics.CodeAnalysis.SuppressMessage("Microsoft.Usage", "CA2214:DoNotCallOverridableMethodsInConstructors")]
         public tblEmpresa()
         {
-            this.tblEmpresaPorProveedor = new HashSet<tblEmpresaPorProveedor>();
-            this.tblUsuariosProveedor = new HashSet<tblUsuariosProveedor>();
+            this.tblEmpresaPorProveedors = new HashSet<tblEmpresaPorProveedor>();
+            this.tblUsuariosProveedors = new HashSet<tblUsuariosProveedor>();
         }
     
         public int ID { get; set; }
         public string Nombre { get; set; }
     
         [System.Diagnostics.CodeAnalysis.SuppressMessage("Microsoft.Usage", "CA2227:CollectionPropertiesShouldBeReadOnly")]
-        public virtual ICollection<tblEmpresaPorProveedor> tblEmpresaPorProveedor { get; set; }
+        public virtual ICollection<tblEmpresaPorProveedor> tblEmpresaPorProveedors { get; set; }
         [System.Diagnostics.CodeAnalysis.SuppressMessage("Microsoft.Usage", "CA2227:CollectionPropertiesShouldBeReadOnly")]
-        public virtual ICollection<tblUsuariosProveedor> tblUsuariosProveedor { get; set; }
+        public virtual ICollection<tblUsuariosProveedor> tblUsuariosProveedors { get; set; }
     }
 }

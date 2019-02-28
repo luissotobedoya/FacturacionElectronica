@@ -18,6 +18,6 @@ namespace Enovel.Canacol.FacturacionElectronica.Models
         public Nullable<int> IDRol { get; set; }
         public string Usuario { get; set; }
     
-        public virtual tblRoles tblRoles { get; set; }
+        public virtual tblRole tblRole { get; set; }
     }
 }

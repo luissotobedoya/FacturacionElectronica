@@ -17,13 +17,13 @@ namespace Enovel.Canacol.FacturacionElectronica.Models
         [System.Diagnostics.CodeAnalysis.SuppressMessage("Microsoft.Usage", "CA2214:DoNotCallOverridableMethodsInConstructors")]
         public tblCalidadTributaria()
         {
-            this.tblUsuariosProveedor = new HashSet<tblUsuariosProveedor>();
+            this.tblUsuariosProveedors = new HashSet<tblUsuariosProveedor>();
         }
     
         public int ID { get; set; }
         public string Nombre { get; set; }
     
         [System.Diagnostics.CodeAnalysis.SuppressMessage("Microsoft.Usage", "CA2227:CollectionPropertiesShouldBeReadOnly")]
-        public virtual ICollection<tblUsuariosProveedor> tblUsuariosProveedor { get; set; }
+        public virtual ICollection<tblUsuariosProveedor> tblUsuariosProveedors { get; set; }
     }
 }

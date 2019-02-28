@@ -21,6 +21,11 @@
     </a>
 </nav>
 
+@using (Html.BeginForm("LogOut", "Login", FormMethod.Post))
+{
+    <a href="javascript:;" onclick="document.forms[0].submit();">Logout</a>
+}
+
 <body>
     <div class="container main-container">
         @RenderBody()

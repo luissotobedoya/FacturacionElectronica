@@ -4,12 +4,13 @@ namespace Enovel.Canacol.FacturacionElectronica.Controllers
 {
     public class MenuController : Controller
     {
-        // GET: Menu
+        [Authorize]
         public ActionResult MenuProveedor()
         {
             return View();
         }
 
+        [Authorize]
         public ActionResult MenuFuncionario()
         {
             return View();

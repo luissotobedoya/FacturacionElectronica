@@ -178,19 +178,29 @@
           <Property Name="ID" Type="int" StoreGeneratedPattern="Identity" Nullable="false" />
           <Property Name="UsuarioNit" Type="varchar" MaxLength="20" Nullable="false" />
           <Property Name="Password" Type="varchar" MaxLength="520" Nullable="false" />
-          <Property Name="RazonSocial" Type="varchar" MaxLength="50" Nullable="false" />
-          <Property Name="IDCalidadTributaria" Type="int" Nullable="false" />
-          <Property Name="IDEmpresa" Type="int" Nullable="false" />
-          <Property Name="Email" Type="varchar" MaxLength="50" Nullable="false" />
-          <Property Name="Telefono" Type="varchar" MaxLength="20" Nullable="false" />
-          <Property Name="Direccion" Type="varchar" MaxLength="100" Nullable="false" />
-          <Property Name="RepresentanteLegal" Type="varchar" MaxLength="50" Nullable="false" />
-          <Property Name="RutaRut" Type="varchar(max)" Nullable="false" />
-          <Property Name="RutaCamaraComercio" Type="varchar(max)" Nullable="false" />
-          <Property Name="Estado" Type="varchar" MaxLength="20" Nullable="false" />
+          <Property Name="RazonSocial" Type="varchar" MaxLength="50" />
+          <Property Name="IDCalidadTributaria" Type="int" />
+          <Property Name="IDEmpresa" Type="int" />
+          <Property Name="Email" Type="varchar" MaxLength="50" />
+          <Property Name="Telefono" Type="varchar" MaxLength="20" />
+          <Property Name="Direccion" Type="varchar" MaxLength="100" />
+          <Property Name="RepresentanteLegal" Type="varchar" MaxLength="50" />
+          <Property Name="RutaRut" Type="varchar(max)" />
+          <Property Name="RutaCamaraComercio" Type="varchar(max)" />
+          <Property Name="Estado" Type="varchar" MaxLength="20" />
+          <Property Name="CreatedDate" Type="datetime" />
+          <Property Name="LastLoginDate" Type="datetime" />
+        </EntityType>
+        <EntityType Name="UsuarioActivacion">
+          <Key>
+            <PropertyRef Name="ID" />
+          </Key>
+          <Property Name="ID" Type="int" Nullable="false" />
+          <Property Name="UsuarioID" Type="int" Nullable="false" />
+          <Property Name="ActivacionCodigo" Type="uniqueidentifier" />
         </EntityType>
         <Association Name="FK_ID_tblCalidadTributaria">
-          <End Role="tblCalidadTributaria" Type="Self.tblCalidadTributaria" Multiplicity="1" />
+          <End Role="tblCalidadTributaria" Type="Self.tblCalidadTributaria" Multiplicity="0..1" />
           <End Role="tblUsuariosProveedor" Type="Self.tblUsuariosProveedor" Multiplicity="*" />
           <ReferentialConstraint>
             <Principal Role="tblCalidadTributaria">
@@ -298,7 +308,7 @@
           </ReferentialConstraint>
         </Association>
         <Association Name="FK_IDEmpresa_tblEmpresa">
-          <End Role="tblEmpresa" Type="Self.tblEmpresa" Multiplicity="1" />
+          <End Role="tblEmpresa" Type="Self.tblEmpresa" Multiplicity="0..1" />
           <End Role="tblUsuariosProveedor" Type="Self.tblUsuariosProveedor" Multiplicity="*" />
           <ReferentialConstraint>
             <Principal Role="tblEmpresa">
@@ -336,6 +346,22 @@
         <!--Errores durante la generación:
 advertencia 6035: La relación 'FK_NIT_tblProveedor' tiene columnas que no forman parte de la clave de la tabla en el lado principal de la relación. Se excluyó la relación.
         <Association Name="FK_NIT_tblProveedor" />-->
+        <Association Name="FK_UsuarioActivacion_tblUsuariosProveedor">
+          <End Role="tblUsuariosProveedor" Type="Self.tblUsuariosProveedor" Multiplicity="1" />
+          <End Role="UsuarioActivacion" Type="Self.UsuarioActivacion" Multiplicity="*" />
+          <ReferentialConstraint>
+            <Principal Role="tblUsuariosProveedor">
+              <PropertyRef Name="ID" />
+            </Principal>
+            <Dependent Role="UsuarioActivacion">
+              <PropertyRef Name="UsuarioID" />
+            </Dependent>
+          </ReferentialConstraint>
+        </Association>
+        <Function Name="Validate_User" Aggregate="false" BuiltIn="false" NiladicFunction="false" IsComposable="false" ParameterTypeSemantics="AllowImplicitConversion" Schema="dbo">
+          <Parameter Name="Username" Type="nvarchar" Mode="In" />
+          <Parameter Name="Password" Type="nvarchar" Mode="In" />
+        </Function>
         <EntityContainer Name="bdFacturacionElectronicaModelStoreContainer">
           <EntitySet Name="tblCalidadTributaria" EntityType="Self.tblCalidadTributaria" Schema="dbo" store:Type="Tables" />
           <EntitySet Name="tblEmpresa" EntityType="Self.tblEmpresa" Schema="dbo" store:Type="Tables" />
@@ -355,6 +381,7 @@ advertencia 6035: La relación 'FK_NIT_tblProveedor' tiene columnas que no forma
           <EntitySet Name="tblSoporte" EntityType="Self.tblSoporte" Schema="dbo" store:Type="Tables" />
           <EntitySet Name="tblTipoOrden" EntityType="Self.tblTipoOrden" Schema="dbo" store:Type="Tables" />
           <EntitySet Name="tblUsuariosProveedor" EntityType="Self.tblUsuariosProveedor" Schema="dbo" store:Type="Tables" />
+          <EntitySet Name="UsuarioActivacion" EntityType="Self.UsuarioActivacion" Schema="dbo" store:Type="Tables" />
           <AssociationSet Name="FK_ID_tblCalidadTributaria" Association="Self.FK_ID_tblCalidadTributaria">
             <End Role="tblCalidadTributaria" EntitySet="tblCalidadTributaria" />
             <End Role="tblUsuariosProveedor" EntitySet="tblUsuariosProveedor" />
@@ -403,6 +430,10 @@ advertencia 6035: La relación 'FK_NIT_tblProveedor' tiene columnas que no forma
             <End Role="tblRoles" EntitySet="tblRoles" />
             <End Role="tblRolesPorProceso" EntitySet="tblRolesPorProceso" />
           </AssociationSet>
+          <AssociationSet Name="FK_UsuarioActivacion_tblUsuariosProveedor" Association="Self.FK_UsuarioActivacion_tblUsuariosProveedor">
+            <End Role="tblUsuariosProveedor" EntitySet="tblUsuariosProveedor" />
+            <End Role="UsuarioActivacion" EntitySet="UsuarioActivacion" />
+          </AssociationSet>
         </EntityContainer>
       </Schema>
     </edmx:StorageModels>
@@ -415,7 +446,7 @@ advertencia 6035: La relación 'FK_NIT_tblProveedor' tiene columnas que no forma
           </Key>
           <Property Name="ID" Type="Int32" Nullable="false" annotation:StoreGeneratedPattern="Identity" />
           <Property Name="Nombre" Type="String" MaxLength="50" FixedLength="false" Unicode="false" Nullable="false" />
-          <NavigationProperty Name="tblUsuariosProveedor" Relationship="Self.FK_ID_tblCalidadTributaria" FromRole="tblCalidadTributaria" ToRole="tblUsuariosProveedor" />
+          <NavigationProperty Name="tblUsuariosProveedors" Relationship="Self.FK_ID_tblCalidadTributaria" FromRole="tblCalidadTributaria" ToRole="tblUsuariosProveedor" />
         </EntityType>
         <EntityType Name="tblEmpresa">
           <Key>
@@ -423,8 +454,8 @@ advertencia 6035: La relación 'FK_NIT_tblProveedor' tiene columnas que no forma
           </Key>
           <Property Name="ID" Type="Int32" Nullable="false" annotation:StoreGeneratedPattern="Identity" />
           <Property Name="Nombre" Type="String" MaxLength="50" FixedLength="false" Unicode="false" />
-          <NavigationProperty Name="tblEmpresaPorProveedor" Relationship="Self.FK_ID_tblEmpresa" FromRole="tblEmpresa" ToRole="tblEmpresaPorProveedor" />
-          <NavigationProperty Name="tblUsuariosProveedor" Relationship="Self.FK_IDEmpresa_tblEmpresa" FromRole="tblEmpresa" ToRole="tblUsuariosProveedor" />
+          <NavigationProperty Name="tblEmpresaPorProveedors" Relationship="Self.FK_ID_tblEmpresa" FromRole="tblEmpresa" ToRole="tblEmpresaPorProveedor" />
+          <NavigationProperty Name="tblUsuariosProveedors" Relationship="Self.FK_IDEmpresa_tblEmpresa" FromRole="tblEmpresa" ToRole="tblUsuariosProveedor" />
         </EntityType>
         <EntityType Name="tblEmpresaPorProveedor">
           <Key>
@@ -434,7 +465,7 @@ advertencia 6035: La relación 'FK_NIT_tblProveedor' tiene columnas que no forma
           <Property Name="UsuarioNit" Type="String" MaxLength="20" FixedLength="false" Unicode="false" Nullable="false" />
           <Property Name="IDEmpresa" Type="Int32" Nullable="false" />
           <NavigationProperty Name="tblEmpresa" Relationship="Self.FK_ID_tblEmpresa" FromRole="tblEmpresaPorProveedor" ToRole="tblEmpresa" />
-          <NavigationProperty Name="tblNumeroOrdenProveedor" Relationship="Self.FK_IDEmpresa_tblEmpresaPorProveedor" FromRole="tblEmpresaPorProveedor" ToRole="tblNumeroOrdenProveedor" />
+          <NavigationProperty Name="tblNumeroOrdenProveedors" Relationship="Self.FK_IDEmpresa_tblEmpresaPorProveedor" FromRole="tblEmpresaPorProveedor" ToRole="tblNumeroOrdenProveedor" />
         </EntityType>
         <EntityType Name="tblFechasFacturacion">
           <Key>
@@ -504,7 +535,7 @@ advertencia 6035: La relación 'FK_NIT_tblProveedor' tiene columnas que no forma
           <Property Name="IDEmpresaPorProveedor" Type="Int32" Nullable="false" />
           <Property Name="NumeroOrden" Type="String" MaxLength="50" FixedLength="false" Unicode="false" Nullable="false" />
           <NavigationProperty Name="tblEmpresaPorProveedor" Relationship="Self.FK_IDEmpresa_tblEmpresaPorProveedor" FromRole="tblNumeroOrdenProveedor" ToRole="tblEmpresaPorProveedor" />
-          <NavigationProperty Name="tblGoodReceiptProveedor" Relationship="Self.FK_ID_tblNumeroOrdenProveedor" FromRole="tblNumeroOrdenProveedor" ToRole="tblGoodReceiptProveedor" />
+          <NavigationProperty Name="tblGoodReceiptProveedors" Relationship="Self.FK_ID_tblNumeroOrdenProveedor" FromRole="tblNumeroOrdenProveedor" ToRole="tblGoodReceiptProveedor" />
           <NavigationProperty Name="tblTipoOrden" Relationship="Self.FK_ID_tblTipoOrden" FromRole="tblNumeroOrdenProveedor" ToRole="tblTipoOrden" />
         </EntityType>
         <EntityType Name="tblProceso">
@@ -513,7 +544,7 @@ advertencia 6035: La relación 'FK_NIT_tblProveedor' tiene columnas que no forma
           </Key>
           <Property Name="ID" Type="Int32" Nullable="false" annotation:StoreGeneratedPattern="Identity" />
           <Property Name="Proceso" Type="String" MaxLength="Max" FixedLength="false" Unicode="false" />
-          <NavigationProperty Name="tblRolesPorProceso" Relationship="Self.FK_ID_tblProceso" FromRole="tblProceso" ToRole="tblRolesPorProceso" />
+          <NavigationProperty Name="tblRolesPorProcesoes" Relationship="Self.FK_ID_tblProceso" FromRole="tblProceso" ToRole="tblRolesPorProceso" />
         </EntityType>
         <EntityType Name="tblProveedor">
           <Key>
@@ -550,17 +581,17 @@ advertencia 6035: La relación 'FK_NIT_tblProveedor' tiene columnas que no forma
           <Property Name="NumeroCausacion" Type="String" MaxLength="20" FixedLength="false" Unicode="false" />
           <Property Name="RutaArchivoCausacion" Type="String" MaxLength="Max" FixedLength="false" Unicode="false" />
           <Property Name="Estado" Type="String" MaxLength="20" FixedLength="false" Unicode="false" />
-          <NavigationProperty Name="tblGoodReceiptRadicado" Relationship="Self.FK_ID_tblRadicado" FromRole="tblRadicado" ToRole="tblGoodReceiptRadicado" />
+          <NavigationProperty Name="tblGoodReceiptRadicadoes" Relationship="Self.FK_ID_tblRadicado" FromRole="tblRadicado" ToRole="tblGoodReceiptRadicado" />
           <NavigationProperty Name="tblUsuariosProveedor" Relationship="Self.FK_ID_tblUsuariosProveedor" FromRole="tblRadicado" ToRole="tblUsuariosProveedor" />
         </EntityType>
-        <EntityType Name="tblRoles">
+        <EntityType Name="tblRole">
           <Key>
             <PropertyRef Name="ID" />
           </Key>
           <Property Name="ID" Type="Int32" Nullable="false" annotation:StoreGeneratedPattern="Identity" />
           <Property Name="NombreRol" Type="String" MaxLength="20" FixedLength="false" Unicode="false" />
-          <NavigationProperty Name="tblRolesPorUsuario" Relationship="Self.FK_ID_tblRoles" FromRole="tblRoles" ToRole="tblRolesPorUsuario" />
-          <NavigationProperty Name="tblRolesPorProceso" Relationship="Self.FK_IDRol_tblRoles" FromRole="tblRoles" ToRole="tblRolesPorProceso" />
+          <NavigationProperty Name="tblRolesPorUsuarios" Relationship="Self.FK_ID_tblRoles" FromRole="tblRoles" ToRole="tblRolesPorUsuario" />
+          <NavigationProperty Name="tblRolesPorProcesoes" Relationship="Self.FK_IDRol_tblRoles" FromRole="tblRoles" ToRole="tblRolesPorProceso" />
         </EntityType>
         <EntityType Name="tblRolesPorProceso">
           <Key>
@@ -570,7 +601,7 @@ advertencia 6035: La relación 'FK_NIT_tblProveedor' tiene columnas que no forma
           <Property Name="IDRol" Type="Int32" />
           <Property Name="IDProceso" Type="Int32" />
           <NavigationProperty Name="tblProceso" Relationship="Self.FK_ID_tblProceso" FromRole="tblRolesPorProceso" ToRole="tblProceso" />
-          <NavigationProperty Name="tblRoles" Relationship="Self.FK_IDRol_tblRoles" FromRole="tblRolesPorProceso" ToRole="tblRoles" />
+          <NavigationProperty Name="tblRole" Relationship="Self.FK_IDRol_tblRoles" FromRole="tblRolesPorProceso" ToRole="tblRoles" />
         </EntityType>
         <EntityType Name="tblRolesPorUsuario">
           <Key>
@@ -579,7 +610,7 @@ advertencia 6035: La relación 'FK_NIT_tblProveedor' tiene columnas que no forma
           <Property Name="ID" Type="Int32" Nullable="false" annotation:StoreGeneratedPattern="Identity" />
           <Property Name="IDRol" Type="Int32" />
           <Property Name="Usuario" Type="String" MaxLength="20" FixedLength="false" Unicode="false" />
-          <NavigationProperty Name="tblRoles" Relationship="Self.FK_ID_tblRoles" FromRole="tblRolesPorUsuario" ToRole="tblRoles" />
+          <NavigationProperty Name="tblRole" Relationship="Self.FK_ID_tblRoles" FromRole="tblRolesPorUsuario" ToRole="tblRoles" />
         </EntityType>
         <EntityType Name="tblSoporte">
           <Key>
@@ -594,7 +625,7 @@ advertencia 6035: La relación 'FK_NIT_tblProveedor' tiene columnas que no forma
           </Key>
           <Property Name="ID" Type="Int32" Nullable="false" annotation:StoreGeneratedPattern="Identity" />
           <Property Name="Nombre" Type="String" MaxLength="50" FixedLength="false" Unicode="false" Nullable="false" />
-          <NavigationProperty Name="tblNumeroOrdenProveedor" Relationship="Self.FK_ID_tblTipoOrden" FromRole="tblTipoOrden" ToRole="tblNumeroOrdenProveedor" />
+          <NavigationProperty Name="tblNumeroOrdenProveedors" Relationship="Self.FK_ID_tblTipoOrden" FromRole="tblTipoOrden" ToRole="tblNumeroOrdenProveedor" />
         </EntityType>
         <EntityType Name="tblUsuariosProveedor">
           <Key>
@@ -603,22 +634,34 @@ advertencia 6035: La relación 'FK_NIT_tblProveedor' tiene columnas que no forma
           <Property Name="ID" Type="Int32" Nullable="false" annotation:StoreGeneratedPattern="Identity" />
           <Property Name="UsuarioNit" Type="String" MaxLength="20" FixedLength="false" Unicode="false" Nullable="false" />
           <Property Name="Password" Type="String" MaxLength="520" FixedLength="false" Unicode="false" Nullable="false" />
-          <Property Name="RazonSocial" Type="String" MaxLength="50" FixedLength="false" Unicode="false" Nullable="false" />
-          <Property Name="IDCalidadTributaria" Type="Int32" Nullable="false" />
-          <Property Name="IDEmpresa" Type="Int32" Nullable="false" />
-          <Property Name="Email" Type="String" MaxLength="50" FixedLength="false" Unicode="false" Nullable="false" />
-          <Property Name="Telefono" Type="String" MaxLength="20" FixedLength="false" Unicode="false" Nullable="false" />
-          <Property Name="Direccion" Type="String" MaxLength="100" FixedLength="false" Unicode="false" Nullable="false" />
-          <Property Name="RepresentanteLegal" Type="String" MaxLength="50" FixedLength="false" Unicode="false" Nullable="false" />
-          <Property Name="RutaRut" Type="String" MaxLength="Max" FixedLength="false" Unicode="false" Nullable="false" />
-          <Property Name="RutaCamaraComercio" Type="String" MaxLength="Max" FixedLength="false" Unicode="false" Nullable="false" />
-          <Property Name="Estado" Type="String" MaxLength="20" FixedLength="false" Unicode="false" Nullable="false" />
+          <Property Name="RazonSocial" Type="String" MaxLength="50" FixedLength="false" Unicode="false" />
+          <Property Name="IDCalidadTributaria" Type="Int32" />
+          <Property Name="IDEmpresa" Type="Int32" />
+          <Property Name="Email" Type="String" MaxLength="50" FixedLength="false" Unicode="false" />
+          <Property Name="Telefono" Type="String" MaxLength="20" FixedLength="false" Unicode="false" />
+          <Property Name="Direccion" Type="String" MaxLength="100" FixedLength="false" Unicode="false" />
+          <Property Name="RepresentanteLegal" Type="String" MaxLength="50" FixedLength="false" Unicode="false" />
+          <Property Name="RutaRut" Type="String" MaxLength="Max" FixedLength="false" Unicode="false" />
+          <Property Name="RutaCamaraComercio" Type="String" MaxLength="Max" FixedLength="false" Unicode="false" />
+          <Property Name="Estado" Type="String" MaxLength="20" FixedLength="false" Unicode="false" />
+          <Property Name="CreatedDate" Type="DateTime" Precision="3" />
+          <Property Name="LastLoginDate" Type="DateTime" Precision="3" />
           <NavigationProperty Name="tblCalidadTributaria" Relationship="Self.FK_ID_tblCalidadTributaria" FromRole="tblUsuariosProveedor" ToRole="tblCalidadTributaria" />
           <NavigationProperty Name="tblEmpresa" Relationship="Self.FK_IDEmpresa_tblEmpresa" FromRole="tblUsuariosProveedor" ToRole="tblEmpresa" />
-          <NavigationProperty Name="tblRadicado" Relationship="Self.FK_ID_tblUsuariosProveedor" FromRole="tblUsuariosProveedor" ToRole="tblRadicado" />
+          <NavigationProperty Name="tblRadicadoes" Relationship="Self.FK_ID_tblUsuariosProveedor" FromRole="tblUsuariosProveedor" ToRole="tblRadicado" />
+          <NavigationProperty Name="UsuarioActivacions" Relationship="Self.FK_UsuarioActivacion_tblUsuariosProveedor" FromRole="tblUsuariosProveedor" ToRole="UsuarioActivacion" />
+        </EntityType>
+        <EntityType Name="UsuarioActivacion">
+          <Key>
+            <PropertyRef Name="ID" />
+          </Key>
+          <Property Name="ID" Type="Int32" Nullable="false" />
+          <Property Name="UsuarioID" Type="Int32" Nullable="false" />
+          <Property Name="ActivacionCodigo" Type="Guid" />
+          <NavigationProperty Name="tblUsuariosProveedor" Relationship="Self.FK_UsuarioActivacion_tblUsuariosProveedor" FromRole="UsuarioActivacion" ToRole="tblUsuariosProveedor" />
         </EntityType>
         <Association Name="FK_ID_tblCalidadTributaria">
-          <End Role="tblCalidadTributaria" Type="Self.tblCalidadTributaria" Multiplicity="1" />
+          <End Role="tblCalidadTributaria" Type="Self.tblCalidadTributaria" Multiplicity="0..1" />
           <End Role="tblUsuariosProveedor" Type="Self.tblUsuariosProveedor" Multiplicity="*" />
           <ReferentialConstraint>
             <Principal Role="tblCalidadTributaria">
@@ -642,7 +685,7 @@ advertencia 6035: La relación 'FK_NIT_tblProveedor' tiene columnas que no forma
           </ReferentialConstraint>
         </Association>
         <Association Name="FK_IDEmpresa_tblEmpresa">
-          <End Role="tblEmpresa" Type="Self.tblEmpresa" Multiplicity="1" />
+          <End Role="tblEmpresa" Type="Self.tblEmpresa" Multiplicity="0..1" />
           <End Role="tblUsuariosProveedor" Type="Self.tblUsuariosProveedor" Multiplicity="*" />
           <ReferentialConstraint>
             <Principal Role="tblEmpresa">
@@ -738,7 +781,7 @@ advertencia 6035: La relación 'FK_NIT_tblProveedor' tiene columnas que no forma
           </ReferentialConstraint>
         </Association>
         <Association Name="FK_ID_tblRoles">
-          <End Role="tblRoles" Type="Self.tblRoles" Multiplicity="0..1" />
+          <End Role="tblRoles" Type="Self.tblRole" Multiplicity="0..1" />
           <End Role="tblRolesPorUsuario" Type="Self.tblRolesPorUsuario" Multiplicity="*" />
           <ReferentialConstraint>
             <Principal Role="tblRoles">
@@ -750,7 +793,7 @@ advertencia 6035: La relación 'FK_NIT_tblProveedor' tiene columnas que no forma
           </ReferentialConstraint>
         </Association>
         <Association Name="FK_IDRol_tblRoles">
-          <End Role="tblRoles" Type="Self.tblRoles" Multiplicity="0..1" />
+          <End Role="tblRoles" Type="Self.tblRole" Multiplicity="0..1" />
           <End Role="tblRolesPorProceso" Type="Self.tblRolesPorProceso" Multiplicity="*" />
           <ReferentialConstraint>
             <Principal Role="tblRoles">
@@ -761,81 +804,106 @@ advertencia 6035: La relación 'FK_NIT_tblProveedor' tiene columnas que no forma
             </Dependent>
           </ReferentialConstraint>
         </Association>
-        <EntityContainer Name="bdFacturacionElectronicaEntities" annotation:LazyLoadingEnabled="true">
-          <EntitySet Name="tblCalidadTributaria" EntityType="Self.tblCalidadTributaria" />
-          <EntitySet Name="tblEmpresa" EntityType="Self.tblEmpresa" />
-          <EntitySet Name="tblEmpresaPorProveedor" EntityType="Self.tblEmpresaPorProveedor" />
-          <EntitySet Name="tblFechasFacturacion" EntityType="Self.tblFechasFacturacion" />
-          <EntitySet Name="tblGoodReceiptProveedor" EntityType="Self.tblGoodReceiptProveedor" />
-          <EntitySet Name="tblGoodReceiptRadicado" EntityType="Self.tblGoodReceiptRadicado" />
-          <EntitySet Name="tblLogsFuncionario" EntityType="Self.tblLogsFuncionario" />
-          <EntitySet Name="tblLogsProveedor" EntityType="Self.tblLogsProveedor" />
-          <EntitySet Name="tblNumeroOrdenProveedor" EntityType="Self.tblNumeroOrdenProveedor" />
-          <EntitySet Name="tblProceso" EntityType="Self.tblProceso" />
-          <EntitySet Name="tblProveedor" EntityType="Self.tblProveedor" />
-          <EntitySet Name="tblRadicado" EntityType="Self.tblRadicado" />
-          <EntitySet Name="tblRoles" EntityType="Self.tblRoles" />
-          <EntitySet Name="tblRolesPorProceso" EntityType="Self.tblRolesPorProceso" />
-          <EntitySet Name="tblRolesPorUsuario" EntityType="Self.tblRolesPorUsuario" />
-          <EntitySet Name="tblSoporte" EntityType="Self.tblSoporte" />
-          <EntitySet Name="tblTipoOrden" EntityType="Self.tblTipoOrden" />
-          <EntitySet Name="tblUsuariosProveedor" EntityType="Self.tblUsuariosProveedor" />
+        <Association Name="FK_UsuarioActivacion_tblUsuariosProveedor">
+          <End Role="tblUsuariosProveedor" Type="Self.tblUsuariosProveedor" Multiplicity="1" />
+          <End Role="UsuarioActivacion" Type="Self.UsuarioActivacion" Multiplicity="*" />
+          <ReferentialConstraint>
+            <Principal Role="tblUsuariosProveedor">
+              <PropertyRef Name="ID" />
+            </Principal>
+            <Dependent Role="UsuarioActivacion">
+              <PropertyRef Name="UsuarioID" />
+            </Dependent>
+          </ReferentialConstraint>
+        </Association>
+        <EntityContainer Name="bdFacturacionElectronicaEntitiesModel" annotation:LazyLoadingEnabled="true">
+          <EntitySet Name="tblCalidadTributarias" EntityType="Self.tblCalidadTributaria" />
+          <EntitySet Name="tblEmpresas" EntityType="Self.tblEmpresa" />
+          <EntitySet Name="tblEmpresaPorProveedors" EntityType="Self.tblEmpresaPorProveedor" />
+          <EntitySet Name="tblFechasFacturacions" EntityType="Self.tblFechasFacturacion" />
+          <EntitySet Name="tblGoodReceiptProveedors" EntityType="Self.tblGoodReceiptProveedor" />
+          <EntitySet Name="tblGoodReceiptRadicadoes" EntityType="Self.tblGoodReceiptRadicado" />
+          <EntitySet Name="tblLogsFuncionarios" EntityType="Self.tblLogsFuncionario" />
+          <EntitySet Name="tblLogsProveedors" EntityType="Self.tblLogsProveedor" />
+          <EntitySet Name="tblNumeroOrdenProveedors" EntityType="Self.tblNumeroOrdenProveedor" />
+          <EntitySet Name="tblProcesoes" EntityType="Self.tblProceso" />
+          <EntitySet Name="tblProveedors" EntityType="Self.tblProveedor" />
+          <EntitySet Name="tblRadicadoes" EntityType="Self.tblRadicado" />
+          <EntitySet Name="tblRoles" EntityType="Self.tblRole" />
+          <EntitySet Name="tblRolesPorProcesoes" EntityType="Self.tblRolesPorProceso" />
+          <EntitySet Name="tblRolesPorUsuarios" EntityType="Self.tblRolesPorUsuario" />
+          <EntitySet Name="tblSoportes" EntityType="Self.tblSoporte" />
+          <EntitySet Name="tblTipoOrdens" EntityType="Self.tblTipoOrden" />
+          <EntitySet Name="tblUsuariosProveedors" EntityType="Self.tblUsuariosProveedor" />
+          <EntitySet Name="UsuarioActivacions" EntityType="Self.UsuarioActivacion" />
           <AssociationSet Name="FK_ID_tblCalidadTributaria" Association="Self.FK_ID_tblCalidadTributaria">
-            <End Role="tblCalidadTributaria" EntitySet="tblCalidadTributaria" />
-            <End Role="tblUsuariosProveedor" EntitySet="tblUsuariosProveedor" />
+            <End Role="tblCalidadTributaria" EntitySet="tblCalidadTributarias" />
+            <End Role="tblUsuariosProveedor" EntitySet="tblUsuariosProveedors" />
           </AssociationSet>
           <AssociationSet Name="FK_ID_tblEmpresa" Association="Self.FK_ID_tblEmpresa">
-            <End Role="tblEmpresa" EntitySet="tblEmpresa" />
-            <End Role="tblEmpresaPorProveedor" EntitySet="tblEmpresaPorProveedor" />
+            <End Role="tblEmpresa" EntitySet="tblEmpresas" />
+            <End Role="tblEmpresaPorProveedor" EntitySet="tblEmpresaPorProveedors" />
           </AssociationSet>
           <AssociationSet Name="FK_IDEmpresa_tblEmpresa" Association="Self.FK_IDEmpresa_tblEmpresa">
-            <End Role="tblEmpresa" EntitySet="tblEmpresa" />
-            <End Role="tblUsuariosProveedor" EntitySet="tblUsuariosProveedor" />
+            <End Role="tblEmpresa" EntitySet="tblEmpresas" />
+            <End Role="tblUsuariosProveedor" EntitySet="tblUsuariosProveedors" />
           </AssociationSet>
           <AssociationSet Name="FK_IDEmpresa_tblEmpresaPorProveedor" Association="Self.FK_IDEmpresa_tblEmpresaPorProveedor">
-            <End Role="tblEmpresaPorProveedor" EntitySet="tblEmpresaPorProveedor" />
-            <End Role="tblNumeroOrdenProveedor" EntitySet="tblNumeroOrdenProveedor" />
+            <End Role="tblEmpresaPorProveedor" EntitySet="tblEmpresaPorProveedors" />
+            <End Role="tblNumeroOrdenProveedor" EntitySet="tblNumeroOrdenProveedors" />
           </AssociationSet>
           <AssociationSet Name="FK_ID_tblGoodReceiptProveedor" Association="Self.FK_ID_tblGoodReceiptProveedor">
-            <End Role="tblGoodReceiptProveedor" EntitySet="tblGoodReceiptProveedor" />
-            <End Role="tblGoodReceiptRadicado" EntitySet="tblGoodReceiptRadicado" />
+            <End Role="tblGoodReceiptProveedor" EntitySet="tblGoodReceiptProveedors" />
+            <End Role="tblGoodReceiptRadicado" EntitySet="tblGoodReceiptRadicadoes" />
           </AssociationSet>
           <AssociationSet Name="FK_ID_tblNumeroOrdenProveedor" Association="Self.FK_ID_tblNumeroOrdenProveedor">
-            <End Role="tblNumeroOrdenProveedor" EntitySet="tblNumeroOrdenProveedor" />
-            <End Role="tblGoodReceiptProveedor" EntitySet="tblGoodReceiptProveedor" />
+            <End Role="tblNumeroOrdenProveedor" EntitySet="tblNumeroOrdenProveedors" />
+            <End Role="tblGoodReceiptProveedor" EntitySet="tblGoodReceiptProveedors" />
           </AssociationSet>
           <AssociationSet Name="FK_ID_tblRadicado" Association="Self.FK_ID_tblRadicado">
-            <End Role="tblRadicado" EntitySet="tblRadicado" />
-            <End Role="tblGoodReceiptRadicado" EntitySet="tblGoodReceiptRadicado" />
+            <End Role="tblRadicado" EntitySet="tblRadicadoes" />
+            <End Role="tblGoodReceiptRadicado" EntitySet="tblGoodReceiptRadicadoes" />
           </AssociationSet>
           <AssociationSet Name="FK_ID_tblTipoOrden" Association="Self.FK_ID_tblTipoOrden">
-            <End Role="tblTipoOrden" EntitySet="tblTipoOrden" />
-            <End Role="tblNumeroOrdenProveedor" EntitySet="tblNumeroOrdenProveedor" />
+            <End Role="tblTipoOrden" EntitySet="tblTipoOrdens" />
+            <End Role="tblNumeroOrdenProveedor" EntitySet="tblNumeroOrdenProveedors" />
           </AssociationSet>
           <AssociationSet Name="FK_ID_tblProceso" Association="Self.FK_ID_tblProceso">
-            <End Role="tblProceso" EntitySet="tblProceso" />
-            <End Role="tblRolesPorProceso" EntitySet="tblRolesPorProceso" />
+            <End Role="tblProceso" EntitySet="tblProcesoes" />
+            <End Role="tblRolesPorProceso" EntitySet="tblRolesPorProcesoes" />
           </AssociationSet>
           <AssociationSet Name="FK_ID_tblUsuariosProveedor" Association="Self.FK_ID_tblUsuariosProveedor">
-            <End Role="tblUsuariosProveedor" EntitySet="tblUsuariosProveedor" />
-            <End Role="tblRadicado" EntitySet="tblRadicado" />
+            <End Role="tblUsuariosProveedor" EntitySet="tblUsuariosProveedors" />
+            <End Role="tblRadicado" EntitySet="tblRadicadoes" />
           </AssociationSet>
           <AssociationSet Name="FK_ID_tblRoles" Association="Self.FK_ID_tblRoles">
             <End Role="tblRoles" EntitySet="tblRoles" />
-            <End Role="tblRolesPorUsuario" EntitySet="tblRolesPorUsuario" />
+            <End Role="tblRolesPorUsuario" EntitySet="tblRolesPorUsuarios" />
           </AssociationSet>
           <AssociationSet Name="FK_IDRol_tblRoles" Association="Self.FK_IDRol_tblRoles">
             <End Role="tblRoles" EntitySet="tblRoles" />
-            <End Role="tblRolesPorProceso" EntitySet="tblRolesPorProceso" />
+            <End Role="tblRolesPorProceso" EntitySet="tblRolesPorProcesoes" />
           </AssociationSet>
+          <AssociationSet Name="FK_UsuarioActivacion_tblUsuariosProveedor" Association="Self.FK_UsuarioActivacion_tblUsuariosProveedor">
+            <End Role="tblUsuariosProveedor" EntitySet="tblUsuariosProveedors" />
+            <End Role="UsuarioActivacion" EntitySet="UsuarioActivacions" />
+          </AssociationSet>
+          <FunctionImport Name="Validate_User" ReturnType="Collection(Int32)">
+            <Parameter Name="Username" Mode="In" Type="String" />
+            <Parameter Name="Password" Mode="In" Type="String" />
+          </FunctionImport>
+          <FunctionImport Name="ValidateUser" ReturnType="Collection(Int32)">
+            <Parameter Name="Username" Mode="In" Type="String" />
+            <Parameter Name="Password" Mode="In" Type="String" />
+          </FunctionImport>
         </EntityContainer>
       </Schema>
     </edmx:ConceptualModels>
     <!-- C-S mapping content -->
     <edmx:Mappings>
       <Mapping Space="C-S" xmlns="http://schemas.microsoft.com/ado/2009/11/mapping/cs">
-        <EntityContainerMapping StorageEntityContainer="bdFacturacionElectronicaModelStoreContainer" CdmEntityContainer="bdFacturacionElectronicaEntities">
-          <EntitySetMapping Name="tblCalidadTributaria">
+        <EntityContainerMapping StorageEntityContainer="bdFacturacionElectronicaModelStoreContainer" CdmEntityContainer="bdFacturacionElectronicaEntitiesModel">
+          <EntitySetMapping Name="tblCalidadTributarias">
             <EntityTypeMapping TypeName="bdFacturacionElectronicaModel.tblCalidadTributaria">
               <MappingFragment StoreEntitySet="tblCalidadTributaria">
                 <ScalarProperty Name="ID" ColumnName="ID" />
@@ -843,7 +911,7 @@ advertencia 6035: La relación 'FK_NIT_tblProveedor' tiene columnas que no forma
               </MappingFragment>
             </EntityTypeMapping>
           </EntitySetMapping>
-          <EntitySetMapping Name="tblEmpresa">
+          <EntitySetMapping Name="tblEmpresas">
             <EntityTypeMapping TypeName="bdFacturacionElectronicaModel.tblEmpresa">
               <MappingFragment StoreEntitySet="tblEmpresa">
                 <ScalarProperty Name="ID" ColumnName="ID" />
@@ -851,7 +919,7 @@ advertencia 6035: La relación 'FK_NIT_tblProveedor' tiene columnas que no forma
               </MappingFragment>
             </EntityTypeMapping>
           </EntitySetMapping>
-          <EntitySetMapping Name="tblEmpresaPorProveedor">
+          <EntitySetMapping Name="tblEmpresaPorProveedors">
             <EntityTypeMapping TypeName="bdFacturacionElectronicaModel.tblEmpresaPorProveedor">
               <MappingFragment StoreEntitySet="tblEmpresaPorProveedor">
                 <ScalarProperty Name="ID" ColumnName="ID" />
@@ -860,7 +928,7 @@ advertencia 6035: La relación 'FK_NIT_tblProveedor' tiene columnas que no forma
               </MappingFragment>
             </EntityTypeMapping>
           </EntitySetMapping>
-          <EntitySetMapping Name="tblFechasFacturacion">
+          <EntitySetMapping Name="tblFechasFacturacions">
             <EntityTypeMapping TypeName="bdFacturacionElectronicaModel.tblFechasFacturacion">
               <MappingFragment StoreEntitySet="tblFechasFacturacion">
                 <ScalarProperty Name="ID" ColumnName="ID" />
@@ -880,7 +948,7 @@ advertencia 6035: La relación 'FK_NIT_tblProveedor' tiene columnas que no forma
               </MappingFragment>
             </EntityTypeMapping>
           </EntitySetMapping>
-          <EntitySetMapping Name="tblGoodReceiptProveedor">
+          <EntitySetMapping Name="tblGoodReceiptProveedors">
             <EntityTypeMapping TypeName="bdFacturacionElectronicaModel.tblGoodReceiptProveedor">
               <MappingFragment StoreEntitySet="tblGoodReceiptProveedor">
                 <ScalarProperty Name="ID" ColumnName="ID" />
@@ -891,7 +959,7 @@ advertencia 6035: La relación 'FK_NIT_tblProveedor' tiene columnas que no forma
               </MappingFragment>
             </EntityTypeMapping>
           </EntitySetMapping>
-          <EntitySetMapping Name="tblGoodReceiptRadicado">
+          <EntitySetMapping Name="tblGoodReceiptRadicadoes">
             <EntityTypeMapping TypeName="bdFacturacionElectronicaModel.tblGoodReceiptRadicado">
               <MappingFragment StoreEntitySet="tblGoodReceiptRadicado">
                 <ScalarProperty Name="ID" ColumnName="ID" />
@@ -900,7 +968,7 @@ advertencia 6035: La relación 'FK_NIT_tblProveedor' tiene columnas que no forma
               </MappingFragment>
             </EntityTypeMapping>
           </EntitySetMapping>
-          <EntitySetMapping Name="tblLogsFuncionario">
+          <EntitySetMapping Name="tblLogsFuncionarios">
             <EntityTypeMapping TypeName="bdFacturacionElectronicaModel.tblLogsFuncionario">
               <MappingFragment StoreEntitySet="tblLogsFuncionario">
                 <ScalarProperty Name="ID" ColumnName="ID" />
@@ -910,7 +978,7 @@ advertencia 6035: La relación 'FK_NIT_tblProveedor' tiene columnas que no forma
               </MappingFragment>
             </EntityTypeMapping>
           </EntitySetMapping>
-          <EntitySetMapping Name="tblLogsProveedor">
+          <EntitySetMapping Name="tblLogsProveedors">
             <EntityTypeMapping TypeName="bdFacturacionElectronicaModel.tblLogsProveedor">
               <MappingFragment StoreEntitySet="tblLogsProveedor">
                 <ScalarProperty Name="ID" ColumnName="ID" />
@@ -920,7 +988,7 @@ advertencia 6035: La relación 'FK_NIT_tblProveedor' tiene columnas que no forma
               </MappingFragment>
             </EntityTypeMapping>
           </EntitySetMapping>
-          <EntitySetMapping Name="tblNumeroOrdenProveedor">
+          <EntitySetMapping Name="tblNumeroOrdenProveedors">
             <EntityTypeMapping TypeName="bdFacturacionElectronicaModel.tblNumeroOrdenProveedor">
               <MappingFragment StoreEntitySet="tblNumeroOrdenProveedor">
                 <ScalarProperty Name="ID" ColumnName="ID" />
@@ -930,7 +998,7 @@ advertencia 6035: La relación 'FK_NIT_tblProveedor' tiene columnas que no forma
               </MappingFragment>
             </EntityTypeMapping>
           </EntitySetMapping>
-          <EntitySetMapping Name="tblProceso">
+          <EntitySetMapping Name="tblProcesoes">
             <EntityTypeMapping TypeName="bdFacturacionElectronicaModel.tblProceso">
               <MappingFragment StoreEntitySet="tblProceso">
                 <ScalarProperty Name="ID" ColumnName="ID" />
@@ -938,7 +1006,7 @@ advertencia 6035: La relación 'FK_NIT_tblProveedor' tiene columnas que no forma
               </MappingFragment>
             </EntityTypeMapping>
           </EntitySetMapping>
-          <EntitySetMapping Name="tblProveedor">
+          <EntitySetMapping Name="tblProveedors">
             <EntityTypeMapping TypeName="bdFacturacionElectronicaModel.tblProveedor">
               <MappingFragment StoreEntitySet="tblProveedor">
                 <ScalarProperty Name="ID" ColumnName="ID" />
@@ -949,7 +1017,7 @@ advertencia 6035: La relación 'FK_NIT_tblProveedor' tiene columnas que no forma
               </MappingFragment>
             </EntityTypeMapping>
           </EntitySetMapping>
-          <EntitySetMapping Name="tblRadicado">
+          <EntitySetMapping Name="tblRadicadoes">
             <EntityTypeMapping TypeName="bdFacturacionElectronicaModel.tblRadicado">
               <MappingFragment StoreEntitySet="tblRadicado">
                 <ScalarProperty Name="ID" ColumnName="ID" />
@@ -977,14 +1045,14 @@ advertencia 6035: La relación 'FK_NIT_tblProveedor' tiene columnas que no forma
             </EntityTypeMapping>
           </EntitySetMapping>
           <EntitySetMapping Name="tblRoles">
-            <EntityTypeMapping TypeName="bdFacturacionElectronicaModel.tblRoles">
+            <EntityTypeMapping TypeName="bdFacturacionElectronicaModel.tblRole">
               <MappingFragment StoreEntitySet="tblRoles">
                 <ScalarProperty Name="ID" ColumnName="ID" />
                 <ScalarProperty Name="NombreRol" ColumnName="NombreRol" />
               </MappingFragment>
             </EntityTypeMapping>
           </EntitySetMapping>
-          <EntitySetMapping Name="tblRolesPorProceso">
+          <EntitySetMapping Name="tblRolesPorProcesoes">
             <EntityTypeMapping TypeName="bdFacturacionElectronicaModel.tblRolesPorProceso">
               <MappingFragment StoreEntitySet="tblRolesPorProceso">
                 <ScalarProperty Name="ID" ColumnName="ID" />
@@ -993,7 +1061,7 @@ advertencia 6035: La relación 'FK_NIT_tblProveedor' tiene columnas que no forma
               </MappingFragment>
             </EntityTypeMapping>
           </EntitySetMapping>
-          <EntitySetMapping Name="tblRolesPorUsuario">
+          <EntitySetMapping Name="tblRolesPorUsuarios">
             <EntityTypeMapping TypeName="bdFacturacionElectronicaModel.tblRolesPorUsuario">
               <MappingFragment StoreEntitySet="tblRolesPorUsuario">
                 <ScalarProperty Name="ID" ColumnName="ID" />
@@ -1002,7 +1070,7 @@ advertencia 6035: La relación 'FK_NIT_tblProveedor' tiene columnas que no forma
               </MappingFragment>
             </EntityTypeMapping>
           </EntitySetMapping>
-          <EntitySetMapping Name="tblSoporte">
+          <EntitySetMapping Name="tblSoportes">
             <EntityTypeMapping TypeName="bdFacturacionElectronicaModel.tblSoporte">
               <MappingFragment StoreEntitySet="tblSoporte">
                 <ScalarProperty Name="ID" ColumnName="ID" />
@@ -1010,7 +1078,7 @@ advertencia 6035: La relación 'FK_NIT_tblProveedor' tiene columnas que no forma
               </MappingFragment>
             </EntityTypeMapping>
           </EntitySetMapping>
-          <EntitySetMapping Name="tblTipoOrden">
+          <EntitySetMapping Name="tblTipoOrdens">
             <EntityTypeMapping TypeName="bdFacturacionElectronicaModel.tblTipoOrden">
               <MappingFragment StoreEntitySet="tblTipoOrden">
                 <ScalarProperty Name="ID" ColumnName="ID" />
@@ -1018,7 +1086,7 @@ advertencia 6035: La relación 'FK_NIT_tblProveedor' tiene columnas que no forma
               </MappingFragment>
             </EntityTypeMapping>
           </EntitySetMapping>
-          <EntitySetMapping Name="tblUsuariosProveedor">
+          <EntitySetMapping Name="tblUsuariosProveedors">
             <EntityTypeMapping TypeName="bdFacturacionElectronicaModel.tblUsuariosProveedor">
               <MappingFragment StoreEntitySet="tblUsuariosProveedor">
                 <ScalarProperty Name="ID" ColumnName="ID" />
@@ -1034,9 +1102,22 @@ advertencia 6035: La relación 'FK_NIT_tblProveedor' tiene columnas que no forma
                 <ScalarProperty Name="RutaRut" ColumnName="RutaRut" />
                 <ScalarProperty Name="RutaCamaraComercio" ColumnName="RutaCamaraComercio" />
                 <ScalarProperty Name="Estado" ColumnName="Estado" />
+                <ScalarProperty Name="CreatedDate" ColumnName="CreatedDate" />
+                <ScalarProperty Name="LastLoginDate" ColumnName="LastLoginDate" />
               </MappingFragment>
             </EntityTypeMapping>
           </EntitySetMapping>
+          <EntitySetMapping Name="UsuarioActivacions">
+            <EntityTypeMapping TypeName="bdFacturacionElectronicaModel.UsuarioActivacion">
+              <MappingFragment StoreEntitySet="UsuarioActivacion">
+                <ScalarProperty Name="ID" ColumnName="ID" />
+                <ScalarProperty Name="UsuarioID" ColumnName="UsuarioID" />
+                <ScalarProperty Name="ActivacionCodigo" ColumnName="ActivacionCodigo" />
+              </MappingFragment>
+            </EntityTypeMapping>
+          </EntitySetMapping>
+          <FunctionImportMapping FunctionImportName="Validate_User" FunctionName="bdFacturacionElectronicaModel.Store.Validate_User" />
+          <FunctionImportMapping FunctionImportName="ValidateUser" FunctionName="bdFacturacionElectronicaModel.Store.Validate_User" />
         </EntityContainerMapping>
       </Mapping>
     </edmx:Mappings>
@@ -1051,7 +1132,7 @@ advertencia 6035: La relación 'FK_NIT_tblProveedor' tiene columnas que no forma
     <Options>
       <DesignerInfoPropertySet>
         <DesignerProperty Name="ValidateOnBuild" Value="true" />
-        <DesignerProperty Name="EnablePluralization" Value="false" />
+        <DesignerProperty Name="EnablePluralization" Value="true" />
         <DesignerProperty Name="IncludeForeignKeysInModel" Value="true" />
         <DesignerProperty Name="UseLegacyProvider" Value="false" />
         <DesignerProperty Name="CodeGenerationStrategy" Value="Ninguno" />

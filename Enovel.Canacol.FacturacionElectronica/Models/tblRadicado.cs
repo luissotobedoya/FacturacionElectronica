@@ -17,7 +17,7 @@ namespace Enovel.Canacol.FacturacionElectronica.Models
         [System.Diagnostics.CodeAnalysis.SuppressMessage("Microsoft.Usage", "CA2214:DoNotCallOverridableMethodsInConstructors")]
         public tblRadicado()
         {
-            this.tblGoodReceiptRadicado = new HashSet<tblGoodReceiptRadicado>();
+            this.tblGoodReceiptRadicadoes = new HashSet<tblGoodReceiptRadicado>();
         }
     
         public int ID { get; set; }
@@ -43,7 +43,7 @@ namespace Enovel.Canacol.FacturacionElectronica.Models
         public string Estado { get; set; }
     
         [System.Diagnostics.CodeAnalysis.SuppressMessage("Microsoft.Usage", "CA2227:CollectionPropertiesShouldBeReadOnly")]
-        public virtual ICollection<tblGoodReceiptRadicado> tblGoodReceiptRadicado { get; set; }
+        public virtual ICollection<tblGoodReceiptRadicado> tblGoodReceiptRadicadoes { get; set; }
         public virtual tblUsuariosProveedor tblUsuariosProveedor { get; set; }
     }
 }

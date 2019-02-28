@@ -1,69 +1,88 @@
 ﻿using Enovel.Canacol.FacturacionElectronica.Models;
+using Enovel.Canacol.FacturacionElectronica.Models.LoginModel;
 using System.Linq;
 using System.Web.Mvc;
+using System.Web.Security;
 
 namespace Enovel.Canacol.FacturacionElectronica.Controllers
 {
     public class LoginController : Controller
     {
+        public string CurrentController
+        {
+            get
+            {
+                return this.ControllerContext.RouteData.Values["controller"].ToString();
+            }
+        }
 
+        #region vistas
+        [AllowAnonymous]
         public ActionResult Index()
         {
             return View();
         }
 
+        [Authorize]
         public ActionResult InicioProveedor()
         {
             return View();
         }
 
+        [Authorize]
         public ActionResult InicioFuncionario()
         {
             return View();
         }
+        #endregion
 
+        #region actions providers
+        [HttpPost]
+        public ActionResult AuthorizeProvider(LoginModelView userModel)
+        {
+            bdFacturacionElectronicaEntitiesModel entities = new bdFacturacionElectronicaEntitiesModel();
+            int? userId = entities.ValidateUser(userModel.providerModel.UsuarioNit, userModel.providerModel.Password).FirstOrDefault();
+            string message = string.Empty;
+            switch (userId.Value)
+            {
+                case -1:
+                    message = "Usuario o clave incorrecta";
+                    break;
+                case -2:
+                    message = "La cuenta no ha sido activada";
+                    break;
+                default:
+                    FormsAuthentication.SetAuthCookie(userModel.providerModel.UsuarioNit, true);
+                    if (!string.IsNullOrEmpty(Request.Form["ReturnUrl"]))
+                    {
+                        return RedirectToAction(Request.Form["ReturnUrl"].Split('/')[2]);
+                    }
+                    else
+                    {
+                        return RedirectToAction("MenuProveedor", "Menu");
+                    }
+            }
 
+            ViewBag.Message = message;
+            userModel.providerModel.LoginErrorMessage = message;
+            return View("Index", userModel);
+        }
+
+        #endregion
+
+        #region actions functionary
+        [HttpPost]
+        public ActionResult AuthorizeFunctionary(LoginModelView userModel)
+        {
+            return View();
+        }
+        #endregion
 
         [HttpPost]
-        public ActionResult Authorize(tblUsuariosProveedor userModel)
-        {
-            if(userModel.TipoUsuario.ToLower() == "proveedor")
-            {
-                using (bdFacturacionElectronicaEntities db = new bdFacturacionElectronicaEntities())
-                {
-                    return LoginProveedor(userModel, db);
-                }
-            }
-            else
-            {
-                return LoginFuncionario();
-            }
-        }
-
-        private ActionResult LoginFuncionario()
-        {
-            return RedirectToAction("MenuFuncionario", "Menu");
-        }
-
-        private ActionResult LoginProveedor(tblUsuariosProveedor userModel, bdFacturacionElectronicaEntities db)
-        {
-            var user = db.tblUsuariosProveedor.Where(u => u.UsuarioNit.Equals(userModel.UsuarioNit) && u.Password.Equals(userModel.Password)).FirstOrDefault();
-            if (user == null)
-            {
-                userModel.LoginErrorMessage = "Usuario o password inválido";
-                return View("Index", userModel);
-            }
-            else
-            {
-                Session["UserID"] = user.ID;
-                Session["Username"] = user.RazonSocial;
-                return RedirectToAction("MenuProveedor", "Menu");
-            }
-        }
-
+        [Authorize]
         public ActionResult LogOut()
         {
-            Session.Abandon();
+            FormsAuthentication.SignOut();
             return RedirectToAction("Index", "Login");
         }
     }

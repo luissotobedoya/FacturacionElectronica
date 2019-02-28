@@ -17,7 +17,7 @@ namespace Enovel.Canacol.FacturacionElectronica.Models
         [System.Diagnostics.CodeAnalysis.SuppressMessage("Microsoft.Usage", "CA2214:DoNotCallOverridableMethodsInConstructors")]
         public tblNumeroOrdenProveedor()
         {
-            this.tblGoodReceiptProveedor = new HashSet<tblGoodReceiptProveedor>();
+            this.tblGoodReceiptProveedors = new HashSet<tblGoodReceiptProveedor>();
         }
     
         public int ID { get; set; }
@@ -27,7 +27,7 @@ namespace Enovel.Canacol.FacturacionElectronica.Models
     
         public virtual tblEmpresaPorProveedor tblEmpresaPorProveedor { get; set; }
         [System.Diagnostics.CodeAnalysis.SuppressMessage("Microsoft.Usage", "CA2227:CollectionPropertiesShouldBeReadOnly")]
-        public virtual ICollection<tblGoodReceiptProveedor> tblGoodReceiptProveedor { get; set; }
+        public virtual ICollection<tblGoodReceiptProveedor> tblGoodReceiptProveedors { get; set; }
         public virtual tblTipoOrden tblTipoOrden { get; set; }
     }
 }

@@ -193,7 +193,7 @@
     <Compile Include="Models\tblRadicado.cs">
       <DependentUpon>FEModel.tt</DependentUpon>
     </Compile>
-    <Compile Include="Models\tblRoles.cs">
+    <Compile Include="Models\tblRole.cs">
       <DependentUpon>FEModel.tt</DependentUpon>
     </Compile>
     <Compile Include="Models\tblRolesPorProceso.cs">
@@ -212,6 +212,9 @@
       <DependentUpon>FEModel.tt</DependentUpon>
     </Compile>
     <Compile Include="Models\UserAD.cs" />
+    <Compile Include="Models\UsuarioActivacion.cs">
+      <DependentUpon>FEModel.tt</DependentUpon>
+    </Compile>
     <Compile Include="Properties\AssemblyInfo.cs" />
   </ItemGroup>
   <ItemGroup>
@@ -231,8 +234,8 @@
     <Content Include="Content\Site.css" />
     <Content Include="Models\FEModel.Context.tt">
       <Generator>TextTemplatingFileGenerator</Generator>
-      <LastGenOutput>FEModel.Context.cs</LastGenOutput>
       <DependentUpon>FEModel.edmx</DependentUpon>
+      <LastGenOutput>FEModel.Context.cs</LastGenOutput>
     </Content>
     <Content Include="Models\FEModel.tt">
       <Generator>TextTemplatingFileGenerator</Generator>
@@ -241,13 +244,6 @@
     </Content>
     <Content Include="Scripts\bootstrap.js" />
     <Content Include="Scripts\bootstrap.min.js" />
-    <EntityDeploy Include="Models\FEModel.edmx">
-      <Generator>EntityModelCodeGenerator</Generator>
-      <LastGenOutput>FEModel.Designer.cs</LastGenOutput>
-    </EntityDeploy>
-    <Content Include="Models\FEModel.edmx.diagram">
-      <DependentUpon>FEModel.edmx</DependentUpon>
-    </Content>
     <Content Include="Content\webfonts\fa-brands-400.eot" />
     <Content Include="Content\webfonts\fa-brands-400.ttf" />
     <Content Include="Content\webfonts\fa-brands-400.woff" />
@@ -260,6 +256,13 @@
     <Content Include="Content\webfonts\fa-solid-900.ttf" />
     <Content Include="Content\webfonts\fa-solid-900.woff" />
     <Content Include="Content\webfonts\fa-solid-900.woff2" />
+    <EntityDeploy Include="Models\FEModel.edmx">
+      <Generator>EntityModelCodeGenerator</Generator>
+      <LastGenOutput>FEModel.Designer.cs</LastGenOutput>
+    </EntityDeploy>
+    <Content Include="Models\FEModel.edmx.diagram">
+      <DependentUpon>FEModel.edmx</DependentUpon>
+    </Content>
     <None Include="Scripts\jquery-3.3.1.intellisense.js" />
     <Content Include="Scripts\jquery-3.3.1.js" />
     <Content Include="Scripts\jquery-3.3.1.min.js" />

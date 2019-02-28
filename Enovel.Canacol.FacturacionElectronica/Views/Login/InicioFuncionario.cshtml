@@ -1,7 +1,29 @@
-﻿
+﻿@using Enovel.Canacol.FacturacionElectronica.Models.LoginModel
+@model LoginModelView
 @{
-    ViewBag.Title = "InicioFuncionario";
+    Layout = null;
 }
 
-<h2>Inicio Funcionario</h2>
+@using (Html.BeginForm("AuthorizeFunctionary", "Login", FormMethod.Post))
+{
+    <div class="provider-login">
+        <div class="form-group">
+            @Html.LabelFor(model => model.functionaryModel.Username)
+            @Html.EditorFor(model => model.functionaryModel.Username, new { htmlAttributes = new { @type = "text", @class = "form-control", @placeholder = "Ingrese su usuario" } })
+            @Html.ValidationMessageFor(model => model.functionaryModel.Username, "", new { @class = "text-danger" })
+        </div>
+        <div class="form-group">
+            @Html.LabelFor(model => model.functionaryModel.Password)
+            @Html.EditorFor(model => model.functionaryModel.Password, new { htmlAttributes = new { @type = "password", @class = "form-control", @placeholder = "Ingrese su password" } })
+            @Html.ValidationMessageFor(model => model.functionaryModel.Password, "", new { @class = "text-danger" })
+        </div>
+        <div class="form-group">
+            <input id="btnLogin" name="btnLogin" type="submit" class="btn btn-black" value="Ingresar">
+        </div>
+
+        <div class="error-login">
+            <label class="text-danger">@Html.DisplayFor(model => model.functionaryModel.LoginErrorMessage)</label>
+        </div>
+    </div>
+}
 

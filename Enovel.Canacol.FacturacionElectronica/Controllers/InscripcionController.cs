@@ -18,8 +18,8 @@ namespace Enovel.Canacol.FacturacionElectronica.Controllers
         // GET: Inscripcion
         public ActionResult Inscripcion()
         {
-            bdFacturacionElectronicaEntities entities = new bdFacturacionElectronicaEntities();
-            var taxqualities = entities.tblCalidadTributaria.ToList();
+            bdFacturacionElectronicaEntitiesModel entities = new bdFacturacionElectronicaEntitiesModel();
+            var taxqualities = entities.tblCalidadTributarias.ToList();
             SelectList taxqualitiesList = new SelectList(taxqualities, "ID", "Nombre");
             ViewBag.taxqualitiesListName = taxqualitiesList;
             return View();
@@ -28,13 +28,10 @@ namespace Enovel.Canacol.FacturacionElectronica.Controllers
         [HttpPost]
         public ActionResult Create(tblUsuariosProveedor userModel)
         {
-            using (bdFacturacionElectronicaEntities db = new bdFacturacionElectronicaEntities())
+            using (bdFacturacionElectronicaEntitiesModel db = new bdFacturacionElectronicaEntitiesModel())
             {
-                string prueba = "";
                 return RedirectToAction("Index", "Login");
             }
-
-
         }
     }
 }

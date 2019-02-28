@@ -12,21 +12,21 @@ namespace Enovel.Canacol.FacturacionElectronica.Models
     using System;
     using System.Collections.Generic;
     
-    public partial class tblRoles
+    public partial class tblRole
     {
         [System.Diagnostics.CodeAnalysis.SuppressMessage("Microsoft.Usage", "CA2214:DoNotCallOverridableMethodsInConstructors")]
-        public tblRoles()
+        public tblRole()
         {
-            this.tblRolesPorUsuario = new HashSet<tblRolesPorUsuario>();
-            this.tblRolesPorProceso = new HashSet<tblRolesPorProceso>();
+            this.tblRolesPorUsuarios = new HashSet<tblRolesPorUsuario>();
+            this.tblRolesPorProcesoes = new HashSet<tblRolesPorProceso>();
         }
     
         public int ID { get; set; }
         public string NombreRol { get; set; }
     
         [System.Diagnostics.CodeAnalysis.SuppressMessage("Microsoft.Usage", "CA2227:CollectionPropertiesShouldBeReadOnly")]
-        public virtual ICollection<tblRolesPorUsuario> tblRolesPorUsuario { get; set; }
+        public virtual ICollection<tblRolesPorUsuario> tblRolesPorUsuarios { get; set; }
         [System.Diagnostics.CodeAnalysis.SuppressMessage("Microsoft.Usage", "CA2227:CollectionPropertiesShouldBeReadOnly")]
-        public virtual ICollection<tblRolesPorProceso> tblRolesPorProceso { get; set; }
+        public virtual ICollection<tblRolesPorProceso> tblRolesPorProcesoes { get; set; }
     }
 }

@@ -1,30 +1,33 @@
-﻿@model  Enovel.Canacol.FacturacionElectronica.Models.tblUsuariosProveedor
-
+﻿@using Enovel.Canacol.FacturacionElectronica.Models.LoginModel
+@model LoginModelView
 @{
     Layout = null;
 }
 
-@using (Html.BeginForm("Authorize", "Login", FormMethod.Post))
+@using (Html.BeginForm("AuthorizeProvider", "Login", FormMethod.Post))
 {
     <div class="provider-login">
         <div class="form-group">
-            @Html.LabelFor(model => model.UsuarioNit)
-            @Html.EditorFor(model => model.UsuarioNit, new { htmlAttributes = new { @type = "text", @class = "form-control", @placeholder = "Ingrese su usuario" } })
-            @Html.ValidationMessageFor(model => model.UsuarioNit, "", new { @class = "text-danger" })
+            @Html.LabelFor(model => model.providerModel.UsuarioNit)
+            @Html.EditorFor(model => model.providerModel.UsuarioNit, new { htmlAttributes = new { @type = "text", @class = "form-control", @placeholder = "Ingrese su usuario" } })
+            @Html.ValidationMessageFor(model => model.providerModel.UsuarioNit, "", new { @class = "text-danger" })
         </div>
         <div class="form-group">
-            @Html.LabelFor(model => model.Password)
-            @Html.EditorFor(model => model.Password, new { htmlAttributes = new { @type = "password", @class = "form-control", @placeholder = "Ingrese su password" } })
-            @Html.ValidationMessageFor(model => model.Password, "", new { @class = "text-danger" })
+            @Html.LabelFor(model => model.providerModel.Password)
+            @Html.EditorFor(model => model.providerModel.Password, new { htmlAttributes = new { @type = "password", @class = "form-control", @placeholder = "Ingrese su password" } })
+            @Html.ValidationMessageFor(model => model.providerModel.Password, "", new { @class = "text-danger" })
         </div>
         <div class="form-group">
             <input type="button" id="btnInscribirse" name="btnInscribirse" class="btn btn-secondary" value="inscribirse" onclick="location.href='@Url.Action("Inscripcion", "Inscripcion")'" />
             <input id="btnLogin" name="btnLogin" type="submit" class="btn btn-black" value="Ingresar">
         </div>
+        @if (ViewBag.Message != null)
+        {
+            <div class="alert alert-danger" role="alert">
+                @Html.DisplayFor(model => model.providerModel.LoginErrorMessage, "", new { @class = "text-danger" })
+            </div>
+        }
 
-        <div class="error-login">
-            <label class="text-danger">@Html.DisplayFor(model => model.LoginErrorMessage)</label>
-        </div>
     </div>
 }
 

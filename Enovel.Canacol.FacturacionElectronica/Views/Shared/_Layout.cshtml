@@ -11,20 +11,31 @@
 
 </head>
 
+
+
+<nav class="navbar navbar-expand-lg navbar-dark NavBarCanacol">
+     <img class="navbar-brand" src="images/logo.png" alt="logo">
+	  <button class="navbar-toggler" type="button" data-toggle="collapse" data-target="#navbarSupportedContent"
+        aria-controls="navbarSupportedContent" aria-expanded="false" aria-label="Toggle navigation">
+        <span class="navbar-toggler-icon"></span>
+    </button>
+    <div class="collapse navbar-collapse" id="navbarSupportedContent">
+        <ul class="nav navbar-nav flex-row justify-content-between ml-auto">
+            <li class="nav-item order-2 order-md-1"><a href="#" class="nav-link" title="settings">Bienvenido User</a>
+            </li>
+            <li class="dropdown order-1">
+                <button type="button" class="btn btn-secondary ">Salir <span class="caret"></span></button>
+            </li>
+        </ul>
+    </div>
+</nav>
+
+@using (Html.BeginForm("LogOut", "Login", FormMethod.Post))
+{
+    <a href="javascript:;" onclick="document.forms[0].submit();">Logout</a>
+}
+
 <body>
-    <nav class="navbar navbar-expand-lg navbar-dark NavBarCanacol">
-        <a class="navbar-brand" href="#">
-            <a class="navbar-brand" href="#">
-                Facturación Electronica
-            </a>
-        </a>
-    </nav>
-
-    @using (Html.BeginForm("LogOut", "Login", FormMethod.Post))
-    {
-        <a href="javascript:;" onclick="document.forms[0].submit();">Logout</a>
-    }
-
     <div class="container main-container">
         @RenderBody()
     </div>

@@ -15,15 +15,17 @@
     <link rel="stylesheet" href="~/Content/bootstrap.min.css" />
     <link href="~/Content/all.css" rel="stylesheet" />
     <link href="~/Content/menu.css" rel="stylesheet" />
-
+    <link href="~/Content/facturacion-electronica.css" rel="stylesheet" />
 </head>
 <body>
     <nav class="navbar navbar-expand-lg navbar-dark NavBarCanacol">
-        <a class="navbar-brand" href="#">
-            <a class="navbar-brand" href="/">
-                Facturación Electronica
-            </a>
-        </a>
+        <a href="/"><img class="navbar-brand" src="~/Content/images/logo-master.png" alt="logo"></a>
+        <button class="navbar-toggler" type="button" data-toggle="collapse" data-target="#navbarSupportedContent"
+                aria-controls="navbarSupportedContent" aria-expanded="false" aria-label="Toggle navigation">
+            <span class="navbar-toggler-icon"></span>
+        </button>
+        <div class="collapse navbar-collapse" id="navbarSupportedContent">
+        </div>
     </nav>
 
     <div class="container main-container">
@@ -34,7 +36,7 @@
             <p>Inscripción Portal Ventanilla Virtual</p>
             <div class="form-horizontal">
 
-                <div class="form-group">
+                <div class="form-group required">
                     <label class="control-label col-md-2">Nit</label>
                     <div class="col-md-10">
                         @Html.EditorFor(model => model.UsuarioNit, new { htmlAttributes = new { @class = "form-control" } })
@@ -42,7 +44,7 @@
                     </div>
                 </div>
 
-                <div class="form-group">
+                <div class="form-group required">
                     @Html.LabelFor(model => model.RazonSocial, htmlAttributes: new { @class = "control-label col-md-2" })
                     <div class="col-md-10">
                         @Html.EditorFor(model => model.RazonSocial, new { htmlAttributes = new { @class = "form-control" } })
@@ -50,7 +52,7 @@
                     </div>
                 </div>
 
-                <div class="form-group">
+                <div class="form-group required">
                     @Html.LabelFor(model => model.IDCalidadTributaria, htmlAttributes: new { @class = "control-label col-md-2" })
                     <div class="col-md-10">
                         @Html.DropDownList("IDCalidadTributaria", ViewBag.taxqualitiesListName as SelectList, htmlAttributes: new { @class = "form-control" })
@@ -58,7 +60,7 @@
                     </div>
                 </div>
 
-                <div class="form-group">
+                <div class="form-group required">
                     @Html.LabelFor(model => model.Email, htmlAttributes: new { @class = "control-label col-md-2" })
                     <div class="col-md-10">
                         @Html.EditorFor(model => model.Email, new { htmlAttributes = new { @class = "form-control" } })
@@ -66,7 +68,7 @@
                     </div>
                 </div>
 
-                <div class="form-group">
+                <div class="form-group required">
                     @Html.LabelFor(model => model.Telefono, htmlAttributes: new { @class = "control-label col-md-2" })
                     <div class="col-md-10">
                         @Html.EditorFor(model => model.Telefono, new { htmlAttributes = new { @class = "form-control" } })
@@ -74,7 +76,7 @@
                     </div>
                 </div>
 
-                <div class="form-group">
+                <div class="form-group required">
                     @Html.LabelFor(model => model.Direccion, htmlAttributes: new { @class = "control-label col-md-2" })
                     <div class="col-md-10">
                         @Html.EditorFor(model => model.Direccion, new { htmlAttributes = new { @class = "form-control" } })
@@ -82,7 +84,7 @@
                     </div>
                 </div>
 
-                <div class="form-group">
+                <div class="form-group required">
                     @Html.LabelFor(model => model.RepresentanteLegal, htmlAttributes: new { @class = "control-label col-md-2" })
                     <div class="col-md-10">
                         @Html.EditorFor(model => model.RepresentanteLegal, new { htmlAttributes = new { @class = "form-control" } })
@@ -90,7 +92,7 @@
                     </div>
                 </div>
 
-                <div class="form-group">
+                <div class="form-group required">
                     @Html.LabelFor(model => model.Rut, htmlAttributes: new { @class = "control-label col-md-2" })
                     <div class="col-md-10">
                         @Html.TextBoxFor(model => model.Rut, htmlAttributes: new { @class = "form-control", @type = "file", @name = "FileRut", @id = "FileRut" })
@@ -98,7 +100,7 @@
                     </div>
                 </div>
 
-                <div class="form-group">
+                <div class="form-group required">
                     @Html.LabelFor(model => model.CamaraComercio, htmlAttributes: new { @class = "control-label col-md-2" })
                     <div class="col-md-10">
                         @Html.TextBoxFor(model => model.CamaraComercio, htmlAttributes: new { @class = "form-control", @type = "file", @name = "FileCamaraComercio", @id = "FileCamaraComercio" })
@@ -106,7 +108,7 @@
                     </div>
                 </div>
 
-                <div class="form-group">
+                <div class="form-group required">
                     @Html.LabelFor(model => model.Password, htmlAttributes: new { @class = "control-label col-md-2" })
                     <div class="col-md-10">
                         @Html.EditorFor(model => model.Password, new { htmlAttributes = new { @class = "form-control" } })
@@ -114,7 +116,7 @@
                     </div>
                 </div>
 
-                <div class="form-group">
+                <div class="form-group required">
                     @Html.LabelFor(model => model.ConfirmarPassword, htmlAttributes: new { @class = "control-label col-md-2" })
                     <div class="col-md-10">
                         @Html.EditorFor(model => model.ConfirmarPassword, new { htmlAttributes = new { @class = "form-control" } })
@@ -124,9 +126,25 @@
 
                 <div class="form-group">
                     <div class="col-md-offset-2 col-md-10">
-                        <input type="submit" value="Inscribir" class="btn btn-default" />
+                        <input type="submit" value="Inscribir" class="btn btn-primary" />
                     </div>
                 </div>
+
+
+                @if (ViewBag.Message != null)
+                {
+                    <div class="alert alert-danger" role="alert">
+                        @Html.DisplayFor(model => model.FEErrorMessage, "", new { @class = "text-danger" })
+                    </div>
+
+                }
+                else
+                {
+                    <div class="mensaje" role="alert">
+                        @Html.DisplayFor(model => model.FEErrorMessage, "", new { @class = "text-danger" })
+                    </div>
+                }
+
             </div>
 
         }

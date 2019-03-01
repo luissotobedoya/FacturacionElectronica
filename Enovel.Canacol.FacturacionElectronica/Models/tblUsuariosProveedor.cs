@@ -88,7 +88,7 @@ namespace Enovel.Canacol.FacturacionElectronica.Models
         public string Estado { get; set; }
         public Nullable<System.DateTime> CreatedDate { get; set; }
         public Nullable<System.DateTime> LastLoginDate { get; set; }
-        public string LoginErrorMessage { get; set; }
+        public string FEErrorMessage { get; set; }
         public virtual tblCalidadTributaria tblCalidadTributaria { get; set; }
         public virtual tblEmpresa tblEmpresa { get; set; }
         [System.Diagnostics.CodeAnalysis.SuppressMessage("Microsoft.Usage", "CA2227:CollectionPropertiesShouldBeReadOnly")]

@@ -64,7 +64,7 @@ namespace Enovel.Canacol.FacturacionElectronica.Controllers
             }
 
             ViewBag.Message = message;
-            userModel.providerModel.LoginErrorMessage = message;
+            userModel.providerModel.FEErrorMessage = message;
             return View("Index", userModel);
         }
 

@@ -63,3 +63,8 @@
 .login-form{
     margin-top:0px;
 }
+
+.form-group.required .control-label:after {
+    content: "*";
+    color: red;
+}

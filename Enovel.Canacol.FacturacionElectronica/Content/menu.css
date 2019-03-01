@@ -21,7 +21,7 @@ a:focus {
 }
 .navbar-brand {
     position: relative;
-    background: url(images/logo.png);
+    background: url(~/Content/images/logo.png);
     width: 170px;
     height: 50px;
     left: 15px;
@@ -31,7 +31,7 @@ a {
     color: #5cb48e;
     -webkit-transition: all 150ms ease-in-out;
     -moz-transition: all 150ms ease-in-out;
-    -ms-transition: all 150ms ease-in-out;
+    -ms-transition: all 150ms ease-in-out !important;
     -o-transition: all 150ms ease-in-out;
     transition: all 150ms ease-in-out;
     text-decoration: none !important;

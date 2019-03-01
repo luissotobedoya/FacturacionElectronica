@@ -4,13 +4,23 @@
   <edmx:Runtime>
     <!-- SSDL content -->
     <edmx:StorageModels>
-      <Schema Namespace="bdFacturacionElectronicaModel.Store" Provider="System.Data.SqlClient" ProviderManifestToken="2012" Alias="Self" xmlns:store="http://schemas.microsoft.com/ado/2007/12/edm/EntityStoreSchemaGenerator" xmlns:customannotation="http://schemas.microsoft.com/ado/2013/11/edm/customannotation" xmlns="http://schemas.microsoft.com/ado/2009/11/edm/ssdl">
+    <Schema Namespace="bdFacturacionElectronicaModel.Store" Provider="System.Data.SqlClient" ProviderManifestToken="2012" Alias="Self" xmlns:store="http://schemas.microsoft.com/ado/2007/12/edm/EntityStoreSchemaGenerator" xmlns:customannotation="http://schemas.microsoft.com/ado/2013/11/edm/customannotation" xmlns="http://schemas.microsoft.com/ado/2009/11/edm/ssdl">
         <EntityType Name="tblCalidadTributaria">
           <Key>
             <PropertyRef Name="ID" />
           </Key>
           <Property Name="ID" Type="int" StoreGeneratedPattern="Identity" Nullable="false" />
           <Property Name="Nombre" Type="varchar" MaxLength="50" Nullable="false" />
+        </EntityType>
+        <EntityType Name="tblCamaraComercio">
+          <Key>
+            <PropertyRef Name="ID" />
+          </Key>
+          <Property Name="ID" Type="int" StoreGeneratedPattern="Identity" Nullable="false" />
+          <Property Name="IDUsuarioProveedor" Type="int" />
+          <Property Name="Nombre" Type="varchar" MaxLength="50" />
+          <Property Name="ContentType" Type="nvarchar(max)" />
+          <Property Name="Data" Type="varbinary(max)" />
         </EntityType>
         <EntityType Name="tblEmpresa">
           <Key>
@@ -157,6 +167,16 @@
           <Property Name="IDRol" Type="int" />
           <Property Name="Usuario" Type="varchar" MaxLength="20" />
         </EntityType>
+        <EntityType Name="tblRut">
+          <Key>
+            <PropertyRef Name="ID" />
+          </Key>
+          <Property Name="ID" Type="int" StoreGeneratedPattern="Identity" Nullable="false" />
+          <Property Name="IDUsuarioProveedor" Type="int" />
+          <Property Name="Nombre" Type="varchar" MaxLength="50" />
+          <Property Name="ContentType" Type="nvarchar(max)" />
+          <Property Name="Data" Type="varbinary(max)" />
+        </EntityType>
         <EntityType Name="tblSoporte">
           <Key>
             <PropertyRef Name="ID" />
@@ -185,7 +205,7 @@
           <Property Name="Telefono" Type="varchar" MaxLength="20" />
           <Property Name="Direccion" Type="varchar" MaxLength="100" />
           <Property Name="RepresentanteLegal" Type="varchar" MaxLength="50" />
-          <Property Name="RutaRut" Type="varchar(max)" />
+          <Property Name="RutaRut" Type="nvarchar(max)" />
           <Property Name="RutaCamaraComercio" Type="varchar(max)" />
           <Property Name="Estado" Type="varchar" MaxLength="20" />
           <Property Name="CreatedDate" Type="datetime" />
@@ -195,9 +215,9 @@
           <Key>
             <PropertyRef Name="ID" />
           </Key>
-          <Property Name="ID" Type="int" Nullable="false" />
+          <Property Name="ID" Type="int" StoreGeneratedPattern="Identity" Nullable="false" />
           <Property Name="UsuarioID" Type="int" Nullable="false" />
-          <Property Name="ActivacionCodigo" Type="uniqueidentifier" />
+          <Property Name="ActivacionCodigo" Type="uniqueidentifier" Nullable="false" />
         </EntityType>
         <Association Name="FK_ID_tblCalidadTributaria">
           <End Role="tblCalidadTributaria" Type="Self.tblCalidadTributaria" Multiplicity="0..1" />
@@ -346,6 +366,30 @@
         <!--Errores durante la generación:
 advertencia 6035: La relación 'FK_NIT_tblProveedor' tiene columnas que no forman parte de la clave de la tabla en el lado principal de la relación. Se excluyó la relación.
         <Association Name="FK_NIT_tblProveedor" />-->
+        <Association Name="FK_tblCamaraComercio_tblUsuariosProveedor">
+          <End Role="tblUsuariosProveedor" Type="Self.tblUsuariosProveedor" Multiplicity="0..1" />
+          <End Role="tblCamaraComercio" Type="Self.tblCamaraComercio" Multiplicity="*" />
+          <ReferentialConstraint>
+            <Principal Role="tblUsuariosProveedor">
+              <PropertyRef Name="ID" />
+            </Principal>
+            <Dependent Role="tblCamaraComercio">
+              <PropertyRef Name="IDUsuarioProveedor" />
+            </Dependent>
+          </ReferentialConstraint>
+        </Association>
+        <Association Name="FK_tblRut_tblUsuariosProveedor">
+          <End Role="tblUsuariosProveedor" Type="Self.tblUsuariosProveedor" Multiplicity="0..1" />
+          <End Role="tblRut" Type="Self.tblRut" Multiplicity="*" />
+          <ReferentialConstraint>
+            <Principal Role="tblUsuariosProveedor">
+              <PropertyRef Name="ID" />
+            </Principal>
+            <Dependent Role="tblRut">
+              <PropertyRef Name="IDUsuarioProveedor" />
+            </Dependent>
+          </ReferentialConstraint>
+        </Association>
         <Association Name="FK_UsuarioActivacion_tblUsuariosProveedor">
           <End Role="tblUsuariosProveedor" Type="Self.tblUsuariosProveedor" Multiplicity="1" />
           <End Role="UsuarioActivacion" Type="Self.UsuarioActivacion" Multiplicity="*" />
@@ -364,6 +408,7 @@ advertencia 6035: La relación 'FK_NIT_tblProveedor' tiene columnas que no forma
         </Function>
         <EntityContainer Name="bdFacturacionElectronicaModelStoreContainer">
           <EntitySet Name="tblCalidadTributaria" EntityType="Self.tblCalidadTributaria" Schema="dbo" store:Type="Tables" />
+          <EntitySet Name="tblCamaraComercio" EntityType="Self.tblCamaraComercio" Schema="dbo" store:Type="Tables" />
           <EntitySet Name="tblEmpresa" EntityType="Self.tblEmpresa" Schema="dbo" store:Type="Tables" />
           <EntitySet Name="tblEmpresaPorProveedor" EntityType="Self.tblEmpresaPorProveedor" Schema="dbo" store:Type="Tables" />
           <EntitySet Name="tblFechasFacturacion" EntityType="Self.tblFechasFacturacion" Schema="dbo" store:Type="Tables" />
@@ -378,6 +423,7 @@ advertencia 6035: La relación 'FK_NIT_tblProveedor' tiene columnas que no forma
           <EntitySet Name="tblRoles" EntityType="Self.tblRoles" Schema="dbo" store:Type="Tables" />
           <EntitySet Name="tblRolesPorProceso" EntityType="Self.tblRolesPorProceso" Schema="dbo" store:Type="Tables" />
           <EntitySet Name="tblRolesPorUsuario" EntityType="Self.tblRolesPorUsuario" Schema="dbo" store:Type="Tables" />
+          <EntitySet Name="tblRut" EntityType="Self.tblRut" Schema="dbo" store:Type="Tables" />
           <EntitySet Name="tblSoporte" EntityType="Self.tblSoporte" Schema="dbo" store:Type="Tables" />
           <EntitySet Name="tblTipoOrden" EntityType="Self.tblTipoOrden" Schema="dbo" store:Type="Tables" />
           <EntitySet Name="tblUsuariosProveedor" EntityType="Self.tblUsuariosProveedor" Schema="dbo" store:Type="Tables" />
@@ -430,13 +476,20 @@ advertencia 6035: La relación 'FK_NIT_tblProveedor' tiene columnas que no forma
             <End Role="tblRoles" EntitySet="tblRoles" />
             <End Role="tblRolesPorProceso" EntitySet="tblRolesPorProceso" />
           </AssociationSet>
+          <AssociationSet Name="FK_tblCamaraComercio_tblUsuariosProveedor" Association="Self.FK_tblCamaraComercio_tblUsuariosProveedor">
+            <End Role="tblUsuariosProveedor" EntitySet="tblUsuariosProveedor" />
+            <End Role="tblCamaraComercio" EntitySet="tblCamaraComercio" />
+          </AssociationSet>
+          <AssociationSet Name="FK_tblRut_tblUsuariosProveedor" Association="Self.FK_tblRut_tblUsuariosProveedor">
+            <End Role="tblUsuariosProveedor" EntitySet="tblUsuariosProveedor" />
+            <End Role="tblRut" EntitySet="tblRut" />
+          </AssociationSet>
           <AssociationSet Name="FK_UsuarioActivacion_tblUsuariosProveedor" Association="Self.FK_UsuarioActivacion_tblUsuariosProveedor">
             <End Role="tblUsuariosProveedor" EntitySet="tblUsuariosProveedor" />
             <End Role="UsuarioActivacion" EntitySet="UsuarioActivacion" />
           </AssociationSet>
         </EntityContainer>
-      </Schema>
-    </edmx:StorageModels>
+      </Schema></edmx:StorageModels>
     <!-- CSDL content -->
     <edmx:ConceptualModels>
       <Schema Namespace="bdFacturacionElectronicaModel" Alias="Self" annotation:UseStrongSpatialTypes="false" xmlns:annotation="http://schemas.microsoft.com/ado/2009/02/edm/annotation" xmlns:customannotation="http://schemas.microsoft.com/ado/2013/11/edm/customannotation" xmlns="http://schemas.microsoft.com/ado/2009/11/edm">
@@ -641,7 +694,7 @@ advertencia 6035: La relación 'FK_NIT_tblProveedor' tiene columnas que no forma
           <Property Name="Telefono" Type="String" MaxLength="20" FixedLength="false" Unicode="false" />
           <Property Name="Direccion" Type="String" MaxLength="100" FixedLength="false" Unicode="false" />
           <Property Name="RepresentanteLegal" Type="String" MaxLength="50" FixedLength="false" Unicode="false" />
-          <Property Name="RutaRut" Type="String" MaxLength="Max" FixedLength="false" Unicode="false" />
+          <Property Name="RutaRut" Type="String" MaxLength="Max" FixedLength="false" Unicode="true" />
           <Property Name="RutaCamaraComercio" Type="String" MaxLength="Max" FixedLength="false" Unicode="false" />
           <Property Name="Estado" Type="String" MaxLength="20" FixedLength="false" Unicode="false" />
           <Property Name="CreatedDate" Type="DateTime" Precision="3" />
@@ -650,6 +703,8 @@ advertencia 6035: La relación 'FK_NIT_tblProveedor' tiene columnas que no forma
           <NavigationProperty Name="tblEmpresa" Relationship="Self.FK_IDEmpresa_tblEmpresa" FromRole="tblUsuariosProveedor" ToRole="tblEmpresa" />
           <NavigationProperty Name="tblRadicadoes" Relationship="Self.FK_ID_tblUsuariosProveedor" FromRole="tblUsuariosProveedor" ToRole="tblRadicado" />
           <NavigationProperty Name="UsuarioActivacions" Relationship="Self.FK_UsuarioActivacion_tblUsuariosProveedor" FromRole="tblUsuariosProveedor" ToRole="UsuarioActivacion" />
+          <NavigationProperty Name="tblCamaraComercios" Relationship="bdFacturacionElectronicaModel.FK_tblCamaraComercio_tblUsuariosProveedor" FromRole="tblUsuariosProveedor" ToRole="tblCamaraComercio" />
+          <NavigationProperty Name="tblRuts" Relationship="bdFacturacionElectronicaModel.FK_tblRut_tblUsuariosProveedor" FromRole="tblUsuariosProveedor" ToRole="tblRut" />
         </EntityType>
         <EntityType Name="UsuarioActivacion">
           <Key>
@@ -657,7 +712,7 @@ advertencia 6035: La relación 'FK_NIT_tblProveedor' tiene columnas que no forma
           </Key>
           <Property Name="ID" Type="Int32" Nullable="false" />
           <Property Name="UsuarioID" Type="Int32" Nullable="false" />
-          <Property Name="ActivacionCodigo" Type="Guid" />
+          <Property Name="ActivacionCodigo" Type="Guid" Nullable="false" />
           <NavigationProperty Name="tblUsuariosProveedor" Relationship="Self.FK_UsuarioActivacion_tblUsuariosProveedor" FromRole="UsuarioActivacion" ToRole="tblUsuariosProveedor" />
         </EntityType>
         <Association Name="FK_ID_tblCalidadTributaria">
@@ -896,7 +951,63 @@ advertencia 6035: La relación 'FK_NIT_tblProveedor' tiene columnas que no forma
             <Parameter Name="Username" Mode="In" Type="String" />
             <Parameter Name="Password" Mode="In" Type="String" />
           </FunctionImport>
+          <EntitySet Name="tblCamaraComercios" EntityType="bdFacturacionElectronicaModel.tblCamaraComercio" />
+          <EntitySet Name="tblRuts" EntityType="bdFacturacionElectronicaModel.tblRut" />
+          <AssociationSet Name="FK_tblCamaraComercio_tblUsuariosProveedor" Association="bdFacturacionElectronicaModel.FK_tblCamaraComercio_tblUsuariosProveedor">
+            <End Role="tblUsuariosProveedor" EntitySet="tblUsuariosProveedors" />
+            <End Role="tblCamaraComercio" EntitySet="tblCamaraComercios" />
+          </AssociationSet>
+          <AssociationSet Name="FK_tblRut_tblUsuariosProveedor" Association="bdFacturacionElectronicaModel.FK_tblRut_tblUsuariosProveedor">
+            <End Role="tblUsuariosProveedor" EntitySet="tblUsuariosProveedors" />
+            <End Role="tblRut" EntitySet="tblRuts" />
+          </AssociationSet>
         </EntityContainer>
+        <EntityType Name="tblCamaraComercio">
+          <Key>
+            <PropertyRef Name="ID" />
+          </Key>
+          <Property Name="ID" Type="Int32" Nullable="false" annotation:StoreGeneratedPattern="Identity" />
+          <Property Name="IDUsuarioProveedor" Type="Int32" />
+          <Property Name="Nombre" Type="String" MaxLength="50" FixedLength="false" Unicode="false" />
+          <Property Name="ContentType" Type="String" MaxLength="Max" FixedLength="false" Unicode="true" />
+          <Property Name="Data" Type="Binary" MaxLength="Max" FixedLength="false" />
+          <NavigationProperty Name="tblUsuariosProveedor" Relationship="bdFacturacionElectronicaModel.FK_tblCamaraComercio_tblUsuariosProveedor" FromRole="tblCamaraComercio" ToRole="tblUsuariosProveedor" />
+        </EntityType>
+        <EntityType Name="tblRut">
+          <Key>
+            <PropertyRef Name="ID" />
+          </Key>
+          <Property Name="ID" Type="Int32" Nullable="false" annotation:StoreGeneratedPattern="Identity" />
+          <Property Name="IDUsuarioProveedor" Type="Int32" />
+          <Property Name="Nombre" Type="String" MaxLength="50" FixedLength="false" Unicode="false" />
+          <Property Name="ContentType" Type="String" MaxLength="Max" FixedLength="false" Unicode="true" />
+          <Property Name="Data" Type="Binary" MaxLength="Max" FixedLength="false" />
+          <NavigationProperty Name="tblUsuariosProveedor" Relationship="bdFacturacionElectronicaModel.FK_tblRut_tblUsuariosProveedor" FromRole="tblRut" ToRole="tblUsuariosProveedor" />
+        </EntityType>
+        <Association Name="FK_tblCamaraComercio_tblUsuariosProveedor">
+          <End Type="bdFacturacionElectronicaModel.tblUsuariosProveedor" Role="tblUsuariosProveedor" Multiplicity="0..1" />
+          <End Type="bdFacturacionElectronicaModel.tblCamaraComercio" Role="tblCamaraComercio" Multiplicity="*" />
+          <ReferentialConstraint>
+            <Principal Role="tblUsuariosProveedor">
+              <PropertyRef Name="ID" />
+            </Principal>
+            <Dependent Role="tblCamaraComercio">
+              <PropertyRef Name="IDUsuarioProveedor" />
+            </Dependent>
+          </ReferentialConstraint>
+        </Association>
+        <Association Name="FK_tblRut_tblUsuariosProveedor">
+          <End Type="bdFacturacionElectronicaModel.tblUsuariosProveedor" Role="tblUsuariosProveedor" Multiplicity="0..1" />
+          <End Type="bdFacturacionElectronicaModel.tblRut" Role="tblRut" Multiplicity="*" />
+          <ReferentialConstraint>
+            <Principal Role="tblUsuariosProveedor">
+              <PropertyRef Name="ID" />
+            </Principal>
+            <Dependent Role="tblRut">
+              <PropertyRef Name="IDUsuarioProveedor" />
+            </Dependent>
+          </ReferentialConstraint>
+        </Association>
       </Schema>
     </edmx:ConceptualModels>
     <!-- C-S mapping content -->
@@ -1118,6 +1229,28 @@ advertencia 6035: La relación 'FK_NIT_tblProveedor' tiene columnas que no forma
           </EntitySetMapping>
           <FunctionImportMapping FunctionImportName="Validate_User" FunctionName="bdFacturacionElectronicaModel.Store.Validate_User" />
           <FunctionImportMapping FunctionImportName="ValidateUser" FunctionName="bdFacturacionElectronicaModel.Store.Validate_User" />
+          <EntitySetMapping Name="tblCamaraComercios">
+            <EntityTypeMapping TypeName="bdFacturacionElectronicaModel.tblCamaraComercio">
+              <MappingFragment StoreEntitySet="tblCamaraComercio">
+                <ScalarProperty Name="Data" ColumnName="Data" />
+                <ScalarProperty Name="ContentType" ColumnName="ContentType" />
+                <ScalarProperty Name="Nombre" ColumnName="Nombre" />
+                <ScalarProperty Name="IDUsuarioProveedor" ColumnName="IDUsuarioProveedor" />
+                <ScalarProperty Name="ID" ColumnName="ID" />
+              </MappingFragment>
+            </EntityTypeMapping>
+          </EntitySetMapping>
+          <EntitySetMapping Name="tblRuts">
+            <EntityTypeMapping TypeName="bdFacturacionElectronicaModel.tblRut">
+              <MappingFragment StoreEntitySet="tblRut">
+                <ScalarProperty Name="Data" ColumnName="Data" />
+                <ScalarProperty Name="ContentType" ColumnName="ContentType" />
+                <ScalarProperty Name="Nombre" ColumnName="Nombre" />
+                <ScalarProperty Name="IDUsuarioProveedor" ColumnName="IDUsuarioProveedor" />
+                <ScalarProperty Name="ID" ColumnName="ID" />
+              </MappingFragment>
+            </EntityTypeMapping>
+          </EntitySetMapping>
         </EntityContainerMapping>
       </Mapping>
     </edmx:Mappings>

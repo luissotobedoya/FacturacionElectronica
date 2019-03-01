@@ -159,6 +159,9 @@
     <Compile Include="Models\tblCalidadTributaria.cs">
       <DependentUpon>FEModel.tt</DependentUpon>
     </Compile>
+    <Compile Include="Models\tblCamaraComercio.cs">
+      <DependentUpon>FEModel.tt</DependentUpon>
+    </Compile>
     <Compile Include="Models\tblEmpresa.cs">
       <DependentUpon>FEModel.tt</DependentUpon>
     </Compile>
@@ -199,6 +202,9 @@
       <DependentUpon>FEModel.tt</DependentUpon>
     </Compile>
     <Compile Include="Models\tblRolesPorUsuario.cs">
+      <DependentUpon>FEModel.tt</DependentUpon>
+    </Compile>
+    <Compile Include="Models\tblRut.cs">
       <DependentUpon>FEModel.tt</DependentUpon>
     </Compile>
     <Compile Include="Models\tblSoporte.cs">

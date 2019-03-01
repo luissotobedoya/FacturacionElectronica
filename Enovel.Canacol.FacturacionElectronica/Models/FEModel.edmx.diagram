@@ -37,6 +37,10 @@
         <AssociationConnector Association="bdFacturacionElectronicaModel.FK_ID_tblRoles" ManuallyRouted="false" />
         <AssociationConnector Association="bdFacturacionElectronicaModel.FK_IDRol_tblRoles" ManuallyRouted="false" />
         <AssociationConnector Association="bdFacturacionElectronicaModel.FK_UsuarioActivacion_tblUsuariosProveedor" ManuallyRouted="false" />
+        <EntityTypeShape EntityType="bdFacturacionElectronicaModel.tblCamaraComercio" Width="1.5" PointX="5.25" PointY="19.875" />
+        <EntityTypeShape EntityType="bdFacturacionElectronicaModel.tblRut" Width="1.5" PointX="5.25" PointY="22.75" />
+        <AssociationConnector Association="bdFacturacionElectronicaModel.FK_tblCamaraComercio_tblUsuariosProveedor" />
+        <AssociationConnector Association="bdFacturacionElectronicaModel.FK_tblRut_tblUsuariosProveedor" />
       </Diagram>
     </edmx:Diagrams>
   </edmx:Designer>

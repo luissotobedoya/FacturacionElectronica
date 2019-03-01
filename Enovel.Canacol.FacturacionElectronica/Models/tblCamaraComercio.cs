@@ -12,11 +12,13 @@ namespace Enovel.Canacol.FacturacionElectronica.Models
     using System;
     using System.Collections.Generic;
     
-    public partial class UsuarioActivacion
+    public partial class tblCamaraComercio
     {
         public int ID { get; set; }
-        public int UsuarioID { get; set; }
-        public System.Guid ActivacionCodigo { get; set; }
+        public Nullable<int> IDUsuarioProveedor { get; set; }
+        public string Nombre { get; set; }
+        public string ContentType { get; set; }
+        public byte[] Data { get; set; }
     
         public virtual tblUsuariosProveedor tblUsuariosProveedor { get; set; }
     }

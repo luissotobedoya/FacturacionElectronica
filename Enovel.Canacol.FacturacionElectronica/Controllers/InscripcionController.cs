@@ -1,5 +1,7 @@
 ﻿using Enovel.Canacol.FacturacionElectronica.Models;
+using System.Collections.Generic;
 using System.Linq;
+using System.Web;
 using System.Web.Mvc;
 
 namespace Enovel.Canacol.FacturacionElectronica.Controllers
@@ -28,9 +30,11 @@ namespace Enovel.Canacol.FacturacionElectronica.Controllers
         [HttpPost]
         public ActionResult Create(tblUsuariosProveedor userModel)
         {
+
             using (bdFacturacionElectronicaEntitiesModel db = new bdFacturacionElectronicaEntitiesModel())
             {
-                return RedirectToAction("Index", "Login");
+
+                return RedirectToAction(CurrentController, "Inscripcion");
             }
         }
     }

@@ -46,6 +46,8 @@ namespace Enovel.Canacol.FacturacionElectronica.Models
         public virtual DbSet<tblTipoOrden> tblTipoOrdens { get; set; }
         public virtual DbSet<tblUsuariosProveedor> tblUsuariosProveedors { get; set; }
         public virtual DbSet<UsuarioActivacion> UsuarioActivacions { get; set; }
+        public virtual DbSet<tblCamaraComercio> tblCamaraComercios { get; set; }
+        public virtual DbSet<tblRut> tblRuts { get; set; }
     
         public virtual ObjectResult<Nullable<int>> Validate_User(string username, string password)
         {

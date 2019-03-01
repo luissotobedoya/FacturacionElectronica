@@ -13,6 +13,7 @@ namespace Enovel.Canacol.FacturacionElectronica.Models
     using System.Collections.Generic;
     using System.ComponentModel;
     using System.ComponentModel.DataAnnotations;
+    using System.Web;
 
     public partial class tblUsuariosProveedor
     {
@@ -21,6 +22,8 @@ namespace Enovel.Canacol.FacturacionElectronica.Models
         {
             this.tblRadicadoes = new HashSet<tblRadicado>();
             this.UsuarioActivacions = new HashSet<UsuarioActivacion>();
+            this.tblCamaraComercios = new HashSet<tblCamaraComercio>();
+            this.tblRuts = new HashSet<tblRut>();
         }
     
         public int ID { get; set; }
@@ -31,21 +34,57 @@ namespace Enovel.Canacol.FacturacionElectronica.Models
 
         [DisplayName("Clave")]
         [Required(ErrorMessage = "La clave es requerida")]
+        [DataType(DataType.Password)]
         public string Password { get; set; }
+
 
         [DisplayName("Clave")]
         [Required(ErrorMessage = "La clave es requerida")]
+        [DataType(DataType.Password)]
         public string ConfirmarPassword { get; set; }
 
+        [DisplayName("Razón social")]
+        [Required(ErrorMessage = "La razón social es requerida")]
         public string RazonSocial { get; set; }
+
+        [DisplayName("Calidad Tributaria")]
+        [Required(ErrorMessage = "La calidad tributaria es requerida")]
         public Nullable<int> IDCalidadTributaria { get; set; }
+
+
         public Nullable<int> IDEmpresa { get; set; }
+
+        [DisplayName("Email")]
+        [Required(ErrorMessage = "El email es requerido")]
+        [RegularExpression("^[a-z0-9_\\+-]+(\\.[a-z0-9_\\+-]+)*@[a-z0-9-]+(\\.[a-z0-9]+)*\\.([a-z]{2,4})$", ErrorMessage = "Debe escribir un correo electrónico válido")]
         public string Email { get; set; }
+
+        [DisplayName("Teléfono")]
+        [Required(ErrorMessage = "El teléfono es requerido")]
         public string Telefono { get; set; }
+
+        [DisplayName("Dirección")]
+        [Required(ErrorMessage = "La dirección es requerida")]
         public string Direccion { get; set; }
+
+        [DisplayName("Representante Legal")]
+        [Required(ErrorMessage = "El representante legal es requerido")]
         public string RepresentanteLegal { get; set; }
+
+        [Required(ErrorMessage = "Este campo es requerido")]
+        [Display(Name = "RUT")]
+        [RegularExpression(@"([a-zA-Z0-9\s_\\.\-:])+(.pdf)$", ErrorMessage = "Sólo se permiten archivos con extensión PDF")]
+        public HttpPostedFileBase Rut { get; set; }
+
         public string RutaRut { get; set; }
+
+        [Required(ErrorMessage = "Este campo es requerido")]
+        [Display(Name = "Cámara de comercio")]
+        [RegularExpression(@"([a-zA-Z0-9\s_\\.\-:])+(.pdf)$", ErrorMessage = "Sólo se permiten archivos con extensión PDF")]
+        public HttpPostedFileBase CamaraComercio { get; set; }
+
         public string RutaCamaraComercio { get; set; }
+
         public string Estado { get; set; }
         public Nullable<System.DateTime> CreatedDate { get; set; }
         public Nullable<System.DateTime> LastLoginDate { get; set; }
@@ -56,5 +95,9 @@ namespace Enovel.Canacol.FacturacionElectronica.Models
         public virtual ICollection<tblRadicado> tblRadicadoes { get; set; }
         [System.Diagnostics.CodeAnalysis.SuppressMessage("Microsoft.Usage", "CA2227:CollectionPropertiesShouldBeReadOnly")]
         public virtual ICollection<UsuarioActivacion> UsuarioActivacions { get; set; }
+        [System.Diagnostics.CodeAnalysis.SuppressMessage("Microsoft.Usage", "CA2227:CollectionPropertiesShouldBeReadOnly")]
+        public virtual ICollection<tblCamaraComercio> tblCamaraComercios { get; set; }
+        [System.Diagnostics.CodeAnalysis.SuppressMessage("Microsoft.Usage", "CA2227:CollectionPropertiesShouldBeReadOnly")]
+        public virtual ICollection<tblRut> tblRuts { get; set; }
     }
 }

@@ -17,13 +17,13 @@ namespace Enovel.Canacol.FacturacionElectronica.Models
         [System.Diagnostics.CodeAnalysis.SuppressMessage("Microsoft.Usage", "CA2214:DoNotCallOverridableMethodsInConstructors")]
         public tblTipoOrden()
         {
-            this.tblNumeroOrdenProveedors = new HashSet<tblNumeroOrdenProveedor>();
+            this.tblNumeroOrdenProveedor = new HashSet<tblNumeroOrdenProveedor>();
         }
     
         public int ID { get; set; }
         public string Nombre { get; set; }
     
         [System.Diagnostics.CodeAnalysis.SuppressMessage("Microsoft.Usage", "CA2227:CollectionPropertiesShouldBeReadOnly")]
-        public virtual ICollection<tblNumeroOrdenProveedor> tblNumeroOrdenProveedors { get; set; }
+        public virtual ICollection<tblNumeroOrdenProveedor> tblNumeroOrdenProveedor { get; set; }
     }
 }

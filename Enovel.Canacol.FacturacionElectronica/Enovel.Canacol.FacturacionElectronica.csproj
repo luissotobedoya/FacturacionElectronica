@@ -195,7 +195,7 @@
     <Compile Include="Models\tblRadicado.cs">
       <DependentUpon>FEModel.tt</DependentUpon>
     </Compile>
-    <Compile Include="Models\tblRole.cs">
+    <Compile Include="Models\tblRoles.cs">
       <DependentUpon>FEModel.tt</DependentUpon>
     </Compile>
     <Compile Include="Models\tblRolesPorProceso.cs">
@@ -234,6 +234,8 @@
     <Content Include="Content\Images\logo-master.png" />
     <Content Include="Content\Images\logo.png" />
     <Content Include="Content\menu.css" />
+    <Content Include="Content\sweetalert.css" />
+    <Content Include="Content\sweetalert.min.css" />
     <Content Include="Content\webfonts\fa-brands-400.svg" />
     <Content Include="Content\webfonts\fa-regular-400.svg" />
     <Content Include="Content\webfonts\fa-solid-900.svg" />
@@ -273,6 +275,7 @@
       <DependentUpon>FEModel.edmx</DependentUpon>
     </Content>
     <None Include="Scripts\jquery-3.3.1.intellisense.js" />
+    <Content Include="Scripts\facturacionElectronica.js" />
     <Content Include="Scripts\jquery-3.3.1.js" />
     <Content Include="Scripts\jquery-3.3.1.min.js" />
     <Content Include="Scripts\jquery-3.3.1.slim.js" />
@@ -283,6 +286,7 @@
     <Content Include="Scripts\jquery.validate.unobtrusive.js" />
     <Content Include="Scripts\jquery.validate.unobtrusive.min.js" />
     <Content Include="Scripts\modernizr-2.8.3.js" />
+    <Content Include="Scripts\sweetalert.min.js" />
     <Content Include="Web.config" />
     <Content Include="Web.Debug.config">
       <DependentUpon>Web.config</DependentUpon>
@@ -306,7 +310,7 @@
     <Content Include="Views\Login\Index.cshtml" />
   </ItemGroup>
   <ItemGroup>
-    <Folder Include="App_Data\" />
+    <Folder Include="App_Data\uploads\" />
   </ItemGroup>
   <ItemGroup>
     <Content Include="fonts\glyphicons-halflings-regular.woff2" />

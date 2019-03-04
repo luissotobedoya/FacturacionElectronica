@@ -15,10 +15,10 @@ namespace Enovel.Canacol.FacturacionElectronica.Models
     using System.Data.Entity.Core.Objects;
     using System.Linq;
     
-    public partial class bdFacturacionElectronicaEntitiesModel : DbContext
+    public partial class bdFacturacionElectronicaEntities : DbContext
     {
-        public bdFacturacionElectronicaEntitiesModel()
-            : base("name=bdFacturacionElectronicaEntitiesModel")
+        public bdFacturacionElectronicaEntities()
+            : base("name=bdFacturacionElectronicaEntities")
         {
         }
     
@@ -27,27 +27,27 @@ namespace Enovel.Canacol.FacturacionElectronica.Models
             throw new UnintentionalCodeFirstException();
         }
     
-        public virtual DbSet<tblCalidadTributaria> tblCalidadTributarias { get; set; }
-        public virtual DbSet<tblEmpresa> tblEmpresas { get; set; }
-        public virtual DbSet<tblEmpresaPorProveedor> tblEmpresaPorProveedors { get; set; }
-        public virtual DbSet<tblFechasFacturacion> tblFechasFacturacions { get; set; }
-        public virtual DbSet<tblGoodReceiptProveedor> tblGoodReceiptProveedors { get; set; }
-        public virtual DbSet<tblGoodReceiptRadicado> tblGoodReceiptRadicadoes { get; set; }
-        public virtual DbSet<tblLogsFuncionario> tblLogsFuncionarios { get; set; }
-        public virtual DbSet<tblLogsProveedor> tblLogsProveedors { get; set; }
-        public virtual DbSet<tblNumeroOrdenProveedor> tblNumeroOrdenProveedors { get; set; }
-        public virtual DbSet<tblProceso> tblProcesoes { get; set; }
-        public virtual DbSet<tblProveedor> tblProveedors { get; set; }
-        public virtual DbSet<tblRadicado> tblRadicadoes { get; set; }
-        public virtual DbSet<tblRole> tblRoles { get; set; }
-        public virtual DbSet<tblRolesPorProceso> tblRolesPorProcesoes { get; set; }
-        public virtual DbSet<tblRolesPorUsuario> tblRolesPorUsuarios { get; set; }
-        public virtual DbSet<tblSoporte> tblSoportes { get; set; }
-        public virtual DbSet<tblTipoOrden> tblTipoOrdens { get; set; }
-        public virtual DbSet<tblUsuariosProveedor> tblUsuariosProveedors { get; set; }
-        public virtual DbSet<UsuarioActivacion> UsuarioActivacions { get; set; }
-        public virtual DbSet<tblCamaraComercio> tblCamaraComercios { get; set; }
-        public virtual DbSet<tblRut> tblRuts { get; set; }
+        public virtual DbSet<tblCalidadTributaria> tblCalidadTributaria { get; set; }
+        public virtual DbSet<tblCamaraComercio> tblCamaraComercio { get; set; }
+        public virtual DbSet<tblEmpresa> tblEmpresa { get; set; }
+        public virtual DbSet<tblEmpresaPorProveedor> tblEmpresaPorProveedor { get; set; }
+        public virtual DbSet<tblFechasFacturacion> tblFechasFacturacion { get; set; }
+        public virtual DbSet<tblGoodReceiptProveedor> tblGoodReceiptProveedor { get; set; }
+        public virtual DbSet<tblGoodReceiptRadicado> tblGoodReceiptRadicado { get; set; }
+        public virtual DbSet<tblLogsFuncionario> tblLogsFuncionario { get; set; }
+        public virtual DbSet<tblLogsProveedor> tblLogsProveedor { get; set; }
+        public virtual DbSet<tblNumeroOrdenProveedor> tblNumeroOrdenProveedor { get; set; }
+        public virtual DbSet<tblProceso> tblProceso { get; set; }
+        public virtual DbSet<tblProveedor> tblProveedor { get; set; }
+        public virtual DbSet<tblRadicado> tblRadicado { get; set; }
+        public virtual DbSet<tblRoles> tblRoles { get; set; }
+        public virtual DbSet<tblRolesPorProceso> tblRolesPorProceso { get; set; }
+        public virtual DbSet<tblRolesPorUsuario> tblRolesPorUsuario { get; set; }
+        public virtual DbSet<tblRut> tblRut { get; set; }
+        public virtual DbSet<tblSoporte> tblSoporte { get; set; }
+        public virtual DbSet<tblTipoOrden> tblTipoOrden { get; set; }
+        public virtual DbSet<tblUsuariosProveedor> tblUsuariosProveedor { get; set; }
+        public virtual DbSet<UsuarioActivacion> UsuarioActivacion { get; set; }
     
         public virtual ObjectResult<Nullable<int>> Validate_User(string username, string password)
         {

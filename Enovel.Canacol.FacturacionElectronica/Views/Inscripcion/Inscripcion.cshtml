@@ -16,6 +16,13 @@
     <link href="~/Content/all.css" rel="stylesheet" />
     <link href="~/Content/menu.css" rel="stylesheet" />
     <link href="~/Content/facturacion-electronica.css" rel="stylesheet" />
+    <link href="~/Content/sweetalert.min.css" rel="stylesheet" />
+
+    <script src="~/Scripts/jquery-3.3.1.min.js"></script>
+    <script src="~/Scripts/jquery.validate.min.js"></script>
+    <script src="~/Scripts/jquery.validate.unobtrusive.min.js"></script>
+    <script src="~/Scripts/sweetalert.min.js"></script>
+    <script src="~/Scripts/facturacionElectronica.js"></script>
 </head>
 <body>
     <nav class="navbar navbar-expand-lg navbar-dark NavBarCanacol">
@@ -39,7 +46,7 @@
                 <div class="form-group required">
                     <label class="control-label col-md-2">Nit</label>
                     <div class="col-md-10">
-                        @Html.EditorFor(model => model.UsuarioNit, new { htmlAttributes = new { @class = "form-control" } })
+                        @Html.EditorFor(model => model.UsuarioNit, new { htmlAttributes = new { @class = "form-control", @style = "text-transform:uppercase" } })
                         @Html.ValidationMessageFor(model => model.UsuarioNit, "", new { @class = "text-danger" })
                     </div>
                 </div>
@@ -47,7 +54,7 @@
                 <div class="form-group required">
                     @Html.LabelFor(model => model.RazonSocial, htmlAttributes: new { @class = "control-label col-md-2" })
                     <div class="col-md-10">
-                        @Html.EditorFor(model => model.RazonSocial, new { htmlAttributes = new { @class = "form-control" } })
+                        @Html.EditorFor(model => model.RazonSocial, new { htmlAttributes = new { @class = "form-control", @style = "text-transform:uppercase" } })
                         @Html.ValidationMessageFor(model => model.RazonSocial, "", new { @class = "text-danger" })
                     </div>
                 </div>
@@ -55,7 +62,7 @@
                 <div class="form-group required">
                     @Html.LabelFor(model => model.IDCalidadTributaria, htmlAttributes: new { @class = "control-label col-md-2" })
                     <div class="col-md-10">
-                        @Html.DropDownList("IDCalidadTributaria", ViewBag.taxqualitiesListName as SelectList, htmlAttributes: new { @class = "form-control" })
+                        @Html.DropDownList("IDCalidadTributaria", ViewBag.taxqualitiesListName as SelectList, htmlAttributes: new { @class = "form-control", @style = "text-transform:uppercase" })
                         @Html.ValidationMessageFor(model => model.IDCalidadTributaria, "", new { @class = "text-danger" })
                     </div>
                 </div>
@@ -63,7 +70,7 @@
                 <div class="form-group required">
                     @Html.LabelFor(model => model.Email, htmlAttributes: new { @class = "control-label col-md-2" })
                     <div class="col-md-10">
-                        @Html.EditorFor(model => model.Email, new { htmlAttributes = new { @class = "form-control" } })
+                        @Html.EditorFor(model => model.Email, new { htmlAttributes = new { @class = "form-control", @style = "text-transform:uppercase" } })
                         @Html.ValidationMessageFor(model => model.Email, "", new { @class = "text-danger" })
                     </div>
                 </div>
@@ -71,7 +78,7 @@
                 <div class="form-group required">
                     @Html.LabelFor(model => model.Telefono, htmlAttributes: new { @class = "control-label col-md-2" })
                     <div class="col-md-10">
-                        @Html.EditorFor(model => model.Telefono, new { htmlAttributes = new { @class = "form-control" } })
+                        @Html.EditorFor(model => model.Telefono, new { htmlAttributes = new { @class = "form-control", @style = "text-transform:uppercase" } })
                         @Html.ValidationMessageFor(model => model.Telefono, "", new { @class = "text-danger" })
                     </div>
                 </div>
@@ -79,7 +86,7 @@
                 <div class="form-group required">
                     @Html.LabelFor(model => model.Direccion, htmlAttributes: new { @class = "control-label col-md-2" })
                     <div class="col-md-10">
-                        @Html.EditorFor(model => model.Direccion, new { htmlAttributes = new { @class = "form-control" } })
+                        @Html.EditorFor(model => model.Direccion, new { htmlAttributes = new { @class = "form-control", @style = "text-transform:uppercase" } })
                         @Html.ValidationMessageFor(model => model.Direccion, "", new { @class = "text-danger" })
                     </div>
                 </div>
@@ -87,24 +94,24 @@
                 <div class="form-group required">
                     @Html.LabelFor(model => model.RepresentanteLegal, htmlAttributes: new { @class = "control-label col-md-2" })
                     <div class="col-md-10">
-                        @Html.EditorFor(model => model.RepresentanteLegal, new { htmlAttributes = new { @class = "form-control" } })
+                        @Html.EditorFor(model => model.RepresentanteLegal, new { htmlAttributes = new { @class = "form-control", @style = "text-transform:uppercase" } })
                         @Html.ValidationMessageFor(model => model.RepresentanteLegal, "", new { @class = "text-danger" })
                     </div>
                 </div>
 
                 <div class="form-group required">
-                    @Html.LabelFor(model => model.Rut, htmlAttributes: new { @class = "control-label col-md-2" })
+                    @Html.LabelFor(model => model.RutaRut, htmlAttributes: new { @class = "control-label col-md-2" })
                     <div class="col-md-10">
-                        @Html.TextBoxFor(model => model.Rut, htmlAttributes: new { @class = "form-control", @type = "file", @name = "FileRut", @id = "FileRut" })
-                        @Html.ValidationMessageFor(model => model.Rut, "", new { @class = "text-danger" })
+                        @Html.TextBoxFor(model => model.RutaRut, htmlAttributes: new { @class = "form-control", @type = "file", @name = "FileRut", @id = "FileRut" })
+                        @Html.ValidationMessageFor(model => model.RutaRut, "", new { @class = "text-danger" })
                     </div>
                 </div>
 
                 <div class="form-group required">
-                    @Html.LabelFor(model => model.CamaraComercio, htmlAttributes: new { @class = "control-label col-md-2" })
+                    @Html.LabelFor(model => model.RutaCamaraComercio, htmlAttributes: new { @class = "control-label col-md-2" })
                     <div class="col-md-10">
-                        @Html.TextBoxFor(model => model.CamaraComercio, htmlAttributes: new { @class = "form-control", @type = "file", @name = "FileCamaraComercio", @id = "FileCamaraComercio" })
-                        @Html.ValidationMessageFor(model => model.CamaraComercio, "", new { @class = "text-danger" })
+                        @Html.TextBoxFor(model => model.RutaCamaraComercio, htmlAttributes: new { @class = "form-control", @type = "file", @name = "FileCamaraComercio", @id = "FileCamaraComercio" })
+                        @Html.ValidationMessageFor(model => model.RutaCamaraComercio, "", new { @class = "text-danger" })
                     </div>
                 </div>
 
@@ -130,19 +137,9 @@
                     </div>
                 </div>
 
-
-                @if (ViewBag.Message != null)
+                @if (TempData["alert"] != null)
                 {
-                    <div class="alert alert-danger" role="alert">
-                        @Html.DisplayFor(model => model.FEErrorMessage, "", new { @class = "text-danger" })
-                    </div>
-
-                }
-                else
-                {
-                    <div class="mensaje" role="alert">
-                        @Html.DisplayFor(model => model.FEErrorMessage, "", new { @class = "text-danger" })
-                    </div>
+                    @Html.Raw(TempData["alert"])
                 }
 
             </div>
@@ -159,10 +156,8 @@
     </footer>
 
 
-    <script src="~/Scripts/jquery-3.3.1.min.js"></script>
-    <script src="~/Scripts/jquery.validate.min.js"></script>
-    <script src="~/Scripts/jquery.validate.unobtrusive.min.js"></script>
 </body>
+
 </html>
 
 

@@ -1,18 +1,24 @@
-﻿function alertInscripcionSucces(title, message) {
+﻿function alertSuccess(title, message, redirectPage) {
     swal({
         title: title,
         text: message,
         type: "success"
     }, function () {
-        window.location = "/";
+        window.location = redirectPage;
     });
 }
 
-function alertError(title, mesagge) {
-    swal(title, mesagge, "error");
+function alertError(title, message) {
+    swal(title, message, "error");
 }
 
 
-function alertinfo(title, mesagge) {
-    swal(title, mesagge, "info");
+function alertInfo(title, message, redirectPage) {
+    swal({
+        title: title,
+        text: message,
+        type: "info"
+    }, function () {
+        window.location = redirectPage;
+    });
 }

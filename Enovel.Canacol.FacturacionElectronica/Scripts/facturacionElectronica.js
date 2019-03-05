@@ -20,5 +20,9 @@ function alertinfo(title, mesagge) {
 }
 
 $(function () { // will trigger when the document is ready
-    $('.datepicker').datepicker({ dateFormat: 'yyy-dd-mm hh:mm:ss' }); //Initialise any date pickers
+    $('.datepicker').datepicker(
+        {
+            changeMonth: true,
+            changeYear: true,
+        }); //Initialise any date pickers
 });

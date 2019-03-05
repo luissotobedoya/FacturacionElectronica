@@ -24,10 +24,11 @@
                     </div>
                     <div class="card-body">
                         <div class="form-group row">
-
-                            @Html.LabelFor(model => model.Periodo, new { @class = "control-label col-md-2" })
+                            
+                                @Html.LabelFor(model => model.Periodo, new { @class = "control-label col-md-2" })
+                            
                             <div class="col-sm-4">
-                                @Html.TextBox("Periodo", (string)ViewBag.PeriodoActual)
+                                @Html.Label("Periodo", (string)ViewBag.PeriodoActual, new { @readonly="readonly" })
                             </div>
                         </div>
                         <div class="form-group row">

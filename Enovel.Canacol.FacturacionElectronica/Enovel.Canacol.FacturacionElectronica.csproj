@@ -134,6 +134,7 @@
     <Compile Include="App_Start\FilterConfig.cs" />
     <Compile Include="App_Start\RouteConfig.cs" />
     <Compile Include="Controllers\ErrorController.cs" />
+    <Compile Include="Controllers\FechasFacturacionController.cs" />
     <Compile Include="Controllers\InscripcionController.cs" />
     <Compile Include="Controllers\LoginController.cs" />
     <Compile Include="Controllers\MenuController.cs" />
@@ -304,6 +305,7 @@
     <Content Include="Views\Error\Index.cshtml" />
     <Content Include="Views\Login\InicioFuncionario.cshtml" />
     <Content Include="Views\Login\Index.cshtml" />
+    <Content Include="Views\FechasFacturacion\FechasFacturacion.cshtml" />
   </ItemGroup>
   <ItemGroup>
     <Folder Include="App_Data\" />

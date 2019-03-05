@@ -20,10 +20,18 @@ namespace Enovel.Canacol.FacturacionElectronica
                         "~/Scripts/modernizr-*"));
 
             bundles.Add(new ScriptBundle("~/bundles/bootstrap").Include(
-                      "~/Scripts/bootstrap.js"));
+                      "~/Scripts/bootstrap.js",
+                      "~/Scripts/bootstrap-datepicker.js",
+                       "~/Scripts/respond.js"));
+
+                    bundles.Add(new ScriptBundle("~/bundles/datePicker").Include(
+                  "~/Scripts/moment.min.js",
+                  "~/Scripts/bootstrap-datetimepicker.min.js"));
+
 
             bundles.Add(new StyleBundle("~/Content/css").Include(
                       "~/Content/bootstrap.css",
+                      "~/Content/bootstrap-datepicker.css",
                       "~/Content/site.css"));
         }
     }

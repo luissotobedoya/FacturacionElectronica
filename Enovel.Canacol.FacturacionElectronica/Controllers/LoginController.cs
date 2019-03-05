@@ -40,8 +40,8 @@ namespace Enovel.Canacol.FacturacionElectronica.Controllers
         [HttpPost]
         public ActionResult AuthorizeProvider(LoginModelView userModel)
         {
-            bdFacturacionElectronicaEntitiesModel entities = new bdFacturacionElectronicaEntitiesModel();
-            int? userId = entities.ValidateUser(userModel.providerModel.UsuarioNit, userModel.providerModel.Password).FirstOrDefault();
+            bdFacturacionElectronicaEntities entities = new bdFacturacionElectronicaEntities();
+            int? userId = entities.Validate_User(userModel.providerModel.UsuarioNit, userModel.providerModel.Password).FirstOrDefault();
             string message = string.Empty;
             switch (userId.Value)
             {

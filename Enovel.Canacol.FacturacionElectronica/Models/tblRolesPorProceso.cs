@@ -19,6 +19,6 @@ namespace Enovel.Canacol.FacturacionElectronica.Models
         public Nullable<int> IDProceso { get; set; }
     
         public virtual tblProceso tblProceso { get; set; }
-        public virtual tblRole tblRole { get; set; }
+        public virtual tblRoles tblRoles { get; set; }
     }
 }

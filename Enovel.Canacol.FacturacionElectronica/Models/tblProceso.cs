@@ -17,13 +17,13 @@ namespace Enovel.Canacol.FacturacionElectronica.Models
         [System.Diagnostics.CodeAnalysis.SuppressMessage("Microsoft.Usage", "CA2214:DoNotCallOverridableMethodsInConstructors")]
         public tblProceso()
         {
-            this.tblRolesPorProcesoes = new HashSet<tblRolesPorProceso>();
+            this.tblRolesPorProceso = new HashSet<tblRolesPorProceso>();
         }
     
         public int ID { get; set; }
         public string Proceso { get; set; }
     
         [System.Diagnostics.CodeAnalysis.SuppressMessage("Microsoft.Usage", "CA2227:CollectionPropertiesShouldBeReadOnly")]
-        public virtual ICollection<tblRolesPorProceso> tblRolesPorProcesoes { get; set; }
+        public virtual ICollection<tblRolesPorProceso> tblRolesPorProceso { get; set; }
     }
 }

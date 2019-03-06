@@ -41,7 +41,7 @@ namespace Enovel.Canacol.FacturacionElectronica.Controllers
         {
             try
             {
-                if (userId != null && activactionCode != null)
+                if (!string.IsNullOrEmpty(userId) && !string.IsNullOrEmpty(activactionCode))
                 {
                     bdFacturacionElectronicaEntities entities = new bdFacturacionElectronicaEntities();
                     int userIdFind = int.Parse(userId);
@@ -59,7 +59,6 @@ namespace Enovel.Canacol.FacturacionElectronica.Controllers
                             GenerateAlert("info", "Usuario activo", "El usuario ya se encuentra activo en el sistema de Facturación electrónica", "/Login");
                         }
                     }
-
                     return View();
                 }
                 else
@@ -72,37 +71,6 @@ namespace Enovel.Canacol.FacturacionElectronica.Controllers
                 string errorMessage = exception.Message;
                 return RedirectToAction("http404", "Error");
             }
-        }
-
-        private void ActivateUser(bdFacturacionElectronicaEntities entities, int userIdFind, UsuarioActivacion activationRegister)
-        {
-            activationRegister = entities.UsuarioActivacion.Remove(activationRegister);
-            if (activationRegister != null)
-            {
-                var userModel = entities.tblUsuariosProveedor.SingleOrDefault(u => u.ID == userIdFind);
-                if (userModel != null)
-                {
-                    userModel.UsuarioNit = userModel.UsuarioNit.ToUpper();
-                    userModel.Password = userModel.Password;
-                    userModel.ConfirmarPassword = userModel.Password;
-                    userModel.RazonSocial = userModel.RazonSocial.ToUpper();
-                    userModel.IDCalidadTributaria = userModel.IDCalidadTributaria;
-                    userModel.Email = userModel.Email.ToUpper();
-                    userModel.Telefono = userModel.Telefono.ToUpper();
-                    userModel.Direccion = userModel.Direccion.ToUpper();
-                    userModel.RepresentanteLegal = userModel.RepresentanteLegal.ToUpper();
-                    userModel.RutaRut = userModel.RutaRut;
-                    userModel.RutaCamaraComercio = userModel.RutaCamaraComercio;
-                    userModel.Estado = "ACTIVO";
-                }
-                entities.SaveChanges();
-                GenerateAlert("success", "Activación de cuenta", "Su cuenta ha sido activada correctamente, ya puede iniciar sesión", "/");
-            }
-            else
-            {
-
-            }
-
         }
         #endregion
 
@@ -154,6 +122,33 @@ namespace Enovel.Canacol.FacturacionElectronica.Controllers
         {
             FormsAuthentication.SignOut();
             return RedirectToAction("Index", "Login");
+        }
+
+
+        private void ActivateUser(bdFacturacionElectronicaEntities entities, int userIdFind, UsuarioActivacion activationRegister)
+        {
+            activationRegister = entities.UsuarioActivacion.Remove(activationRegister);
+            if (activationRegister != null)
+            {
+                var userModel = entities.tblUsuariosProveedor.SingleOrDefault(u => u.ID == userIdFind);
+                if (userModel != null)
+                {
+                    userModel.UsuarioNit = userModel.UsuarioNit.ToUpper();
+                    userModel.Password = userModel.Password;
+                    userModel.ConfirmarPassword = userModel.Password;
+                    userModel.RazonSocial = userModel.RazonSocial.ToUpper();
+                    userModel.IDCalidadTributaria = userModel.IDCalidadTributaria;
+                    userModel.Email = userModel.Email.ToUpper();
+                    userModel.Telefono = userModel.Telefono.ToUpper();
+                    userModel.Direccion = userModel.Direccion.ToUpper();
+                    userModel.RepresentanteLegal = userModel.RepresentanteLegal.ToUpper();
+                    userModel.RutaRut = userModel.RutaRut;
+                    userModel.RutaCamaraComercio = userModel.RutaCamaraComercio;
+                    userModel.Estado = "ACTIVO";
+                }
+                entities.SaveChanges();
+                GenerateAlert("success", "Activación de cuenta", "Su cuenta ha sido activada correctamente, ya puede iniciar sesión", "/");
+            }
         }
 
         private void GenerateAlert(string type, string title, string message, string redirectPage)

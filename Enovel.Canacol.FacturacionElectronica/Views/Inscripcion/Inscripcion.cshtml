@@ -17,12 +17,12 @@
     <link href="~/Content/menu.css" rel="stylesheet" />
     <link href="~/Content/facturacion-electronica.css" rel="stylesheet" />
     <link href="~/Content/sweetalert.min.css" rel="stylesheet" />
-
     <script src="~/Scripts/jquery-3.3.1.min.js"></script>
     <script src="~/Scripts/jquery.validate.min.js"></script>
     <script src="~/Scripts/jquery.validate.unobtrusive.min.js"></script>
     <script src="~/Scripts/sweetalert.min.js"></script>
     <script src="~/Scripts/facturacionElectronica.js"></script>
+    <script src="~/Scripts/Inscripcion.js"></script>
 </head>
 <body>
     <nav class="navbar navbar-expand-lg navbar-dark NavBarCanacol">
@@ -35,117 +35,111 @@
         </div>
     </nav>
 
-    <div class="container main-container">
-        <h2>Inscripcion</h2>
-        @using (Html.BeginForm(Html.BeginForm("Create", "Inscripcion", FormMethod.Post, new { encType = "multipart/form-data" })))
-        {
-            @Html.AntiForgeryToken()
+    @using (Html.BeginForm(Html.BeginForm("Create", "Inscripcion", FormMethod.Post, new { encType = "multipart/form-data" })))
+    {
+        @Html.AntiForgeryToken()
+        <div class="container main-container">
+
+            <h2>Inscripcion</h2>
+
             <p>Inscripción Portal Ventanilla Virtual</p>
-            <div class="form-horizontal">
 
-                <div class="form-group required">
-                    <label class="control-label col-md-2">Nit</label>
-                    <div class="col-md-10">
-                        @Html.EditorFor(model => model.UsuarioNit, new { htmlAttributes = new { @class = "form-control", @style = "text-transform:uppercase" } })
-                        @Html.ValidationMessageFor(model => model.UsuarioNit, "", new { @class = "text-danger" })
-                    </div>
+            <div class="form-row">
+                <div class="form-group required col-md-6">
+                    <label class="control-label" for="Nit">Nit</label>
+                    @Html.EditorFor(model => model.UsuarioNit, new { htmlAttributes = new { @class = "form-control", @style = "text-transform:uppercase" } })
+                    @Html.ValidationMessageFor(model => model.UsuarioNit, "", new { @class = "text-danger" })
                 </div>
+                <div class="form-group col-md-6 botonera">
+                    <button id="btnvalidarNit" class="btn btn-primary" type="button" onclick="ValidateNit();">Validar Nit</button>
+                </div>
+            </div>
 
-                <div class="form-group required">
-                    @Html.LabelFor(model => model.RazonSocial, htmlAttributes: new { @class = "control-label col-md-2" })
-                    <div class="col-md-10">
+            <div class="data-general">
+
+                <div class="form-row">
+                    <div class="form-group required col-md-6">
+                        @Html.LabelFor(model => model.RazonSocial, htmlAttributes: new { @class = "control-label" })
                         @Html.EditorFor(model => model.RazonSocial, new { htmlAttributes = new { @class = "form-control", @style = "text-transform:uppercase" } })
                         @Html.ValidationMessageFor(model => model.RazonSocial, "", new { @class = "text-danger" })
                     </div>
-                </div>
-
-                <div class="form-group required">
-                    @Html.LabelFor(model => model.IDCalidadTributaria, htmlAttributes: new { @class = "control-label col-md-2" })
-                    <div class="col-md-10">
+                    <div class="form-group required col-md-6">
+                        @Html.LabelFor(model => model.IDCalidadTributaria, htmlAttributes: new { @class = "control-label" })
                         @Html.DropDownList("IDCalidadTributaria", ViewBag.taxqualitiesListName as SelectList, htmlAttributes: new { @class = "form-control", @style = "text-transform:uppercase" })
                         @Html.ValidationMessageFor(model => model.IDCalidadTributaria, "", new { @class = "text-danger" })
                     </div>
                 </div>
 
-                <div class="form-group required">
-                    @Html.LabelFor(model => model.Email, htmlAttributes: new { @class = "control-label col-md-2" })
-                    <div class="col-md-10">
+                <div class="form-row">
+                    <div class="form-group required col-md-6">
+                        @Html.LabelFor(model => model.Email, htmlAttributes: new { @class = "control-label" })
                         @Html.EditorFor(model => model.Email, new { htmlAttributes = new { @class = "form-control", @style = "text-transform:uppercase" } })
                         @Html.ValidationMessageFor(model => model.Email, "", new { @class = "text-danger" })
                     </div>
-                </div>
-
-                <div class="form-group required">
-                    @Html.LabelFor(model => model.Telefono, htmlAttributes: new { @class = "control-label col-md-2" })
-                    <div class="col-md-10">
+                    <div class="form-group required col-md-6">
+                        @Html.LabelFor(model => model.Telefono, htmlAttributes: new { @class = "control-label" })
                         @Html.EditorFor(model => model.Telefono, new { htmlAttributes = new { @class = "form-control", @style = "text-transform:uppercase" } })
                         @Html.ValidationMessageFor(model => model.Telefono, "", new { @class = "text-danger" })
                     </div>
                 </div>
 
-                <div class="form-group required">
-                    @Html.LabelFor(model => model.Direccion, htmlAttributes: new { @class = "control-label col-md-2" })
-                    <div class="col-md-10">
+                <div class="form-row">
+                    <div class="form-group required col-md-6">
+                        @Html.LabelFor(model => model.Direccion, htmlAttributes: new { @class = "control-label" })
                         @Html.EditorFor(model => model.Direccion, new { htmlAttributes = new { @class = "form-control", @style = "text-transform:uppercase" } })
                         @Html.ValidationMessageFor(model => model.Direccion, "", new { @class = "text-danger" })
                     </div>
-                </div>
-
-                <div class="form-group required">
-                    @Html.LabelFor(model => model.RepresentanteLegal, htmlAttributes: new { @class = "control-label col-md-2" })
-                    <div class="col-md-10">
+                    <div class="form-group required col-md-6">
+                        @Html.LabelFor(model => model.RepresentanteLegal, htmlAttributes: new { @class = "control-label" })
                         @Html.EditorFor(model => model.RepresentanteLegal, new { htmlAttributes = new { @class = "form-control", @style = "text-transform:uppercase" } })
                         @Html.ValidationMessageFor(model => model.RepresentanteLegal, "", new { @class = "text-danger" })
                     </div>
                 </div>
 
-                <div class="form-group required">
-                    @Html.LabelFor(model => model.RutaRut, htmlAttributes: new { @class = "control-label col-md-2" })
-                    <div class="col-md-10">
-                        @Html.TextBoxFor(model => model.RutaRut, htmlAttributes: new { @class = "form-control", @type = "file", @name = "FileRut", @id = "FileRut" })
+                <div class="form-row">
+
+                    <div class="form-group required col-md-6">
+                        @Html.LabelFor(model => model.RutaRut, htmlAttributes: new { @class = "control-label" })
+                        @Html.TextBoxFor(model => model.RutaRut, htmlAttributes: new { @class = "form-control", @type = "file", @name = "FileRut", @id = "FileRut", @accept = "application/pdf" })
                         @Html.ValidationMessageFor(model => model.RutaRut, "", new { @class = "text-danger" })
                     </div>
-                </div>
-
-                <div class="form-group required">
-                    @Html.LabelFor(model => model.RutaCamaraComercio, htmlAttributes: new { @class = "control-label col-md-2" })
-                    <div class="col-md-10">
-                        @Html.TextBoxFor(model => model.RutaCamaraComercio, htmlAttributes: new { @class = "form-control", @type = "file", @name = "FileCamaraComercio", @id = "FileCamaraComercio" })
+                    <div class="form-group required col-md-6">
+                        @Html.LabelFor(model => model.RutaCamaraComercio, htmlAttributes: new { @class = "control-label" })
+                        @Html.TextBoxFor(model => model.RutaCamaraComercio, htmlAttributes: new { @class = "form-control", @type = "file", @name = "FileCamaraComercio", @id = "FileCamaraComercio", @accept = "application/pdf" })
                         @Html.ValidationMessageFor(model => model.RutaCamaraComercio, "", new { @class = "text-danger" })
                     </div>
                 </div>
 
-                <div class="form-group required">
-                    @Html.LabelFor(model => model.Password, htmlAttributes: new { @class = "control-label col-md-2" })
-                    <div class="col-md-10">
+                <div class="form-row">
+                    <div class="form-group required col-md-5">
+                        @Html.LabelFor(model => model.Password, htmlAttributes: new { @class = "control-label" })
                         @Html.EditorFor(model => model.Password, new { htmlAttributes = new { @class = "form-control" } })
                         @Html.ValidationMessageFor(model => model.Password, "", new { @class = "text-danger" })
                     </div>
-                </div>
-
-                <div class="form-group required">
-                    @Html.LabelFor(model => model.ConfirmarPassword, htmlAttributes: new { @class = "control-label col-md-2" })
-                    <div class="col-md-10">
+                    <div class="form-group view-password col-md-1">
+                        <img id="showPassword" class="show-password" src="~/Content/Images/viewPassword.png" />
+                    </div>
+                    <div class="form-group required col-md-5">
+                        @Html.LabelFor(model => model.ConfirmarPassword, htmlAttributes: new { @class = "control-label" })
                         @Html.EditorFor(model => model.ConfirmarPassword, new { htmlAttributes = new { @class = "form-control" } })
                         @Html.ValidationMessageFor(model => model.ConfirmarPassword, "", new { @class = "text-danger" })
                     </div>
-                </div>
-
-                <div class="form-group">
-                    <div class="col-md-offset-2 col-md-10">
-                        <input type="submit" value="Inscribir" class="btn btn-primary" />
+                    <div class="form-group view-password col-md-1">
+                        <img id="showConfirmPassword" class="show-password" src="~/Content/Images/viewPassword.png" />
                     </div>
                 </div>
 
-                @if (TempData["alert"] != null)
-                {
-                    @Html.Raw(TempData["alert"])
-                }
+                <input type="submit" value="Inscribir" class="btn btn-primary" />
 
             </div>
 
-        }
-    </div>
+            @if (TempData["alert"] != null)
+            {
+                @Html.Raw(TempData["alert"])
+            }
+        </div>
+    }
+
 
     <footer class="footer text-center">
         <div class="container">
@@ -155,6 +149,28 @@
         </div>
     </footer>
 
+    <script type="text/javascript">
+        function ValidateNit() {
+            let userNit = $("#UsuarioNit").val();
+            if (!userNit) {
+                alertError("Nit vacío", "Por favor escriba un NIT válido");
+            } else {
+                $.ajax({
+                    type: 'POST',
+                    dataType: 'json',
+                    url: '@Url.Action("ValidateNitProvider", "Inscripcion")',
+                    data: { providerNit: userNit },
+                    success: function (data) {
+                        showDataGeneral();
+                    },
+                    error: function (xhr, status, error) {
+                        alertError("Nit inválido", "Este NIT no existe en nuestra base de datos de proveedores, comuníquese al número de teléfono xxxx-xxx-xxxx");
+                        hideDataGeneral();
+                    }
+                });
+            }
+         }
+    </script>
 
 </body>
 

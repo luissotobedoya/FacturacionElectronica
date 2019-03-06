@@ -37,7 +37,7 @@ namespace Enovel.Canacol.FacturacionElectronica.Models
         [DataType(DataType.Password)]
         public string Password { get; set; }
 
-        [DisplayName("Clave")]
+        [DisplayName("Confirmar clave")]
         [StringLength(10, MinimumLength = 5, ErrorMessage = "La clave debe contener por lo mínimo 5 y máximo 10 caracteres (combinación de letras y números)")]
         [Required(ErrorMessage = "La clave es requerida")]
         [DataType(DataType.Password)]

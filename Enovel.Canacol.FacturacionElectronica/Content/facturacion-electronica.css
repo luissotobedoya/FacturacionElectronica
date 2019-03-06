@@ -2,3 +2,17 @@
     content: "*";
     color: red;
 }
+
+.botonera{
+    margin-top:30px;
+}
+
+.view-password {
+    text-align: initial;
+    padding-bottom: 45px;
+}
+
+.show-password {
+    cursor: pointer;
+    margin-bottom: -80px;
+}

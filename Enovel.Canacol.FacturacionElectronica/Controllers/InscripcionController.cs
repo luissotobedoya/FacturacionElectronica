@@ -36,6 +36,14 @@ namespace Enovel.Canacol.FacturacionElectronica.Controllers
         }
 
         [HttpPost]
+        public JsonResult ValidateNitProvider(string providerNit)
+        {
+            bdFacturacionElectronicaEntities entities = new bdFacturacionElectronicaEntities();
+            var provider = entities.tblProveedor.Where(p => p.Nit.ToLower() == providerNit.ToLower()).FirstOrDefault();
+            return Json(provider, JsonRequestBehavior.AllowGet);
+        }
+
+        [HttpPost]
         public ActionResult Create(tblUsuariosProveedor userModel)
         {
             BindTaxQuality(userModel);
@@ -89,7 +97,7 @@ namespace Enovel.Canacol.FacturacionElectronica.Controllers
 
         private void SendActivationLinkEmail(tblUsuariosProveedor userModel, UsuarioActivacion userActivation)
         {
-            string path = string.Format("{0}://{1}",Request.Url.Scheme, Request.Url.Authority);
+            string path = string.Format("{0}://{1}", Request.Url.Scheme, Request.Url.Authority);
 
             string activationLink = string.Format("{0}/Login/LinkActivacion/?userId={1}&&activactioncode={2}", path, userActivation.UsuarioID, userActivation.ActivacionCodigo);
 

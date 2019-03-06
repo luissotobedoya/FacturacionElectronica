@@ -22,3 +22,4 @@ function alertInfo(title, message, redirectPage) {
         window.location = redirectPage;
     });
 }
+

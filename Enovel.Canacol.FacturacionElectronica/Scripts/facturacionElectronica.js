@@ -20,9 +20,17 @@ function alertinfo(title, mesagge) {
 }
 
 $(function () { // will trigger when the document is ready
-    $('.datepicker').datepicker(
-        {
-            changeMonth: true,
-            changeYear: true,
-        }); //Initialise any date pickers
+    $('.datepicker').datepicker({
+        dateFormat: "yy-mm-dd",
+        timeFormat: "hh:mm:ss",
+        changeMonth: true,
+        language: 'es',
+        changeYear: true,
+    }); //Initialise any date pickers
+});
+
+$(function () {
+    $(".form_datetime").datetimepicker({
+        format: 'DD-MM-YYYY HH:mm:ss'
+    });
 });

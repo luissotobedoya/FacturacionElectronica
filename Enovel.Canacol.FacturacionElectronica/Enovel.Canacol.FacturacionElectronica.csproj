@@ -240,6 +240,7 @@
     <Content Include="Content\FontTitle.css" />
     <Content Include="Content\Images\logo-master.png" />
     <Content Include="Content\Images\logo.png" />
+    <Content Include="Content\jquery.datetimepicker.css" />
     <Content Include="Content\menu.css" />
     <Content Include="Content\sweetalert.css" />
     <Content Include="Content\sweetalert.min.css" />
@@ -404,6 +405,7 @@
     <Content Include="Scripts\jquery-ui-1.10.3.min.js" />
     <Content Include="Scripts\jquery-ui-1.12.1.js" />
     <Content Include="Scripts\jquery-ui-1.12.1.min.js" />
+    <Content Include="Scripts\jquery.datetimepicker.js" />
     <Content Include="Scripts\jquery.validate.js" />
     <Content Include="Scripts\jquery.validate.min.js" />
     <Content Include="Scripts\jquery.validate.unobtrusive.js" />

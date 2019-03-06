@@ -1,13 +1,9 @@
 ﻿@using Enovel.Canacol.FacturacionElectronica.Models
 @model tblFechasFacturacion
-@Styles.Render("~/Content/datepicker")
-@Scripts.Render("~/bundles/datePicker")
-@Scripts.Render("~/bundles/jqueryval")
 
 
 @{
     ViewBag.Title = "GestionarFechas";  
-
 }
 
 
@@ -23,12 +19,13 @@
                         Asigne las fechas de radicación
                     </div>
                     <div class="card-body">
+                        
                         <div class="form-group row">
-                            
-                                @Html.LabelFor(model => model.Periodo, new { @class = "control-label col-md-2" })
-                            
+
+                            @Html.LabelFor(model => model.Periodo, new { @class = "control-label col-md-2" })
+
                             <div class="col-sm-4">
-                                @Html.Label("Periodo", (string)ViewBag.PeriodoActual, new { @readonly="readonly" })
+                                @Html.Label("Periodo", (string)ViewBag.PeriodoActual, new { @readonly = "readonly" })
                             </div>
                         </div>
                         <div class="form-group row">
@@ -38,7 +35,7 @@
                                 </strong>
                             </div>
                             <div class="col-sm-4">
-                                @Html.TextBoxFor(model => model.Enero, new { @class = "form-control datepicker", placeholder = "Ingrese la fecha" })
+                                @Html.TextBoxFor(model => model.Enero, new { @class = "form-control form_datetime", placeholder = "Ingrese la fecha" })
                                 <span class="glyphicon glyphicon-calendar"></span>
                                 @Html.ValidationMessageFor(model => model.Enero)
                             </div>

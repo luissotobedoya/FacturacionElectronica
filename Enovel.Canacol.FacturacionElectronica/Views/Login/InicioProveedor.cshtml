@@ -18,7 +18,7 @@
             @Html.ValidationMessageFor(model => model.providerModel.Password, "", new { @class = "text-danger" })
         </div>
         <div class="form-group">
-            <input type="button" id="btnInscribirse" name="btnInscribirse" class="btn btn-secondary" value="inscribirse" onclick="location.href='@Url.Action("Inscripcion", "Inscripcion")'" />
+            <input type="button" id="btnInscribirse" name="btnInscribirse" class="btn btn-secondary" value="Validar si soy proveedor" onclick="location.href='@Url.Action("Inscripcion", "Inscripcion")'" />
             <input id="btnLogin" name="btnLogin" type="submit" class="btn btn-black" value="Ingresar">
         </div>
         @if (ViewBag.Message != null)

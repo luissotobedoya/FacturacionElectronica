@@ -3,12 +3,10 @@ using System.ComponentModel.DataAnnotations;
 
 namespace Enovel.Canacol.FacturacionElectronica.ViewModels
 {
-    public class InscripcionViewModel
+    public class ActualizarDatosViewModel
     {
         public int ID { get; set; }
 
-        [DisplayName("NIT")]
-        [Required(ErrorMessage = "El usuario es requerido")]
         public string UserNit { get; set; }
 
         [DisplayName("Razón social")]
@@ -24,6 +22,8 @@ namespace Enovel.Canacol.FacturacionElectronica.ViewModels
         [RegularExpression("^[a-zA-Z0-9-]+(\\.[a-zA-Z0-9-]+)*@[a-zA-Z0-9-]+(\\.[a-zA-Z0-9-]+)*(\\.[a-zA-Z]{2,6})$", ErrorMessage = "Debe escribir un correo electrónico válido")]
         public string Email { get; set; }
 
+        public string Emaildb { get; set; }
+
         [DisplayName("Teléfono")]
         [Range(0, int.MaxValue, ErrorMessage = "Sólo se permiten números positivos")]
         [Required(ErrorMessage = "El teléfono es requerido")]
@@ -37,26 +37,13 @@ namespace Enovel.Canacol.FacturacionElectronica.ViewModels
         [Required(ErrorMessage = "El representante legal es requerido")]
         public string RepresentanteLegal { get; set; }
 
-        [Required(ErrorMessage = "Este campo es requerido")]
-        [Display(Name = "RUT")]
+        [Display(Name = "Reemplazar RUT")]
         [RegularExpression(@"^.*\.(pdf|PDF)$", ErrorMessage = "Sólo se permiten archivos con extensión PDF")]
         public string Rut { get; set; }
 
-        [Required(ErrorMessage = "Este campo es requerido")]
-        [Display(Name = "Cámara de comercio")]
+        [Display(Name = "Reemplazar Cámara de comercio")]
         [RegularExpression(@"^.*\.(pdf|PDF)$", ErrorMessage = "Sólo se permiten archivos con extensión PDF")]
         public string CamaraComercio { get; set; }
 
-        [DisplayName("Clave")]
-        [StringLength(10, MinimumLength = 5, ErrorMessage = "La clave debe contener por lo mínimo 5 y máximo 10 caracteres(combinación de letras y números)")]
-        [Required(ErrorMessage = "La clave es requerida")]
-        [DataType(DataType.Password)]
-        public string Password { get; set; }
-
-        [DisplayName("Confirmar clave")]
-        [StringLength(10, MinimumLength = 5, ErrorMessage = "La clave debe contener por lo mínimo 5 y máximo 10 caracteres (combinación de letras y números)")]
-        [Required(ErrorMessage = "La clave es requerida")]
-        [DataType(DataType.Password)]
-        public string ConfirmarPassword { get; set; }
     }
 }

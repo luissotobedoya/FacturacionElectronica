@@ -224,6 +224,7 @@
       <DependentUpon>FEModel.tt</DependentUpon>
     </Compile>
     <Compile Include="Properties\AssemblyInfo.cs" />
+    <Compile Include="ViewModels\ActualizarDatosViewModel.cs" />
     <Compile Include="ViewModels\CambioClaveViewModel.cs" />
     <Compile Include="ViewModels\InscripcionViewModel.cs" />
   </ItemGroup>
@@ -238,6 +239,7 @@
     <Content Include="Content\FontTitle.css" />
     <Content Include="Content\Images\logo-master.png" />
     <Content Include="Content\Images\logo.png" />
+    <Content Include="Content\Images\pdf.png" />
     <Content Include="Content\Images\viewPassword.png" />
     <Content Include="Content\menu.css" />
     <Content Include="Content\sweetalert.css" />
@@ -325,7 +327,8 @@
     <Content Include="Views\CambioClave\Index.cshtml" />
   </ItemGroup>
   <ItemGroup>
-    <Folder Include="App_Data\uploads\" />
+    <Folder Include="App_Data\" />
+    <Folder Include="DocumentsUpload\" />
   </ItemGroup>
   <ItemGroup>
     <Content Include="fonts\glyphicons-halflings-regular.woff2" />

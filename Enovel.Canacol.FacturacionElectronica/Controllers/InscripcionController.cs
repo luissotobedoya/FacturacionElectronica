@@ -135,8 +135,8 @@ namespace Enovel.Canacol.FacturacionElectronica.Controllers
                 HttpFileCollectionBase files = Request.Files;
                 HttpPostedFileBase fileRut = Request.Files["Rut"];
                 HttpPostedFileBase fileCamaraComercio = Request.Files["CamaraComercio"];
-                string locationRut = GetLocationFile(fileRut);
-                string locationCamaraComercio = GetLocationFile(fileCamaraComercio);
+                string locationRut = GetLocationFile("RUT", inscripcionViewModel, fileRut);
+                string locationCamaraComercio = GetLocationFile("CAMARACOMERCIO", inscripcionViewModel, fileCamaraComercio);
                 tblUsuariosProveedor providerUser = SetModelProviderUser(inscripcionViewModel, locationRut, locationCamaraComercio);
                 entities.tblUsuariosProveedor.Add(providerUser);
                 entities.SaveChanges();
@@ -178,10 +178,11 @@ namespace Enovel.Canacol.FacturacionElectronica.Controllers
             }
         }
 
-        private string GetLocationFile(HttpPostedFileBase file)
+        private string GetLocationFile(string filetype, InscripcionViewModel inscripcionViewModel, HttpPostedFileBase file)
         {
-            var fileName = Path.GetFileName(file.FileName);
-            string location = Path.Combine(Server.MapPath("~/App_Data/uploads"), fileName);
+            string extension = Path.GetExtension(file.FileName);
+            var fileName = string.Format("{0}_{1}.{2}", filetype, inscripcionViewModel.UserNit, extension);
+            string location = Path.Combine(Server.MapPath("~/DocumentsUpload"), fileName);
             file.SaveAs(location);
             return location;
         }

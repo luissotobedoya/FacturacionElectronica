@@ -1,4 +1,6 @@
-﻿@model Enovel.Canacol.FacturacionElectronica.Models.tblUsuariosProveedor
+﻿@using Enovel.Canacol.FacturacionElectronica.ViewModels
+
+@model InscripcionViewModel
 
 @{
     Layout = null;
@@ -47,8 +49,8 @@
             <div class="form-row">
                 <div class="form-group required col-md-6">
                     <label class="control-label" for="Nit">Nit</label>
-                    @Html.EditorFor(model => model.UsuarioNit, new { htmlAttributes = new { @class = "form-control", @style = "text-transform:uppercase" } })
-                    @Html.ValidationMessageFor(model => model.UsuarioNit, "", new { @class = "text-danger" })
+                    @Html.EditorFor(model => model.UserNit, new { htmlAttributes = new { @class = "form-control", @style = "text-transform:uppercase" } })
+                    @Html.ValidationMessageFor(model => model.UserNit, "", new { @class = "text-danger" })
                 </div>
                 <div class="form-group col-md-6 botonera">
                     <button id="btnvalidarNit" class="btn btn-primary" type="button" onclick="ValidateNit();">Validar Nit</button>
@@ -99,14 +101,14 @@
                 <div class="form-row">
 
                     <div class="form-group required col-md-6">
-                        @Html.LabelFor(model => model.RutaRut, htmlAttributes: new { @class = "control-label" })
-                        @Html.TextBoxFor(model => model.RutaRut, htmlAttributes: new { @class = "form-control", @type = "file", @name = "FileRut", @id = "FileRut", @accept = "application/pdf" })
-                        @Html.ValidationMessageFor(model => model.RutaRut, "", new { @class = "text-danger" })
+                        @Html.LabelFor(model => model.Rut, htmlAttributes: new { @class = "control-label" })
+                        @Html.TextBoxFor(model => model.Rut, htmlAttributes: new { @class = "form-control", @type = "file", @name = "FileRut", @id = "FileRut", @accept = "application/pdf" })
+                        @Html.ValidationMessageFor(model => model.Rut, "", new { @class = "text-danger" })
                     </div>
                     <div class="form-group required col-md-6">
-                        @Html.LabelFor(model => model.RutaCamaraComercio, htmlAttributes: new { @class = "control-label" })
-                        @Html.TextBoxFor(model => model.RutaCamaraComercio, htmlAttributes: new { @class = "form-control", @type = "file", @name = "FileCamaraComercio", @id = "FileCamaraComercio", @accept = "application/pdf" })
-                        @Html.ValidationMessageFor(model => model.RutaCamaraComercio, "", new { @class = "text-danger" })
+                        @Html.LabelFor(model => model.CamaraComercio, htmlAttributes: new { @class = "control-label" })
+                        @Html.TextBoxFor(model => model.CamaraComercio, htmlAttributes: new { @class = "form-control", @type = "file", @name = "FileCamaraComercio", @id = "FileCamaraComercio", @accept = "application/pdf" })
+                        @Html.ValidationMessageFor(model => model.CamaraComercio, "", new { @class = "text-danger" })
                     </div>
                 </div>
 
@@ -151,7 +153,7 @@
 
     <script type="text/javascript">
         function ValidateNit() {
-            let userNit = $("#UsuarioNit").val();
+            let userNit = $("#UserNit").val();
             if (!userNit) {
                 alertError("Nit vacío", "Por favor escriba un NIT válido");
             } else {

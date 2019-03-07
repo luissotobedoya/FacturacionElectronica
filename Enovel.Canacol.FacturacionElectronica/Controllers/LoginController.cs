@@ -135,7 +135,6 @@ namespace Enovel.Canacol.FacturacionElectronica.Controllers
                 {
                     userModel.UsuarioNit = userModel.UsuarioNit.ToUpper();
                     userModel.Password = userModel.Password;
-                    userModel.ConfirmarPassword = userModel.Password;
                     userModel.RazonSocial = userModel.RazonSocial.ToUpper();
                     userModel.IDCalidadTributaria = userModel.IDCalidadTributaria;
                     userModel.Email = userModel.Email.ToUpper();

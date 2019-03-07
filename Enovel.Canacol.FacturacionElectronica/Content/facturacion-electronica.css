@@ -16,3 +16,10 @@
     cursor: pointer;
     margin-bottom: -80px;
 }
+
+.key-change-show-password {
+    cursor: pointer;
+    float: right;
+    margin-top: -30px;
+}
+

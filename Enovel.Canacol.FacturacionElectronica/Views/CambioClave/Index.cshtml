@@ -1,0 +1,52 @@
+﻿
+@using Enovel.Canacol.FacturacionElectronica.ViewModels
+
+@model CambioClaveViewModel
+
+@{
+    ViewBag.Title = "Cambio de clave";
+}
+
+<h2>@ViewBag.Title</h2>
+
+@using (Html.BeginForm(Html.BeginForm("CambiarClave", "CambioClave", FormMethod.Post)))
+{
+    @Html.AntiForgeryToken()
+    <div class="container main-container">
+        <div class="row">
+            <div class="col-sm-8">
+                <label>Clave actual</label>
+                <div class="form-group">
+                    @Html.EditorFor(model => model.PasswordActual, new { htmlAttributes = new { @class = "form-control", @placeholder = "Clave actual", @type = "password" } })
+                    @Html.ValidationMessageFor(model => model.PasswordActual, "", new { @class = "text-danger" })
+                    <img id="showCurrentPassword" class="key-change-show-password" src="~/Content/Images/viewPassword.png" />
+                </div>
+                <label>Nueva clave</label>
+                <div class="form-group">
+                    @Html.EditorFor(model => model.NuevaPassword, new { htmlAttributes = new { @class = "form-control", @placeholder = "Nueva clave", @type = "password" } })
+                    @Html.ValidationMessageFor(model => model.NuevaPassword, "", new { @class = "text-danger" })
+                    <img id="showNewPassword" class="key-change-show-password" src="~/Content/Images/viewPassword.png" />
+                </div>
+                <label>Confirmar nueva clave</label>
+                <div class="form-group">
+                    @Html.EditorFor(model => model.ConfirmarNuevaPassword, new { htmlAttributes = new { @class = "form-control", @placeholder = "Confirmar nueva clave", @type = "password" } })
+                    @Html.ValidationMessageFor(model => model.ConfirmarNuevaPassword, "", new { @class = "text-danger" })
+                    <img id="showConfirmPassword" class="key-change-show-password" src="~/Content/Images/viewPassword.png" />
+                </div>
+                <div class="form-group">
+
+                    <button type="button" class="btn btn-default" onclick="window.location='@Url.Action("MenuProveedor", "Menu")'">Cancelar</button>
+                    <button type="submit" class="btn btn-primary">Cambiar clave</button>
+                </div>
+            </div>
+        </div>
+        @if (TempData["alert"] != null)
+        {
+            @Html.Raw(TempData["alert"])
+        }
+    </div>
+
+
+}
+
+<script type="text/javascript" src="~/Scripts/cambioClave.js"></script>

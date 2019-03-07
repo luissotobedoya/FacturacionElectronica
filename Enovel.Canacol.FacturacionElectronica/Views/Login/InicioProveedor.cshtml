@@ -8,12 +8,12 @@
 {
     <div class="provider-login">
         <div class="form-group">
-            @Html.LabelFor(model => model.providerModel.UsuarioNit)
+            <label for="usuario">Usuario</label>
             @Html.EditorFor(model => model.providerModel.UsuarioNit, new { htmlAttributes = new { @type = "text", @class = "form-control", @placeholder = "Ingrese su usuario" } })
             @Html.ValidationMessageFor(model => model.providerModel.UsuarioNit, "", new { @class = "text-danger" })
         </div>
         <div class="form-group">
-            @Html.LabelFor(model => model.providerModel.Password)
+            <label for="clave">Password</label>
             @Html.EditorFor(model => model.providerModel.Password, new { htmlAttributes = new { @type = "password", @class = "form-control", @placeholder = "Ingrese su password" } })
             @Html.ValidationMessageFor(model => model.providerModel.Password, "", new { @class = "text-danger" })
         </div>

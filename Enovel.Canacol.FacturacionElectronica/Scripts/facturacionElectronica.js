@@ -9,7 +9,11 @@
 }
 
 function alertError(title, message) {
-    swal(title, message, "error");
+    swal({
+        title: title,
+        text: message,
+        type: "error"
+    });
 }
 
 

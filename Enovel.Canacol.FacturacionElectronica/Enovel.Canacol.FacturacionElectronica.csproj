@@ -224,6 +224,8 @@
       <DependentUpon>FEModel.tt</DependentUpon>
     </Compile>
     <Compile Include="Properties\AssemblyInfo.cs" />
+    <Compile Include="ViewModels\CambioClaveViewModel.cs" />
+    <Compile Include="ViewModels\InscripcionViewModel.cs" />
   </ItemGroup>
   <ItemGroup>
     <Content Include="Content\all.css" />
@@ -279,6 +281,7 @@
       <DependentUpon>FEModel.edmx</DependentUpon>
     </Content>
     <None Include="Scripts\jquery-3.3.1.intellisense.js" />
+    <Content Include="Scripts\cambioClave.js" />
     <Content Include="Scripts\facturacionElectronica.js" />
     <Content Include="Scripts\Inscripcion.js" />
     <Content Include="Scripts\jquery-3.3.1.js" />
@@ -316,10 +319,10 @@
     <Content Include="Views\Login\InicioFuncionario.cshtml" />
     <Content Include="Views\Login\Index.cshtml" />
     <Content Include="Views\Login\LinkActivacion.cshtml" />
-    <Content Include="Views\CambioClave\CambioClave.cshtml" />
     <Content Include="Views\Soporte\MisSoportes.cshtml" />
     <Content Include="Views\Soporte\RadicarSoporte.cshtml" />
     <Content Include="Views\ActualizarDatos\Index.cshtml" />
+    <Content Include="Views\CambioClave\Index.cshtml" />
   </ItemGroup>
   <ItemGroup>
     <Folder Include="App_Data\uploads\" />

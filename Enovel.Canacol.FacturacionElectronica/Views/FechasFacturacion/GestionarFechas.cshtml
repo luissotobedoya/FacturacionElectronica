@@ -35,7 +35,7 @@
                                 </strong>
                             </div>
                             <div class="col-sm-4">
-                                @Html.TextBoxFor(model => model.Enero, new { @class = "form-control form_datetime", placeholder = "Ingrese la fecha" })
+                                @Html.TextBoxFor(model => model.Enero, new { @class = "form-control datepicker", placeholder = "Ingrese la fecha" })
                                 <span class="glyphicon glyphicon-calendar"></span>
                                 @Html.ValidationMessageFor(model => model.Enero)
                             </div>

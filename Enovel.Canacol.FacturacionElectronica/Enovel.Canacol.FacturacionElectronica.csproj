@@ -136,6 +136,7 @@
     <Compile Include="Controllers\ActualizarDatosController.cs" />
     <Compile Include="Controllers\CambioClaveController.cs" />
     <Compile Include="Controllers\ErrorController.cs" />
+    <Compile Include="Controllers\FechasFacturacionController.cs" />
     <Compile Include="Controllers\InscripcionController.cs" />
     <Compile Include="Controllers\LoginController.cs" />
     <Compile Include="Controllers\MenuController.cs" />
@@ -325,6 +326,7 @@
     <Content Include="Views\Soporte\RadicarSoporte.cshtml" />
     <Content Include="Views\ActualizarDatos\Index.cshtml" />
     <Content Include="Views\CambioClave\Index.cshtml" />
+    <Content Include="Views\FechasFacturacion\GestionarFechas.cshtml" />
   </ItemGroup>
   <ItemGroup>
     <Folder Include="App_Data\" />

@@ -4,7 +4,7 @@
   <edmx:Designer xmlns="http://schemas.microsoft.com/ado/2009/11/edmx">
     <!-- Diagram content (shape and connector positions) -->
     <edmx:Diagrams>
-      <Diagram DiagramId="d7558b325f2d4133ab55f5f746b0346a" Name="Diagram1">
+      <Diagram DiagramId="d7558b325f2d4133ab55f5f746b0346a" Name="Diagram1" ZoomLevel="78">
         <EntityTypeShape EntityType="bdFacturacionElectronicaModel.tblCalidadTributaria" Width="1.5" PointX="0.75" PointY="8.875" IsExpanded="true" />
         <EntityTypeShape EntityType="bdFacturacionElectronicaModel.tblCamaraComercio" Width="1.5" PointX="5.25" PointY="2.75" IsExpanded="true" />
         <EntityTypeShape EntityType="bdFacturacionElectronicaModel.tblEmpresa" Width="1.5" PointX="1.5" PointY="15.375" IsExpanded="true" />
@@ -40,6 +40,7 @@
         <AssociationConnector Association="bdFacturacionElectronicaModel.FK_IDRol_tblRoles" ManuallyRouted="false" />
         <AssociationConnector Association="bdFacturacionElectronicaModel.FK_tblRut_tblUsuariosProveedor" ManuallyRouted="false" />
         <AssociationConnector Association="bdFacturacionElectronicaModel.FK_UsuarioActivacion_tblUsuariosProveedor" ManuallyRouted="false" />
+        <AssociationConnector Association="bdFacturacionElectronicaModel.FK_tblRadicado_tblEmpresa" />
       </Diagram>
     </edmx:Diagrams>
   </edmx:Designer>

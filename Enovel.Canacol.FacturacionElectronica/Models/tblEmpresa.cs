@@ -18,6 +18,7 @@ namespace Enovel.Canacol.FacturacionElectronica.Models
         public tblEmpresa()
         {
             this.tblEmpresaPorProveedor = new HashSet<tblEmpresaPorProveedor>();
+            this.tblRadicado = new HashSet<tblRadicado>();
         }
     
         public int ID { get; set; }
@@ -25,5 +26,7 @@ namespace Enovel.Canacol.FacturacionElectronica.Models
     
         [System.Diagnostics.CodeAnalysis.SuppressMessage("Microsoft.Usage", "CA2227:CollectionPropertiesShouldBeReadOnly")]
         public virtual ICollection<tblEmpresaPorProveedor> tblEmpresaPorProveedor { get; set; }
+        [System.Diagnostics.CodeAnalysis.SuppressMessage("Microsoft.Usage", "CA2227:CollectionPropertiesShouldBeReadOnly")]
+        public virtual ICollection<tblRadicado> tblRadicado { get; set; }
     }
 }

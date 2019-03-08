@@ -227,6 +227,7 @@
     <Compile Include="ViewModels\ActualizarDatosViewModel.cs" />
     <Compile Include="ViewModels\CambioClaveViewModel.cs" />
     <Compile Include="ViewModels\InscripcionViewModel.cs" />
+    <Compile Include="ViewModels\RadicacionViewModel.cs" />
   </ItemGroup>
   <ItemGroup>
     <Content Include="Content\all.css" />

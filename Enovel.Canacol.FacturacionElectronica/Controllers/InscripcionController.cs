@@ -3,15 +3,9 @@ using System;
 using System.Data.Entity.Validation;
 using System.IO;
 using System.Linq;
-<<<<<<< HEAD
-=======
-using System.Net;
-using System.Net.Mail;
 using System.Text;
->>>>>>> master
 using System.Web;
 using System.Web.Mvc;
-
 namespace Enovel.Canacol.FacturacionElectronica.Controllers
 {
     public class InscripcionController : Controller
@@ -28,13 +22,9 @@ namespace Enovel.Canacol.FacturacionElectronica.Controllers
         public ActionResult Inscripcion()
         {
             bdFacturacionElectronicaEntities entities = new bdFacturacionElectronicaEntities();
-<<<<<<< HEAD
-            var taxqualities = entities.tblCalidadTributaria.ToList();
-=======
 
             var taxqualities = entities.tblCalidadTributaria.ToList();
 
->>>>>>> master
             SelectList taxqualitiesList = new SelectList(taxqualities, "ID", "Nombre");
 
             ViewBag.taxqualitiesListName = taxqualitiesList;
@@ -53,10 +43,6 @@ namespace Enovel.Canacol.FacturacionElectronica.Controllers
         [HttpPost]
         public ActionResult Create(tblUsuariosProveedor userModel)
         {
-<<<<<<< HEAD
-            string message = string.Empty;
-=======
->>>>>>> master
             BindTaxQuality(userModel);
             if (userModel.Password.Equals(userModel.ConfirmarPassword))
             {
@@ -65,17 +51,10 @@ namespace Enovel.Canacol.FacturacionElectronica.Controllers
                 switch (statusUser)
                 {
                     case 2:
-<<<<<<< HEAD
-                        GenerateAlert("error", "No eres proveedor activo", "Usuario no existe en la tabla de proveedores activos de Canacol, comuniquese al XXXXX-XXXXX");
-                        break;
-                    case 1:
-                        GenerateAlert("error", "Usuario ya existe", "El usuario que intenta inscribir ya fue registrado anteriormente en el sistema de Facturación electrónica");
-=======
                         GenerateAlert("error", "No eres proveedor activo", "Usuario no existe en la tabla de proveedores activos de Canacol, comuniquese al XXXXX-XXXXX", string.Empty);
                         break;
                     case 1:
                         GenerateAlert("error", "Usuario ya existe", "El usuario que intenta inscribir ya fue registrado anteriormente en el sistema de Facturación electrónica", string.Empty);
->>>>>>> master
                         break;
                     case 0:
                         AddProviderUser(userModel);
@@ -84,11 +63,7 @@ namespace Enovel.Canacol.FacturacionElectronica.Controllers
             }
             else
             {
-<<<<<<< HEAD
-                GenerateAlert("error", "claves incorrectas", "Error en las claves','Las claves no coinciden, verifique de nuevo");
-=======
                 GenerateAlert("error", "claves incorrectas", "Error en las claves','Las claves no coinciden, verifique de nuevo", string.Empty);
->>>>>>> master
             }
 
             return View(CurrentController, userModel);
@@ -99,37 +74,6 @@ namespace Enovel.Canacol.FacturacionElectronica.Controllers
             try
             {
                 bdFacturacionElectronicaEntities entities = new bdFacturacionElectronicaEntities();
-<<<<<<< HEAD
-                HttpFileCollectionBase files = Request.Files;
-                HttpPostedFileBase fileRut = Request.Files["RutaRut"];
-                HttpPostedFileBase fileCamaraComercio = Request.Files["RutaCamaraComercio"];
-                string locationRut = getLocationFile(fileRut);
-                string locationCamaraComercio = getLocationFile(fileCamaraComercio);
-
-                entities.tblUsuariosProveedor.Add(new tblUsuariosProveedor
-                {
-                    UsuarioNit = userModel.UsuarioNit.ToUpper(),
-                    Password = userModel.Password,
-                    ConfirmarPassword = userModel.ConfirmarPassword,
-                    RazonSocial = userModel.RazonSocial.ToUpper(),
-                    IDCalidadTributaria = userModel.IDCalidadTributaria,
-                    Email = userModel.Email.ToUpper(),
-                    Telefono = userModel.Telefono.ToUpper(),
-                    Direccion = userModel.Direccion.ToUpper(),
-                    RepresentanteLegal = userModel.RepresentanteLegal.ToUpper(),
-                    RutaRut = locationRut,
-                    RutaCamaraComercio = locationCamaraComercio,
-                    Estado = "ACTIVACIÓN",
-                    CreatedDate = DateTime.Now,
-                    FEErrorMessage = "Usuario creado correctamente"
-                });
-                entities.SaveChanges();
-
-                GenerateAlert("success", "Inscripción éxitosa", "La inscripción se ha realizado correctamente, recuerde activar su cuenta mediante el link de activación que se le acaba de enviar al email");
-            }
-            catch (DbEntityValidationException dbException)
-            {
-=======
 
                 InsertUserProvider(userModel, entities);
 
@@ -252,7 +196,6 @@ namespace Enovel.Canacol.FacturacionElectronica.Controllers
                 case "info":
                     TempData["alert"] = string.Format("<script>alertInfo('{0}','{1}')</script>", title, message);
                     break;
->>>>>>> master
             }
             catch (Exception exception)
             {
@@ -298,13 +241,9 @@ namespace Enovel.Canacol.FacturacionElectronica.Controllers
         private void BindTaxQuality(tblUsuariosProveedor userModel)
         {
             bdFacturacionElectronicaEntities entities = new bdFacturacionElectronicaEntities();
-<<<<<<< HEAD
-            var taxqualities = entities.tblCalidadTributaria.ToList().Where(t => t.ID == userModel.IDCalidadTributaria);
-=======
 
             var taxqualities = entities.tblCalidadTributaria.ToList().Where(t => t.ID == userModel.IDCalidadTributaria);
 
->>>>>>> master
             SelectList taxqualitiesList = new SelectList(taxqualities, "ID", "Nombre");
 
             ViewBag.taxqualitiesListName = taxqualitiesList;
@@ -319,13 +258,9 @@ namespace Enovel.Canacol.FacturacionElectronica.Controllers
             //------------------------------------------------------------------------------
 
             bdFacturacionElectronicaEntities entities = new bdFacturacionElectronicaEntities();
-<<<<<<< HEAD
-            var existUser = entities.tblUsuariosProveedor.Where(u => u.UsuarioNit == userModel.UsuarioNit).FirstOrDefault();
-=======
 
             var existUser = entities.tblUsuariosProveedor.Where(u => u.UsuarioNit == userModel.UsuarioNit).FirstOrDefault();
 
->>>>>>> master
             if (existUser != null)
             {
                 return 1;
@@ -333,10 +268,6 @@ namespace Enovel.Canacol.FacturacionElectronica.Controllers
             else
             {
                 var IsActiveProvider = entities.tblProveedor.Where(p => p.Nit == userModel.UsuarioNit).FirstOrDefault();
-<<<<<<< HEAD
-=======
-
->>>>>>> master
                 return (IsActiveProvider != null) ? 0 : 2;
             }
         }

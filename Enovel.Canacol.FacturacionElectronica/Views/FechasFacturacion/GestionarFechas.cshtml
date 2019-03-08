@@ -1,0 +1,173 @@
+﻿@using Enovel.Canacol.FacturacionElectronica.Models
+@model tblFechasFacturacion
+
+
+@{
+    ViewBag.Title = "GestionarFechas";
+}
+
+
+<div class="container main-container">
+    <h1>Fechas de radicación </h1>
+    <hr>
+    <div class="card">
+        <div class="card-body">
+            <img src="images.jpg" id="banner" class="espacio" alt="Smiley face">
+            <form>
+                <div class="card espacio">
+                    <div class="card-header bg-secondary text-light">
+                        Asigne las fechas de radicación
+                    </div>
+                    <div class="card-body">
+
+                        <div class="form-group row">
+
+                            @Html.LabelFor(model => model.Periodo, new { @class = "control-label col-md-2" })
+
+                            <div class="col-sm-4">
+                                @Html.Label("Periodo", (string)ViewBag.PeriodoActual, new { @readonly = "readonly" })
+                            </div>
+                        </div>
+                        <div class="form-group row">
+                            <div class="col-sm-2 col-form-label">
+                                <strong>
+                                    @Html.LabelFor(model => model.Enero)
+                                </strong>
+                            </div>
+                            <div class="col-sm-4">
+                                @Html.TextBoxFor(model => model.Enero, new { @class = "form-control form_datetime", placeholder = "Ingrese la fecha" })
+                                <span class="glyphicon glyphicon-calendar"></span>
+                                @Html.ValidationMessageFor(model => model.Enero)
+                            </div>
+                        </div>
+                        <div class="form-group row">
+                            <div class="col-sm-2 col-form-label">
+                                <strong>
+                                    @Html.LabelFor(model => model.Febrero)
+                                </strong>
+                            </div>
+                            <div class="col-sm-4">
+                                @Html.TextBoxFor(model => model.Febrero, new { @class = "form-control datepicker", placeholder = "Ingrese la fecha" })
+                                @Html.ValidationMessageFor(model => model.Febrero)
+                            </div>
+                        </div>
+                        <div class="form-group row">
+                            <div class="col-sm-2 col-form-label">
+                                <strong>
+                                    @Html.LabelFor(model => model.Marzo)
+                                </strong>
+                            </div>
+                            <div class="col-sm-4">
+                                @Html.TextBoxFor(model => model.Marzo, new { @class = "form-control datepicker", placeholder = "Ingrese la fecha" })
+                                @Html.ValidationMessageFor(model => model.Marzo)
+                            </div>
+                        </div>
+                        <div class="form-group row">
+                            <div class="col-sm-2 col-form-label">
+                                <strong>
+                                    @Html.LabelFor(model => model.Abril)
+                                </strong>
+                            </div>
+                            <div class="col-sm-4">
+                                @Html.TextBoxFor(model => model.Abril, new { @class = "form-control datepicker", placeholder = "Ingrese la fecha" })
+                                @Html.ValidationMessageFor(model => model.Abril)
+                            </div>
+                        </div>
+                        <div class="form-group row">
+                            <div class="col-sm-2 col-form-label">
+                                <strong>
+                                    @Html.LabelFor(model => model.Mayo)
+                                </strong>
+                            </div>
+                            <div class="col-sm-4">
+                                @Html.TextBoxFor(model => model.Mayo, new { @class = "form-control datepicker", placeholder = "Ingrese la fecha" })
+                                @Html.ValidationMessageFor(model => model.Mayo)
+                            </div>
+                        </div>
+                        <div class="form-group row">
+                            <div class="col-sm-2 col-form-label">
+                                <strong>
+                                    @Html.LabelFor(model => model.Junio)
+                                </strong>
+                            </div>
+                            <div class="col-sm-4">
+                                @Html.TextBoxFor(model => model.Junio, new { @class = "form-control datepicker", placeholder = "Ingrese la fecha" })
+                                @Html.ValidationMessageFor(model => model.Junio)
+                            </div>
+                        </div>
+                        <div class="form-group row">
+                            <div class="col-sm-2 col-form-label">
+                                <strong>
+                                    @Html.LabelFor(model => model.Julio)
+                                </strong>
+                            </div>
+                            <div class="col-sm-4">
+                                @Html.TextBoxFor(model => model.Julio, new { @class = "form-control datepicker", placeholder = "Ingrese la fecha" })
+                                @Html.ValidationMessageFor(model => model.Julio)
+                            </div>
+                        </div>
+                        <div class="form-group row">
+                            <div class="col-sm-2 col-form-label">
+                                <strong>
+                                    @Html.LabelFor(model => model.Agosto)
+                                </strong>
+                            </div>
+                            <div class="col-sm-4">
+                                @Html.TextBoxFor(model => model.Agosto, new { @class = "form-control datepicker", placeholder = "Ingrese la fecha" })
+                                @Html.ValidationMessageFor(model => model.Agosto)
+                            </div>
+                        </div>
+                        <div class="form-group row">
+                            <div class="col-sm-2 col-form-label">
+                                <strong>
+                                    @Html.LabelFor(model => model.Septiembre)
+                                </strong>
+                            </div>
+                            <div class="col-sm-4">
+                                @Html.TextBoxFor(model => model.Septiembre, new { @class = "form-control datepicker", placeholder = "Ingrese la fecha" })
+                                @Html.ValidationMessageFor(model => model.Septiembre)
+                            </div>
+                        </div>
+                        <div class="form-group row">
+                            <div class="col-sm-2 col-form-label">
+                                <strong>
+                                    @Html.LabelFor(model => model.Octubre)
+                                </strong>
+                            </div>
+                            <div class="col-sm-4">
+                                @Html.TextBoxFor(model => model.Octubre, new { @name = "DuaDate", @class = "form-control datepicker", @Id = "datepicker", placeholder = "Ingrese la fecha" })
+                                @Html.ValidationMessageFor(model => model.Octubre)
+                            </div>
+                        </div>
+                        <div class="form-group row">
+                            <div class="col-sm-2 col-form-label">
+                                <strong>
+                                    @Html.LabelFor(model => model.Noviembre)
+                                </strong>
+                            </div>
+                            <div class="col-sm-4">
+                                @Html.TextBoxFor(model => model.Noviembre, new { @class = "form-control datepicker", placeholder = "Ingrese la fecha" })
+                                @Html.ValidationMessageFor(model => model.Noviembre)
+                            </div>
+                        </div>
+                        <div class="form-group row">
+                            <div class="col-sm-2 col-form-label">
+                                <strong>
+                                    @Html.LabelFor(model => model.Diciembre)
+                                </strong>
+                            </div>
+                            <div class="col-sm-4">
+                                @Html.TextBoxFor(model => model.Diciembre, new { @class = "form-control datepicker", placeholder = "Ingrese la fecha" })
+                                @Html.ValidationMessageFor(model => model.Diciembre)
+                            </div>
+                        </div>
+                    </div>
+                </div>
+                <button type="button" name="" id="" class="btn btn-success " style="float:right"> Guardar</button>
+                <button type="button" name="" id="" class="btn btn-default " style="float:right"> Cancelar</button>
+            </form>
+        </div>
+    </div>
+</div>
+
+<script src="~/Scripts/facturacionElectronica.js"></script>

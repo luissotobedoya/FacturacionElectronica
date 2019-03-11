@@ -11,8 +11,7 @@
     <h1>Fechas de radicación </h1>
     <hr>
     <div class="card">
-        <div class="card-body">
-            <img src="images.jpg" id="banner" class="espacio" alt="Smiley face">
+        <div class="card-body">           
             <form>
                 <div class="card espacio">
                     <div class="card-header bg-secondary text-light">
@@ -35,8 +34,10 @@
                                 </strong>
                             </div>
                             <div class="col-sm-4">
-                                @Html.TextBoxFor(model => model.Enero, new { @class = "form-control datepicker", placeholder = "Ingrese la fecha" })
-                                <span class="glyphicon glyphicon-calendar"></span>
+                                @Html.TextBoxFor(model => model.Enero, new { @class = "form-control datepicker", placeholder = "Ingrese la fecha", type = "datetime-local" })
+                                <span class="input-group-addon">
+                                    <span class="glyphicon glyphicon-calendar"></span>
+                                </span>
                                 @Html.ValidationMessageFor(model => model.Enero)
                             </div>
                         </div>
@@ -47,7 +48,7 @@
                                 </strong>
                             </div>
                             <div class="col-sm-4">
-                                @Html.TextBoxFor(model => model.Febrero, new { @class = "form-control datepicker", placeholder = "Ingrese la fecha" })
+                                @Html.TextBoxFor(model => model.Febrero, new { @class = "form-control datepicker", placeholder = "Ingrese la fecha" , type = "datetime-local" })
                                 @Html.ValidationMessageFor(model => model.Febrero)
                             </div>
                         </div>
@@ -58,7 +59,7 @@
                                 </strong>
                             </div>
                             <div class="col-sm-4">
-                                @Html.TextBoxFor(model => model.Marzo, new { @class = "form-control datepicker", placeholder = "Ingrese la fecha" })
+                                @Html.TextBoxFor(model => model.Marzo, new { @class = "form-control datepicker", placeholder = "Ingrese la fecha", type = "datetime-local" })
                                 @Html.ValidationMessageFor(model => model.Marzo)
                             </div>
                         </div>
@@ -69,7 +70,7 @@
                                 </strong>
                             </div>
                             <div class="col-sm-4">
-                                @Html.TextBoxFor(model => model.Abril, new { @class = "form-control datepicker", placeholder = "Ingrese la fecha" })
+                                @Html.TextBoxFor(model => model.Abril, new { @class = "form-control datepicker", placeholder = "Ingrese la fecha", type = "datetime-local" })
                                 @Html.ValidationMessageFor(model => model.Abril)
                             </div>
                         </div>
@@ -80,7 +81,7 @@
                                 </strong>
                             </div>
                             <div class="col-sm-4">
-                                @Html.TextBoxFor(model => model.Mayo, new { @class = "form-control datepicker", placeholder = "Ingrese la fecha" })
+                                @Html.TextBoxFor(model => model.Mayo, new { @class = "form-control datepicker", placeholder = "Ingrese la fecha", type = "datetime-local" })
                                 @Html.ValidationMessageFor(model => model.Mayo)
                             </div>
                         </div>
@@ -91,7 +92,7 @@
                                 </strong>
                             </div>
                             <div class="col-sm-4">
-                                @Html.TextBoxFor(model => model.Junio, new { @class = "form-control datepicker", placeholder = "Ingrese la fecha" })
+                                @Html.TextBoxFor(model => model.Junio, new { @class = "form-control datepicker", placeholder = "Ingrese la fecha", type = "datetime-local" })
                                 @Html.ValidationMessageFor(model => model.Junio)
                             </div>
                         </div>
@@ -102,7 +103,7 @@
                                 </strong>
                             </div>
                             <div class="col-sm-4">
-                                @Html.TextBoxFor(model => model.Julio, new { @class = "form-control datepicker", placeholder = "Ingrese la fecha" })
+                                @Html.TextBoxFor(model => model.Julio, new { @class = "form-control datepicker", placeholder = "Ingrese la fecha", type = "datetime-local" })
                                 @Html.ValidationMessageFor(model => model.Julio)
                             </div>
                         </div>
@@ -113,7 +114,7 @@
                                 </strong>
                             </div>
                             <div class="col-sm-4">
-                                @Html.TextBoxFor(model => model.Agosto, new { @class = "form-control datepicker", placeholder = "Ingrese la fecha" })
+                                @Html.TextBoxFor(model => model.Agosto, new { @class = "form-control datepicker", placeholder = "Ingrese la fecha", type = "datetime-local" })
                                 @Html.ValidationMessageFor(model => model.Agosto)
                             </div>
                         </div>
@@ -124,7 +125,7 @@
                                 </strong>
                             </div>
                             <div class="col-sm-4">
-                                @Html.TextBoxFor(model => model.Septiembre, new { @class = "form-control datepicker", placeholder = "Ingrese la fecha" })
+                                @Html.TextBoxFor(model => model.Septiembre, new { @class = "form-control datepicker", placeholder = "Ingrese la fecha", type = "datetime-local" })
                                 @Html.ValidationMessageFor(model => model.Septiembre)
                             </div>
                         </div>
@@ -135,7 +136,7 @@
                                 </strong>
                             </div>
                             <div class="col-sm-4">
-                                @Html.TextBoxFor(model => model.Octubre, new { @name = "DuaDate", @class = "form-control datepicker", @Id = "datepicker", placeholder = "Ingrese la fecha" })
+                                @Html.TextBoxFor(model => model.Octubre, new { @class = "form-control datepicker", placeholder = "Ingrese la fecha" , type = "datetime-local" })
                                 @Html.ValidationMessageFor(model => model.Octubre)
                             </div>
                         </div>
@@ -146,7 +147,7 @@
                                 </strong>
                             </div>
                             <div class="col-sm-4">
-                                @Html.TextBoxFor(model => model.Noviembre, new { @class = "form-control datepicker", placeholder = "Ingrese la fecha" })
+                                @Html.TextBoxFor(model => model.Noviembre, new { @class = "form-control datepicker", placeholder = "Ingrese la fecha", type = "datetime-local" })
                                 @Html.ValidationMessageFor(model => model.Noviembre)
                             </div>
                         </div>
@@ -157,14 +158,14 @@
                                 </strong>
                             </div>
                             <div class="col-sm-4">
-                                @Html.TextBoxFor(model => model.Diciembre, new { @class = "form-control datepicker", placeholder = "Ingrese la fecha" })
+                                @Html.TextBoxFor(model => model.Diciembre, new { @class = "form-control datepicker", placeholder = "Ingrese la fecha" , type = "datetime-local" })
                                 @Html.ValidationMessageFor(model => model.Diciembre)
                             </div>
                         </div>
                     </div>
                 </div>
-                <button type="button" name="" id="" class="btn btn-success " style="float:right"> Guardar</button>
-                <button type="button" name="" id="" class="btn btn-default " style="float:right"> Cancelar</button>
+                <button type="button" name="" id="" class="btn btn-success " style="float:right">Guardar</button>
+                <button type="button" name="" id="" class="btn btn-default " style="float:right">Cancelar</button>
             </form>
         </div>
     </div>

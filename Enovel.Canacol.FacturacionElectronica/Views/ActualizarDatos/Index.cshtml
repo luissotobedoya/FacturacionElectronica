@@ -10,99 +10,104 @@
 {
     @Html.AntiForgeryToken()
 
-    <div class="container main-container">
+<div class="container main-container">
 
-        <h2>@ViewBag.Title</h2>
+    <h2>@ViewBag.Title</h2>
 
-        <p>Actualizar datos del proveedor</p>
-
-        <div class="form-row">
-            <div class="form-group col-md-12">
-                <label class="control-label" for="Nit">Nit</label>
-                <div class="userNit">
-                    @Html.DisplayFor(model => model.UserNit)
-                </div>
-            </div>
-        </div>
-
-        <div class="data-general">
+    <p>Actualizar datos del proveedor</p>
+    <hr>
+    <div class="card">
+        <div class="card-body">
 
             <div class="form-row">
-                <div class="form-group required col-md-6">
-                    @Html.LabelFor(model => model.RazonSocial, htmlAttributes: new { @class = "control-label" })
-                    @Html.EditorFor(model => model.RazonSocial, new { htmlAttributes = new { @class = "form-control", @style = "text-transform:uppercase" } })
-                    @Html.ValidationMessageFor(model => model.RazonSocial, "", new { @class = "text-danger" })
-                </div>
-                <div class="form-group required col-md-6">
-                    @Html.LabelFor(model => model.IDCalidadTributaria, htmlAttributes: new { @class = "control-label" })
-                    @Html.DropDownList("IDCalidadTributaria", ViewBag.taxqualitiesListName as SelectList, htmlAttributes: new { @class = "form-control", @style = "text-transform:uppercase" })
-                    @Html.ValidationMessageFor(model => model.IDCalidadTributaria, "", new { @class = "text-danger" })
-                </div>
-            </div>
-
-            <div class="form-row">
-                <div class="form-group required col-md-6">
-                    @Html.LabelFor(model => model.Email, htmlAttributes: new { @class = "control-label" })
-                    @Html.EditorFor(model => model.Email, new { htmlAttributes = new { @class = "form-control", @style = "text-transform:uppercase" } })
-                    @Html.ValidationMessageFor(model => model.Email, "", new { @class = "text-danger" })
-                    @Html.HiddenFor(model => model.Emaildb, new { id = "hdnFlag" })
-                </div>
-                <div class="form-group required col-md-6">
-                    @Html.LabelFor(model => model.Telefono, htmlAttributes: new { @class = "control-label" })
-                    @Html.EditorFor(model => model.Telefono, new { htmlAttributes = new { @class = "form-control", @style = "text-transform:uppercase" } })
-                    @Html.ValidationMessageFor(model => model.Telefono, "", new { @class = "text-danger" })
-                </div>
-            </div>
-
-            <div class="form-row">
-                <div class="form-group required col-md-6">
-                    @Html.LabelFor(model => model.Direccion, htmlAttributes: new { @class = "control-label" })
-                    @Html.EditorFor(model => model.Direccion, new { htmlAttributes = new { @class = "form-control", @style = "text-transform:uppercase" } })
-                    @Html.ValidationMessageFor(model => model.Direccion, "", new { @class = "text-danger" })
-                </div>
-                <div class="form-group required col-md-6">
-                    @Html.LabelFor(model => model.RepresentanteLegal, htmlAttributes: new { @class = "control-label" })
-                    @Html.EditorFor(model => model.RepresentanteLegal, new { htmlAttributes = new { @class = "form-control", @style = "text-transform:uppercase" } })
-                    @Html.ValidationMessageFor(model => model.RepresentanteLegal, "", new { @class = "text-danger" })
-                </div>
-            </div>
-
-            <div class="form-row">
-                <div class="form-group required col-md-6">
-                    <label>Documento del RUT</label>
-                    <div>
-                        <a title="Descargue el documento de RUT" href="@Html.DisplayFor(model => model.Rut)" download><img src="~/Content/Images/pdf.png" /></a>
-                    </div>
-                </div>
-                <div class="form-group required col-md-6">
-                    <label>Documento de Cámara y comercio</label>
-                    <div>
-                        <a title="Descargue el documento de cámara de comercio" href="@Html.DisplayFor(model => model.CamaraComercio)" download><img src="~/Content/Images/pdf.png" /></a>
+                <div class="form-group col-md-12">
+                    <label class="control-label" for="Nit">Nit</label>
+                    <div class="userNit">
+                        @Html.DisplayFor(model => model.UserNit)
                     </div>
                 </div>
             </div>
 
-            <div class="form-row">
-                <div class="form-group required col-md-6">
-                    @Html.LabelFor(model => model.Rut, htmlAttributes: new { @class = "control-label" })
-                    @Html.TextBoxFor(model => model.Rut, htmlAttributes: new { @class = "form-control", @type = "file", @name = "FileRut", @id = "FileRut", @accept = "application/pdf" })
-                    @Html.ValidationMessageFor(model => model.Rut, "", new { @class = "text-danger" })
+            <div class="data-general">
+
+                <div class="form-row">
+                    <div class="form-group required col-md-6">
+                        @Html.LabelFor(model => model.RazonSocial, htmlAttributes: new { @class = "control-label" })
+                        @Html.EditorFor(model => model.RazonSocial, new { htmlAttributes = new { @class = "form-control", @style = "text-transform:uppercase" } })
+                        @Html.ValidationMessageFor(model => model.RazonSocial, "", new { @class = "text-danger" })
+                    </div>
+                    <div class="form-group required col-md-6">
+                        @Html.LabelFor(model => model.IDCalidadTributaria, htmlAttributes: new { @class = "control-label" })
+                        @Html.DropDownList("IDCalidadTributaria", ViewBag.taxqualitiesListName as SelectList, htmlAttributes: new { @class = "form-control", @style = "text-transform:uppercase" })
+                        @Html.ValidationMessageFor(model => model.IDCalidadTributaria, "", new { @class = "text-danger" })
+                    </div>
                 </div>
-                <div class="form-group required col-md-6">
-                    @Html.LabelFor(model => model.CamaraComercio, htmlAttributes: new { @class = "control-label" })
-                    @Html.TextBoxFor(model => model.CamaraComercio, htmlAttributes: new { @class = "form-control", @type = "file", @name = "FileCamaraComercio", @id = "FileCamaraComercio", @accept = "application/pdf" })
-                    @Html.ValidationMessageFor(model => model.CamaraComercio, "", new { @class = "text-danger" })
+
+                <div class="form-row">
+                    <div class="form-group required col-md-6">
+                        @Html.LabelFor(model => model.Email, htmlAttributes: new { @class = "control-label" })
+                        @Html.EditorFor(model => model.Email, new { htmlAttributes = new { @class = "form-control", @style = "text-transform:uppercase" } })
+                        @Html.ValidationMessageFor(model => model.Email, "", new { @class = "text-danger" })
+                        @Html.HiddenFor(model => model.Emaildb, new { id = "hdnFlag" })
+                    </div>
+                    <div class="form-group required col-md-6">
+                        @Html.LabelFor(model => model.Telefono, htmlAttributes: new { @class = "control-label" })
+                        @Html.EditorFor(model => model.Telefono, new { htmlAttributes = new { @class = "form-control", @style = "text-transform:uppercase" } })
+                        @Html.ValidationMessageFor(model => model.Telefono, "", new { @class = "text-danger" })
+                    </div>
                 </div>
+
+                <div class="form-row">
+                    <div class="form-group required col-md-6">
+                        @Html.LabelFor(model => model.Direccion, htmlAttributes: new { @class = "control-label" })
+                        @Html.EditorFor(model => model.Direccion, new { htmlAttributes = new { @class = "form-control", @style = "text-transform:uppercase" } })
+                        @Html.ValidationMessageFor(model => model.Direccion, "", new { @class = "text-danger" })
+                    </div>
+                    <div class="form-group required col-md-6">
+                        @Html.LabelFor(model => model.RepresentanteLegal, htmlAttributes: new { @class = "control-label" })
+                        @Html.EditorFor(model => model.RepresentanteLegal, new { htmlAttributes = new { @class = "form-control", @style = "text-transform:uppercase" } })
+                        @Html.ValidationMessageFor(model => model.RepresentanteLegal, "", new { @class = "text-danger" })
+                    </div>
+                </div>
+
+                <div class="form-row">
+                    <div class="form-group required col-md-6">
+                        <label>Documento del RUT</label>
+                        <div>
+                            <a title="Descargue el documento de RUT" href="@Html.DisplayFor(model => model.Rut)" download><img src="~/Content/Images/pdf.png" /></a>
+                        </div>
+                    </div>
+                    <div class="form-group required col-md-6">
+                        <label>Documento de Cámara y comercio</label>
+                        <div>
+                            <a title="Descargue el documento de cámara de comercio" href="@Html.DisplayFor(model => model.CamaraComercio)" download><img src="~/Content/Images/pdf.png" /></a>
+                        </div>
+                    </div>
+                </div>
+
+                <div class="form-row">
+                    <div class="form-group required col-md-6">
+                        @Html.LabelFor(model => model.Rut, htmlAttributes: new { @class = "control-label" })
+                        @Html.TextBoxFor(model => model.Rut, htmlAttributes: new { @class = "form-control", @type = "file", @name = "FileRut", @id = "FileRut", @accept = "application/pdf" })
+                        @Html.ValidationMessageFor(model => model.Rut, "", new { @class = "text-danger" })
+                    </div>
+                    <div class="form-group required col-md-6">
+                        @Html.LabelFor(model => model.CamaraComercio, htmlAttributes: new { @class = "control-label" })
+                        @Html.TextBoxFor(model => model.CamaraComercio, htmlAttributes: new { @class = "form-control", @type = "file", @name = "FileCamaraComercio", @id = "FileCamaraComercio", @accept = "application/pdf" })
+                        @Html.ValidationMessageFor(model => model.CamaraComercio, "", new { @class = "text-danger" })
+                    </div>
+                </div>
+
+                <button type="button" class="btn btn-default" onclick="window.location='@Url.Action(" MenuProveedor", "Menu" )'">Cancelar</button>
+                <input type="submit" value="Actualizar datos" class="btn btn-primary" />
+
             </div>
-
-            <button type="button" class="btn btn-default" onclick="window.location='@Url.Action("MenuProveedor", "Menu")'">Cancelar</button>
-            <input type="submit" value="Actualizar datos" class="btn btn-primary" />
-
         </div>
-
-        @if (TempData["alert"] != null)
-        {
-            @Html.Raw(TempData["alert"])
-        }
     </div>
+
+    @if (TempData["alert"] != null)
+    {
+    @Html.Raw(TempData["alert"])
+    }
+</div>
 }

@@ -8,17 +8,30 @@ html {
     -ms-text-size-adjust: 100%;
 }
 
-#Row1 {
-    margin-bottom: 10px;
-}
+
 
 a:focus {
     outline: none;
 }
 
+.shadow {
+    -moz-box-shadow: 3px 3px 5px 6px #ccc;
+    -webkit-box-shadow: 3px 3px 5px 6px #ccc;
+    box-shadow: 3px 3px 5px 6px #ccc;
+    border-radius: 25px;
+}
+
+    .shadow:hover, .shadow:focus, .shadow:active {
+        -webkit-transform: scale(1.1);
+        transform: scale(1.1);
+    }
+
+
+
 .NavBarCanacol {
     background-color: rgb(16,63,104);
 }
+
 .navbar-brand {
     position: relative;
     background: url(~/Content/images/logo.png);

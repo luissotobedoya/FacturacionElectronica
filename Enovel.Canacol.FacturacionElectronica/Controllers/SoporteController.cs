@@ -60,6 +60,7 @@ namespace Enovel.Canacol.FacturacionElectronica.Controllers
                                            Nombre = empresa.Nombre
                                        }).ToList();
 
+
             SelectList CompaniesList = new SelectList(companiesByProvider, "ID", "Nombre");
             ViewBag.companies = CompaniesList;
         }

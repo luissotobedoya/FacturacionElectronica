@@ -17,9 +17,7 @@ namespace Enovel.Canacol.FacturacionElectronica.Models
         [System.Diagnostics.CodeAnalysis.SuppressMessage("Microsoft.Usage", "CA2214:DoNotCallOverridableMethodsInConstructors")]
         public tblUsuariosProveedor()
         {
-            this.tblCamaraComercio = new HashSet<tblCamaraComercio>();
             this.tblRadicado = new HashSet<tblRadicado>();
-            this.tblRut = new HashSet<tblRut>();
             this.UsuarioActivacion = new HashSet<UsuarioActivacion>();
         }
     
@@ -40,11 +38,7 @@ namespace Enovel.Canacol.FacturacionElectronica.Models
         public string FEErrorMessage { get; set; }
         public virtual tblCalidadTributaria tblCalidadTributaria { get; set; }
         [System.Diagnostics.CodeAnalysis.SuppressMessage("Microsoft.Usage", "CA2227:CollectionPropertiesShouldBeReadOnly")]
-        public virtual ICollection<tblCamaraComercio> tblCamaraComercio { get; set; }
-        [System.Diagnostics.CodeAnalysis.SuppressMessage("Microsoft.Usage", "CA2227:CollectionPropertiesShouldBeReadOnly")]
         public virtual ICollection<tblRadicado> tblRadicado { get; set; }
-        [System.Diagnostics.CodeAnalysis.SuppressMessage("Microsoft.Usage", "CA2227:CollectionPropertiesShouldBeReadOnly")]
-        public virtual ICollection<tblRut> tblRut { get; set; }
         [System.Diagnostics.CodeAnalysis.SuppressMessage("Microsoft.Usage", "CA2227:CollectionPropertiesShouldBeReadOnly")]
         public virtual ICollection<UsuarioActivacion> UsuarioActivacion { get; set; }
     }

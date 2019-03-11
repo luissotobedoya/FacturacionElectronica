@@ -9,7 +9,6 @@ namespace Enovel.Canacol.FacturacionElectronica.Controllers
 {
     public class SoporteController : Controller
     {
-        // GET: Soporte
         public ActionResult MisSoportes()
         {
             return View();
@@ -24,6 +23,7 @@ namespace Enovel.Canacol.FacturacionElectronica.Controllers
                 {
                     LoadInfoProvider(radicacionViewModel, userNitLogged, entities);
                     LoadCompaniesByProvider(userNitLogged, entities);
+                    LoadOrdersType(userNitLogged, entities);
                 }
             }
             catch (DbEntityValidationException)
@@ -35,6 +35,10 @@ namespace Enovel.Canacol.FacturacionElectronica.Controllers
                 GenerateAlert("error", "error", exception.Message, string.Empty);
             }
             return View(radicacionViewModel);
+        }
+
+        private void LoadOrdersType(string userNitLogged, bdFacturacionElectronicaEntities entities)
+        {
         }
 
         private static void LoadInfoProvider(RadicacionViewModel radicacionViewModel, string userNitLogged, bdFacturacionElectronicaEntities entities)

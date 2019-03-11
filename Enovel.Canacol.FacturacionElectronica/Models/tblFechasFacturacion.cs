@@ -10,24 +10,12 @@
 namespace Enovel.Canacol.FacturacionElectronica.Models
 {
     using System;
-    using System.ComponentModel.DataAnnotations;
-
+    using System.Collections.Generic;
+    
     public partial class tblFechasFacturacion
     {
-        private int periodo;
         public int ID { get; set; }
-        [Display(Name = "Año")]
-        public int Periodo
-        {
-            get
-            {
-                return DateTime.Now.Year;
-            }
-            set
-            {
-                periodo = value;
-            }
-        }
+        public int Periodo { get; set; }
         public System.DateTime Enero { get; set; }
         public System.DateTime Febrero { get; set; }
         public System.DateTime Marzo { get; set; }

@@ -23,6 +23,7 @@ namespace Enovel.Canacol.FacturacionElectronica.Models
         public int ID { get; set; }
         public string NumeroRadicado { get; set; }
         public Nullable<int> IDProveedor { get; set; }
+        public Nullable<int> IDEmpresa { get; set; }
         public string RutaArchivoOrden { get; set; }
         public string RutaArchivoGoodReceipt { get; set; }
         public string Soporte1 { get; set; }
@@ -41,11 +42,10 @@ namespace Enovel.Canacol.FacturacionElectronica.Models
         public string NumeroCausacion { get; set; }
         public string RutaArchivoCausacion { get; set; }
         public string Estado { get; set; }
-        public Nullable<int> IDEmpresa { get; set; }
     
+        public virtual tblEmpresa tblEmpresa { get; set; }
         [System.Diagnostics.CodeAnalysis.SuppressMessage("Microsoft.Usage", "CA2227:CollectionPropertiesShouldBeReadOnly")]
         public virtual ICollection<tblGoodReceiptRadicado> tblGoodReceiptRadicado { get; set; }
         public virtual tblUsuariosProveedor tblUsuariosProveedor { get; set; }
-        public virtual tblEmpresa tblEmpresa { get; set; }
     }
 }

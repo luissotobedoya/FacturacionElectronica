@@ -21,6 +21,5 @@ namespace Enovel.Canacol.FacturacionElectronica.Models
         public Nullable<float> ValorGR { get; set; }
     
         public virtual tblGoodReceiptRadicado tblGoodReceiptRadicado { get; set; }
-        public virtual tblNumeroOrdenProveedor tblNumeroOrdenProveedor { get; set; }
     }
 }
